@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THE MOVIE DB</title>
+    <link rel="stylesheet" href="main.css"/>
+</head>
+<body>
+
+    <div class="top-bar"></div>
+    <div class="title">THE MOVIE DB</div>
+
+    <div class="v1"></div>
+
+
+     <div class="tabs">
+         <div class="tab-header">
+             <div id="home-btn" class="tab-btn active">
+                 Home
+             </div>
+             <div id="search-btn" class="tab-btn">
+                 Search
+             </div>
+         </div>
+
+        <div class="content">
+            <div id="home" class="tab-content active">
+                <div class="subtitle">Trending Movies</div>
+                <div class="trending-slides">
+                    <div id="demo-pic"></div>
+                    <div id="demo" class="trending-title"></div>
+                </div>
+                <div class="tv-shows">
+                    <div class="tv-show-header">TV Shows On-Air Today</div>
+                    <div id="tv-pic"></div>
+                    <div id="tv-title" class="tv-show-title"></div>
+                </div>
+            </div>
+            <div id="search" class="tab-content">
+                <div class="search-content">
+                    <div class="search-title">Search</div>
+                    <div id="search-form">
+                        <label for="keyword" class="keyword-label">Keyword:</label>
+                        <input id="keyword" name="keyword" type="text">
+                        <label for="category" class="category-label">Category:</label>
+                        <input id="category" name="category" type="password">
+                        <button id="search-form-btn">Search</button>
+                        <button id="clear-btn">Clear</button>
+                        <p id="search-error"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+    <footer>
+
+    </footer>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
