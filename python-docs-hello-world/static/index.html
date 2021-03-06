@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>THE MOVIE DB</title>
+ <!-- <link rel="stylesheet" href="main.css"/>  -->
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="background">
+        <div class="header">
+            <div class="title">THE MOVIE DB</div>
+            <div class="top-bar"></div>
+        </div>
+
+        <div id="page-container">
+            <div id="back">
+
+                <div class="tab-header">
+                    <div id="home-btn" class="tab-btn active">
+                        Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10230;
+                    </div>
+                    <div id="search-btn" class="tab-btn">
+                        Search&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10230;
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <div id="content">
+                        <div id="home" class="tab-content active">
+                            <div class="subtitle">Trending Movies</div>
+                            <div class="trending-slides">
+                                <div id="demo-pic"></div>
+                                <div id="demo-header">
+                                    <div id="demo" class="trending-title"></div>
+                                </div>
+                            </div>
+                            <div class="tv-shows">
+                                <div class="tv-show-header">TV Shows On-Air Today</div>
+                                <div class="tv-slides">
+                                    <div id="tv-pic"></div>
+                                    <div id="tv-header">
+                                        <div id="tv-title" class="tv-show-title"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="search-container">
+
+                            <div id="search" class="tab-content">
+                                <div id="search-content">
+                                    <div class="search-title">Search</div>
+                                    <div id="search-form">
+                                        <label for="keyword" class="keyword-label">Keyword</label>
+                                        <input id="keyword" name="keyword" type="text">
+                                        <label for="category" class="category-label">Category</label>
+                                        <select id="category" name="category">
+                                            <option value=""></option>
+                                            <option value="movies">Movies</option>
+                                            <option value="tv-shows">TV Shows</option>
+                                            <option value="movies-tv-shows">Movies and TV Shows</option>
+                                        </select>
+                                        <div class="two-btns">
+                                            <button id="search-form-btn">Search</button>
+                                            <button id="clear-btn">Clear</button>
+                                        </div>
+                                        <p id="search-error"></p>
+                                    </div>
+                                </div>
+                                <div class="result-content">
+                                    <div id="result-list"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
+                <div class="footer">
+                    <div class="footer-text1">Designed and developed by Cancan Hua</div>
+                    <div class="footer-text2">Powered by TMDB</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="details-list"></div>
+
+
+    <script src="main.js"></script>
+
+</body>
+</html>
