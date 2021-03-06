@@ -61,16 +61,16 @@
                         trendingMovies[i].release_date = data.results[i].release_date;
                         trendingMovies[i].year = parseInt(trendingMovies[i].release_date);
                     }
-                    var trendingShowName = trendingMovies[0].title === undefined ? "N/A" : trendingMovies[0].title,
-                        trendingShowYear = trendingMovies[0].year === undefined ? "N/A" : trendingMovies[0].year;
+                    var trendingShowName = trendingMovies[0].title == undefined ? "N/A" : trendingMovies[0].title,
+                        trendingShowYear = trendingMovies[0].year == undefined ? "N/A" : trendingMovies[0].year;
                     console.log(trendingShowName);
                     console.log(trendingShowYear);
                     oTrendingTitle.innerHTML = `${trendingShowName} (${trendingShowYear})`;
-                    oTrendingPic.innerHTML = trendingMovies[0].backdrop_path == null ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${trendingMovies[0].backdrop_path}" alt="">`;
+                    oTrendingPic.innerHTML = (trendingMovies[0].backdrop_path == null || trendingMovies[0].backdrop_path == undefined) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${trendingMovies[0].backdrop_path}" alt="">`;
                     // resolve();
                 }
             };
-            xhttp.open("GET", "https://mono-csci570-python.azurewebsites.net/trending", true);
+            xhttp.open("GET", "https://mono-cs571-python.azurewebsites.net/trending", true);
             xhttp.send();
         // });
     }
@@ -88,29 +88,29 @@
                         tvShows[i].first_air_date = data.results[i].first_air_date;
                         tvShows[i].year = parseInt(tvShows[i].first_air_date);
                     }
-                    oTvPic.innerHTML = tvShows[0].backdrop_path == null ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${tvShows[0].backdrop_path}" alt="">`;
-                    var tvShowName = tvShows[0].name === undefined ? "N/A" : tvShows[0].name,
-                        tvShowYear = tvShows[0].year === undefined ? "N/A" : tvShows[0].year;
+                    oTvPic.innerHTML = (tvShows[0].backdrop_path == null || tvShows[0].backdrop_path == undefined) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${tvShows[0].backdrop_path}" alt="">`;
+                    var tvShowName = tvShows[0].name == undefined ? "N/A" : tvShows[0].name,
+                        tvShowYear = tvShows[0].year == undefined ? "N/A" : tvShows[0].year;
                     oTvTitle.innerHTML = `${tvShowName} (${tvShowYear})`;
                     // resolve();
                 }
             };
-            xhttp.open("GET", "https://mono-csci570-python.azurewebsites.net/tvshows", true);
+            xhttp.open("GET", "https://mono-cs571-python.azurewebsites.net/tvshows", true);
             xhttp.send();
         // });
     }
 
     var x = 1;
     function displayNextTrending() {
-        x = (x === trendingMovies.length - 1) ? 0 : x + 1;
-        oTrendingPic.innerHTML = trendingMovies[x].backdrop_path == null ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` :  `<img src="https://image.tmdb.org/t/p/w780/${trendingMovies[x].backdrop_path}" alt="">`;
-        var trendingShowName = trendingMovies[x].name === undefined ? "N/A" : trendingMovies[x].name,
-            trendingShowYear = trendingMovies[x].year === undefined ? "N/A" : trendingMovies[x].year;
+        x = (x == trendingMovies.length - 1) ? 0 : x + 1;
+        oTrendingPic.innerHTML = (trendingMovies[x].backdrop_path == null || trendingMovies[x].backdrop_path == undefined) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` :  `<img src="https://image.tmdb.org/t/p/w780/${trendingMovies[x].backdrop_path}" alt="">`;
+        var trendingShowName = trendingMovies[x].name == undefined ? "N/A" : trendingMovies[x].name,
+            trendingShowYear = trendingMovies[x].year == undefined ? "N/A" : trendingMovies[x].year;
         oTvTitle.innerHTML = `${trendingShowName} (${trendingShowYear})`;
         oTrendingTitle.innerHTML = `${trendingMovies[x].title} (${trendingMovies[x].year})`;
-        oTvPic.innerHTML = tvShows[x].backdrop_path == null ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` :  `<img src="https://image.tmdb.org/t/p/w780/${tvShows[x].backdrop_path}" alt="">`;
-        var tvShowName = tvShows[x].name === undefined ? "N/A" : tvShows[x].name,
-            tvShowYear = tvShows[x].year === undefined ? "N/A" : tvShows[x].year;
+        oTvPic.innerHTML = (tvShows[x].backdrop_path == null || tvShows[x].backdrop_path == undefined) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` :  `<img src="https://image.tmdb.org/t/p/w780/${tvShows[x].backdrop_path}" alt="">`;
+        var tvShowName = tvShows[x].name == undefined ? "N/A" : tvShows[x].name,
+            tvShowYear = tvShows[x].year == undefined ? "N/A" : tvShows[x].year;
         oTvTitle.innerHTML = `${tvShowName} (${tvShowYear})`;
     }
 
@@ -132,7 +132,7 @@
                         var data = JSON.parse(this.responseText);
 
                         console.log("data" + data[0]);
-                        // if (!data || data.length === 0 || data === undefined) {
+                        // if (!data || data.length == 0 || data == undefined) {
                         //     var errMsg = document.createElement("div");
                         //     errMsg.innerHTML = "No result found";
                         //     errMsg.id = "err-msg";
@@ -171,8 +171,8 @@
                                 searchResults[i].overview = data.results[i].overview;
                                 searchResults[i].poster_path = data.results[i].poster_path;
                                 searchResults[i].vote_average = data.results[i].vote_average;
-                                searchResults[i].vote_count = (data.results[i].vote_count === undefined) ? 0 : data.results[i].vote_count;
-                                searchResults[i].genre_ids = (data.results[i].genre_ids === undefined) ? "none" : data.results[i].genre_ids;
+                                searchResults[i].vote_count = (data.results[i].vote_count == undefined) ? 0 : data.results[i].vote_count;
+                                searchResults[i].genre_ids = (data.results[i].genre_ids == undefined) ? "none" : data.results[i].genre_ids;
                                 // console.log("media_type of No." + i + " is: " + searchResults[i].media_type);
                                 // console.log("title of No." + i + " is: " + searchResults[i].title);
                                 // console.log("release_date of No." + i + " is: " + searchResults[i].release_date);
@@ -186,8 +186,8 @@
                                 for (var j = 0; j < searchResults[i].genre_ids.length; j++) {
                                     // console.log("Wanna find genre name of id# " + searchResults[i].genre_ids[j]);
                                     // console.log(genresMovieList);
-                                    var genreExistsInMovies = genresMovieList.find(elem => elem.id === searchResults[i].genre_ids[j]);
-                                    var genreExistsInTVs = genresTVList.find(elem => elem.id === searchResults[i].genre_ids[j]);
+                                    var genreExistsInMovies = genresMovieList.find(elem => elem.id == searchResults[i].genre_ids[j]);
+                                    var genreExistsInTVs = genresTVList.find(elem => elem.id == searchResults[i].genre_ids[j]);
                                     var genreName;
                                     if (genreExistsInMovies != undefined) {
                                         genreName = genreExistsInMovies.name;
@@ -196,7 +196,7 @@
                                     } else {
                                         genreName = "N/A";
                                     }
-                                    if (searchResults[i].genre_ids.length === 0) {
+                                    if (searchResults[i].genre_ids.length == 0) {
                                         genres[i].push("N/A");
                                     } else {
                                         genres[i].push(genreName);
@@ -222,7 +222,7 @@
                         break;
                 }
                 keyword += "%20of";
-                let url = "https://mono-csci570-python.azurewebsites.net/searchMovies" + '?keyword=' + keyword + '&category=' + cat;
+                let url = "https://mono-cs571-python.azurewebsites.net/searchMovies" + '?keyword=' + keyword + '&category=' + cat;
                 xttp.open('GET', url, true);
                 xttp.send();
                 // console.log(keyword);
@@ -241,7 +241,7 @@
                 genresMovieList = data.genres;
             }
         };
-        xhttp.open("GET", "https://mono-csci570-python.azurewebsites.net/getMovieGenres", true);
+        xhttp.open("GET", "https://mono-cs571-python.azurewebsites.net/getMovieGenres", true);
         xhttp.send();
     }
 
@@ -253,7 +253,7 @@
                 genresTVList = data.genres;
             }
         };
-        xhttp.open("GET", "https://mono-csci570-python.azurewebsites.net/getTVGenres", true);
+        xhttp.open("GET", "https://mono-cs571-python.azurewebsites.net/getTVGenres", true);
         xhttp.send();
     }
 
@@ -272,10 +272,10 @@
                     }
                     // store new data
                     if (btnType == 'movie') {
-                        movieDetails.id = data.id === undefined ? " " : data.id;
-                        movieDetails.title = data.title === undefined ? "N/A" : data.title;
-                        movieDetails.runtime = data.runtime === undefined ? "N/A" : data.runtime;
-                        movieDetails.release_date = data.release_date === undefined ? "N/A" : data.release_date;
+                        movieDetails.id = data.id == undefined ? " " : data.id;
+                        movieDetails.title = data.title == undefined ? "N/A" : data.title;
+                        movieDetails.runtime = data.runtime == undefined ? "N/A" : data.runtime;
+                        movieDetails.release_date = data.release_date == undefined ? "N/A" : data.release_date;
 
                         if (data.spoken_languages[0] != undefined) {
                             if (data.spoken_languages[0].english_name != undefined) {
@@ -287,21 +287,21 @@
                             movieDetails.spoken_languages = "N/A";
                         }
 
-                        movieDetails.vote_average = data.vote_average === undefined ? "N/A" : data.vote_average;
+                        movieDetails.vote_average = data.vote_average == undefined ? "N/A" : data.vote_average;
                         movieDetails.vote_count = data.vote_count ;
                         movieDetails.poster_path = data.poster_path;
                         movieDetails.backdrop_path = data.backdrop_path;
-                        movieDetails.genres = (data.genres === undefined || data.genres === []) ? "N/A" : data.genres;
+                        movieDetails.genres = (data.genres == undefined || data.genres == []) ? "N/A" : data.genres;
                     } else {
                         tvDetails.backdrop_path = data.backdrop_path;
-                        tvDetails.episode_run_time = data.episode_run_time[0] === undefined ? "N/A" : data.episode_run_time[0];
-                        tvDetails.first_air_data = data.first_air_date === undefined ? "N/A" : data.first_air_date;
-                        tvDetails.genres = (data.genres === undefined || data.genres === []) ? "N/A" : data.genres;
-                        tvDetails.id = data.id === undefined ? " " : data.id;
-                        tvDetails.name = data.name === undefined ? "N/A" : data.name;
+                        tvDetails.episode_run_time = data.episode_run_time[0] == undefined ? "N/A" : data.episode_run_time[0];
+                        tvDetails.first_air_data = data.first_air_date == undefined ? "N/A" : data.first_air_date;
+                        tvDetails.genres = (data.genres == undefined || data.genres== []) ? "N/A" : data.genres;
+                        tvDetails.id = data.id == undefined ? " " : data.id;
+                        tvDetails.name = data.name == undefined ? "N/A" : data.name;
                         // console.log("[tv details ]" + data.name);
-                        tvDetails.number_of_seasons = data.number_of_seasons === undefined ? "N/A" : data.number_of_seasons;
-                        tvDetails.overview = data.overview === undefined ? "N/A" : data.overview;
+                        tvDetails.number_of_seasons = data.number_of_seasons == undefined ? "N/A" : data.number_of_seasons;
+                        tvDetails.overview = data.overview == undefined ? "N/A" : data.overview;
                         tvDetails.poster_path = data.poster_path;
 
                         if (data.spoken_languages[0] !== undefined) {
@@ -324,7 +324,7 @@
                 }
             };
 
-            let url_detail = "https://mono-csci570-python.azurewebsites.net/getDetails" + '?type=' + type + '&id=' + id;
+            let url_detail = "https://mono-cs571-python.azurewebsites.net/getDetails" + '?type=' + type + '&id=' + id;
             xttp.open('GET', url_detail, true);
             xttp.send();
         });
@@ -357,7 +357,7 @@
             };
             let type2 = searchResults[btnNo].media_type;
             let id2 = searchResults[btnNo].id;
-            let url_credit = "https://mono-csci570-python.azurewebsites.net/getCredits" + '?type=' + type2 + '&id=' + id2;
+            let url_credit = "https://mono-cs571-python.azurewebsites.net/getCredits" + '?type=' + type2 + '&id=' + id2;
             xttpCredits.open('GET', url_credit, true);
             xttpCredits.send();
         });
@@ -372,12 +372,12 @@
                     // if (data == undefined || data == []) console.log("data is undefined!");
                     // console.log(data);
                     // clear details storage
-                    if (reviews.length != 0) {
+                    if (reviews.length !== 0) {
                         reviews = [];
                     }
-                    if (data.results != undefined) {
+                    if (data.results !== undefined) {
                         for (var i = 0; i < 5; i++) {
-                            if (data.results[i] != undefined) {
+                            if (data.results[i] !== undefined) {
                                 reviews.push({});
                                 reviews[i].username = data.results[i].author_details.username;
                                 // console.log("[username] " + data.results[i].author_details.username);
@@ -393,7 +393,7 @@
             };
             let type = searchResults[btnNo].media_type;
             let id = searchResults[btnNo].id;
-            let url_reviews = "https://mono-csci570-python.azurewebsites.net/getReviews" + '?type=' + type + '&id=' + id;
+            let url_reviews = "https://mono-cs571-python.azurewebsites.net/getReviews" + '?type=' + type + '&id=' + id;
             xhttpReviews.open('GET', url_reviews, true);
             xhttpReviews.send();
         });
@@ -407,7 +407,7 @@
 
     async function showResults() {
         await searchKeyword();
-        if (searchResults.length === 0 || !searchResults) {
+        if (searchResults.length == 0 || !searchResults) {
             var errMsg = document.createElement("div");
                 errMsg.innerHTML = "No result found";
                 errMsg.id = "err-msg";
@@ -445,12 +445,18 @@
                     oId.innerHTML = searchResults[i].id;
                     oTitle.innerHTML = searchResults[i].title;
                     oOverview.innerHTML = searchResults[i].overview;
-                    oPosterPath.innerHTML = (searchResults[i].poster_path == null) ? `<img src="https://cinemaone.net/images/movie_placeholder.png" alt=""/>` : `<img src="https://image.tmdb.org/t/p/w185/${searchResults[i].poster_path}" alt=""/>`;
+                    oPosterPath.innerHTML = (searchResults[i].poster_path == null || searchResults[i].poster_path == undefined) ? `<img src="https://cinemaone.net/images/movie_placeholder.png" alt=""/>` : `<img src="https://image.tmdb.org/t/p/w185/${searchResults[i].poster_path}" alt=""/>`;
                     // oReleaseDate.innerHTML = searchResults[i].release_date;
-                    if (!genres[i] || genres[i].length === 0) {
-                        oReleaseYear.innerHTML = parseInt(searchResults[i].release_date) + "   |  " + "N/A";
+                    var releaseYear;
+                    if (isNaN(parseInt(searchResults[i].release_date))) {
+                        releaseYear = "N/A";
                     } else {
-                        oReleaseYear.innerHTML = parseInt(searchResults[i].release_date) + "   |  " + genres[i];
+                        releaseYear =  parseInt(searchResults[i].release_date);
+                    }
+                    if (!genres[i] || genres[i].length == 0) {
+                        oReleaseYear.innerHTML = releaseYear + "   |  " + "N/A";
+                    } else {
+                        oReleaseYear.innerHTML = releaseYear + "   |  " + genres[i];
                     }
 
                     // oRatingStar.innerHTML = "\u2B51";
@@ -554,12 +560,18 @@
             console.log("Its genres are: " + genres[btnNo]);
 
             if (btnType == 'movie') {
-                dPosterPath.innerHTML = movieDetails.backdrop_path == null ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${movieDetails.backdrop_path}" alt="">`;
+                dPosterPath.innerHTML = (movieDetails.backdrop_path == null || false) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${movieDetails.backdrop_path}" alt="">`;
                 dTitle.innerHTML = movieDetails.title;
-                if (!genres[btnNo] || genres[btnNo].length === 0) {
-                    dYear.innerHTML = parseInt(movieDetails.release_date) + "   |  " + "N/A";
+                var releaseYear;
+                if (isNaN(parseInt(movieDetails.release_date))) {
+                    releaseYear = "N/A";
                 } else {
-                    dYear.innerHTML = parseInt(movieDetails.release_date) + "   |  " + genres[btnNo];
+                    releaseYear =  parseInt(movieDetails.release_date);
+                }
+                if (!genres[btnNo] || genres[btnNo].length == 0) {
+                    dYear.innerHTML = releaseYear + "   |  " + "N/A";
+                } else {
+                    dYear.innerHTML = releaseYear + "   |  " + genres[btnNo];
                 }
                 var rating1 = (parseFloat(movieDetails.vote_average) / 2.0),
                     ratingFloat1 = Number.isInteger(rating1) ? rating1.toString() + ".0" : rating1.toString();
@@ -571,9 +583,9 @@
                 // dInfo.innerHTML = `"https://www.themoviedb.org/movie/${movieDetails.id}"`;
                 dMore.onclick = function openUrl() {window.open("http://themoviedb.org/movie/" + searchResults[btnNo].id);};
             } else {
-                dPosterPath.innerHTML = tvDetails.backdrop_path == null ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${tvDetails.backdrop_path}" alt="">`;
+                dPosterPath.innerHTML = (tvDetails.backdrop_path == null || false) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${tvDetails.backdrop_path}" alt="">`;
                 dTitle.innerHTML = tvDetails.name ;
-                if (!genres[btnNo] || genres[btnNo].length === 0) {
+                if (!genres[btnNo] || genres[btnNo].length == 0) {
                     dYear.innerHTML = parseInt(tvDetails.first_air_data) + "   |  " + "N/A";
                 } else {
                     dYear.innerHTML = parseInt(tvDetails.first_air_data) + "   |  " + genres[btnNo];
@@ -641,10 +653,10 @@
                     dCastAs.className = "d-cast-as";
                     dCastCharacter.className = "d-cast-character";
 
-                    dCastProfile.innerHTML = credits[k].profile_path == null ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/person-placeholder.png" alt="">` : `<img src="https://image.tmdb.org/t/p/w185/${credits[k].profile_path}" alt="">`;
-                    dCastName.innerHTML = credits[k].name === undefined ? "   " : credits[k].name;
+                    dCastProfile.innerHTML = (credits[k].profile_path == null || credits[k].profile_path == undefined) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/person-placeholder.png" alt="">` : `<img src="https://image.tmdb.org/t/p/w185/${credits[k].profile_path}" alt="">`;
+                    dCastName.innerHTML = credits[k].name == undefined ? "   " : credits[k].name;
                     dCastAs.innerHTML = "AS";
-                    dCastCharacter.innerHTML = credits[k].character === undefined ? "   " : credits[k].character;
+                    dCastCharacter.innerHTML = credits[k].character == undefined ? "   " : credits[k].character;
 
                     document.getElementById("d-cast-list").appendChild(dCastCard);
                     document.getElementById("d-cast-card" + k.toString()).appendChild(dCastProfile);
@@ -668,6 +680,7 @@
                    dUsername = document.createElement("div"),
                    dCreatedAt = document.createElement("div"),
                    dThisRating = document.createElement("div"),
+                   dSpace = document.createElement("div"),
                    dContent = document.createElement("div"),
                    dRatingAlt = document.createElement("br"),
                    dHR = document.createElement("hr");
@@ -675,14 +688,23 @@
                dUsername.className = "d-username";
                dCreatedAt.className = "d-created-at";
                dThisRating.className = "d-this-rating";
+               dSpace.className = "d-space";
                dContent.className = "d-content";
                dHR.className = 'd-hr';
 
                // console.log(reviews);
                dUsername.innerHTML = reviews[k].username;
+               dSpace.innerHTML = '\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
 
-               dCreatedAt.innerHTML = " on " + reviews[k].created_at;
-               if (reviews[k].rating === undefined) {
+               if (reviews[k].created_at.length == 0 |  !reviews[k].created_at) {
+                   dCreatedAt.innerHTML = " on " + reviews[k].created_at;
+               } else {
+                   var list = reviews[k].created_at.match(/\d+/g);
+                   dCreatedAt.innerHTML = " on " + list[1] + "/" + list[2] + "/" + list[0];
+               }
+
+               console.log(reviews[k].rating);
+               if (reviews[k].rating == undefined) {
                    dThisRating.innerHTML = "     ";
                } else {
                    console.log(reviews[k].rating);
@@ -695,7 +717,8 @@
                document.getElementById("d-review-list").appendChild(dReviewRow);
                document.getElementById("d-review-row" + k.toString()).appendChild(dUsername);
                document.getElementById("d-review-row" + k.toString()).appendChild(dCreatedAt);
-               if (reviews[k].rating != null) {
+               document.getElementById("d-review-row" + k.toString()).appendChild(dSpace);
+               if (reviews[k].rating != null || reviews[k].rating !== undefined) {
                    document.getElementById("d-review-row" + k.toString()).appendChild(dThisRating);
                } else {
                    document.getElementById("d-review-row" + k.toString()).appendChild(dRatingAlt);
