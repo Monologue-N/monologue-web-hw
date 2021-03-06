@@ -1,6 +1,7 @@
-body {
+html body {
     background-color: black;
     overflow-x: hidden;
+    height: 100%;
 }
 
 .title {
@@ -8,7 +9,6 @@ body {
     font-size: 32px;
     font-family: Arial;
     font-weight: bold;
-    /*float: left;*/
     margin-top: 20px;
 }
 
@@ -16,7 +16,7 @@ body {
     color: white;
     font-size: 36px;
     font-family: Courier New;
-    margin-left: 40%;
+    margin-left: 400px;
     margin-top: -140px;
 }
 
@@ -29,12 +29,12 @@ body {
 }
 
 .v1 {
-    border-left: 1px solid white;
-    height: 2000px;
+    border-left: 1px solid snow;
+    height: 100vh;
     position: absolute;
     left: 400px;
     margin-left: -3px;
-    top: 9%;
+    top: 100px;
 }
 
 .arrow {
@@ -57,6 +57,7 @@ body {
     border-left: 30px solid rgba(172,14,14,1);
     float: right;
 }
+
 
 .tab-btn {
     background: none;
@@ -84,31 +85,16 @@ body {
     cursor: pointer;
 }
 
-/*.tabs .tab-content {*/
-/*    flex: 1;*/
-/*    position: relative;*/
-/*}*/
 
 .tab-content{
     position: absolute;
     opacity: 0;
-    left: 100px;
-    top: 200px;
 }
 
 .tab-content.active{
     position: absolute;
     opacity: 1;
 }
-
-/*.tab-btn i {*/
-/*    width: 20px;*/
-/*}*/
-
-/*.content {*/
-/*    color: white;*/
-/*    font-size: 36px;*/
-/*}*/
 
 .trending-slides {
     margin-left: 400px;
@@ -118,7 +104,7 @@ body {
 .trending-title {
     color: white;
     font-size: 28px;
-    font-family: Courier New;
+    font-family: Raleway;
     position: absolute;
     text-align: center;
     background-color: rgba(0,0,0,0.5);
@@ -136,7 +122,7 @@ body {
 .tv-show-title {
     color: white;
     font-size: 28px;
-    font-family: Courier New;
+    font-family: Raleway;
     position: absolute;
     text-align: center;
     background-color: rgba(0,0,0,0.5);
@@ -164,18 +150,21 @@ body {
 /*}*/
 
 .search-content {
-    margin-left: 300px;
+    margin-left: 400px;
+    margin-top: -100px;
     color: white;
     font-size: 36px;
     background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(172,14,14,1) 100%);
     width: 1000px;
-    height: 600px;
+    height: 400px;
 }
 
 .search-title {
     color: white;
     font-size: 24px;
     text-align: center;
+    font-family: Raleway;
+    font-weight: bold;
 }
 
 #search-form {
@@ -187,8 +176,13 @@ body {
 }
 
 .keyword-label {
-    font-size: 24px;
-    font-family: Verdana;
+    font-size: 18px;
+    font-family: Raleway;
+}
+.keyword-label:after {
+    content:"*";
+    color: orangered;
+    font-size: 20px;
 }
 
 #search-form input {
@@ -197,25 +191,61 @@ body {
     margin-bottom: 10px;
     padding: 8px;
     width: 100%;
+    border-radius: 5px;
+}
+#search-form select {
+    border: none;
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .category-label {
-    font-size: 24px;
-    font-family: Verdana;
+    font-size: 18px;
+    font-family: Raleway;
+}
+
+.category-label:after {
+    content:"*";
+    color: orangered;
+    font-size: 20px;
 }
 
 #search-form #search-form-btn {
     cursor: pointer;
-    float: left;
+    /*float: left;*/
     padding: 8px 10px;
     text-align: left;
 }
 
 #search-form #clear-btn {
     cursor: pointer;
-    float: left;
+    /*float: left;*/
     padding: 8px 10px;
     text-align: left;
+}
+
+#showing-result {
+    color: white;
+    font-family: Raleway;
+    font-size: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+
+#result-list {
+    color: white;
+    font-size: 18px;
+    margin-left: 400px;
+}
+
+
+.result-content > div {
+    color: white;
+    font-size: 24px;
 }
 
 footer {
@@ -225,3 +255,296 @@ footer {
     /*position: relative;*/
     top: 2600px;
 }
+
+
+.r-list-class {
+    position: relative;
+    display: flex;
+    margin-bottom: 1rem;
+    border-left: 8px solid darkred;
+    width: 1000px;
+}
+
+.r-poster-path img {
+    margin-left: 1rem;
+}
+
+.r-info-class {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    display: inline-block;
+}
+
+.r-title {
+    font-weight: bold;
+    font-size: 24px;
+    font-family: Arial;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+.r-overview {
+    font-family: Raleway;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.r-release-year {
+    font-family: Raleway;
+    font-weight: lighter;
+    font-size: 12px;
+}
+
+.r-genre-ids {
+    display: inline;
+}
+
+.r-vote-average {
+    color: rgba(172,14,14,1);
+    font-size: 12px;
+    font-family: Raleway;
+    display: inline;
+    padding-right: 8px;
+}
+
+.r-vote-count {
+    color: white;
+    font-size: 12px;
+    font-family: Raleway;
+    display: inline;
+}
+
+.r-show-more {
+    background-color: rgba(172,14,14,1);
+    border: none;
+    border-radius: 2px;
+    color: white;
+    font-size: 14px;
+    font-family: Arial;
+    font-weight: lighter;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 20px 2px;
+    cursor: pointer;
+    align-content: center;
+}
+
+.r-show-more:hover {
+    background-color: darkgrey;
+}
+
+#d-list {
+    width: 1000px;
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /*padding: 100%;*/
+    width: 100%;
+    overflow: hidden;
+}
+
+#d-card {
+    background-color: #cacaca;
+    margin-top: 100px;
+    align-content: center;
+    width: 780px;
+    padding: 50px;
+    margin-left: 400px;
+    overflow: scroll;
+    font-family: Raleway;
+    color: black;
+}
+
+#d-outer-container {
+    width: 810px;
+    align-content: center;
+}
+
+#d-container {
+    width: 780px;
+    align-content: center;
+    /*margin-left: 50px;*/
+    /*margin-top: 50px;*/
+}
+
+.d-more {
+    color: rgba(172,14,14,1);
+    font-size: 14px;
+}
+
+.d-poster-path img {
+    align-content: center;
+    display: inline;
+}
+
+.d-close {
+    display: inline;
+    color: #aaaaaa;
+    font-size: 16px;
+    position: relative;
+    right: 0px;
+    top: 10px;
+    float: right;
+}
+
+.d-close:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.d-title {
+    align-content: center;
+    display: inline;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.d-more {
+    color: rgba(172,14,14,1);
+    font-size: 16px;
+    display: inline;
+    margin-left: 12px;
+    align-content: center;
+}
+
+.d-more:hover {
+    cursor: pointer;
+}
+
+.d-year {
+    align-content: center;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.d-vote-average {
+    align-content: center;
+    color: rgba(172,14,14,1);
+    font-size: 12px;
+    display: inline;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.d-vote-count {
+    align-content: center;
+    font-size: 12px;
+    display: inline;
+    margin-bottom: 20px;
+}
+
+.d-overview {
+    margin-top: 20px;
+    align-content: center;
+    margin-bottom: 20px;
+}
+
+.d-language {
+    align-content: center;
+    margin-bottom: 20px;
+    font-weight: bolder;
+}
+
+.d-cast-title {
+    font-weight: bolder;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#d-cast-list {
+
+}
+
+#d-cast-list > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+}
+
+.d-cast-profile {
+    align-content: center;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.d-cast-name {
+    font-weight: bolder;
+    align-content: center;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.d-cast-as {
+    align-content: center;
+    text-align: center;
+}
+
+.d-cast-character {
+    align-content: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.d-review-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.d-review-list > * {
+    width: 100%;
+}
+
+.d-username {
+    display: inline;
+    font-weight: bold;
+    /*margin-bottom: 15px;*/
+    margin-top: 15px;
+    font-size: 14px;
+    padding-bottom: 15px;
+}
+.d-created-at {
+    display: inline;
+    font-size: 11px;
+    padding-bottom: 15px;
+}
+
+.d-this-rating {
+    align-content: center;
+    color: rgba(172,14,14,1);
+    font-size: 12px;
+    display: inline;
+    margin-right: 10px;
+    display: block;
+}
+
+.d-content {
+    overflow: hidden;
+    height: 45px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.d-hr {
+    border: none;
+    border-top: 1px solid darkgrey;
+    color: darkgrey;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+    width: 550px;
+}
+
+
+
