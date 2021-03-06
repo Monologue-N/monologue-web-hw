@@ -2,6 +2,8 @@ body {
     background-color: black;
     color: white;
     font-family: Raleway;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 #background {
@@ -60,6 +62,10 @@ body {
     font-size: 12px;
     margin-right: 2%;
     position: relative;
+}
+
+.footer-text2 {
+    padding-top: 5px;
 }
 
 
@@ -180,7 +186,7 @@ body {
 }
 
 
-.search-content {
+#search-content {
     top: 0;
     position: absolute;
     color: white;
@@ -390,15 +396,14 @@ body {
     background-color: darkgrey;
 }
 
-
+#details-list {
+    width: 100%;
+}
 
 #d-list {
-    width: 1000px;
     background-color: rgba(0,0,0,0.7);
-    /*position: absolute;*/
     top: 0px;
     left: 0px;
-    /*padding: 100%;*/
     width: 100%;
     overflow: hidden;
 }
@@ -628,11 +633,12 @@ body {
     position: absolute;
 }
 
-#err-esg {
-    font-family: Raleway;
-    font-size: 24px;
-    color: #FFFFFF;
+#err-msg {
+    font-size: 16px;
+    color: white;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 

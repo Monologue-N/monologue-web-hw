@@ -132,13 +132,13 @@
                         var data = JSON.parse(this.responseText);
 
                         console.log("data" + data[0]);
-                        if (!data || data.length === 0 || data === undefined) {
-                            var errMsg = document.createElement("div");
-                            errMsg.innerHTML = "No result found";
-                            errMsg.id = "err-msg";
-                            console.log("err!");
-                            document.getElementById("result-list").appendChild(errMsg);
-                        } else {
+                        // if (!data || data.length === 0 || data === undefined) {
+                        //     var errMsg = document.createElement("div");
+                        //     errMsg.innerHTML = "No result found";
+                        //     errMsg.id = "err-msg";
+                        //     console.log("err!");
+                        //     document.getElementById("result-list").appendChild(errMsg);
+                        // } else {
                             if (searchResults.length != 0) searchResults = [];
                             var len = Math.min(data.results.length, 10);
                             for (var i = 0; i < len; i++) {
@@ -204,7 +204,7 @@
                                 }
                             }
 
-                        }
+                        // }
                         resolve();
                         // showResults();
                     }
@@ -407,93 +407,101 @@
 
     async function showResults() {
         await searchKeyword();
-        // hideFooter();
-        oContainer = document.createElement("div");
-        oContainer.id = "r-container";
+        if (searchResults.length === 0 || !searchResults) {
+            var errMsg = document.createElement("div");
+                errMsg.innerHTML = "No result found";
+                errMsg.id = "err-msg";
+                console.log("err!");
+                document.getElementById("search-content").appendChild(errMsg);
+        } else {
+            oContainer = document.createElement("div");
+            oContainer.id = "r-container";
 
-        if (!isShowed && searchResults.length !== 0) {
-           var oShowingResults = document.createElement("div");
-           oShowingResults.id = "showing-result";
-           oShowingResults.innerHTML = "Showing results...";
-           // console.log("Again"+ oShowingResults);
-           document.getElementById("result-list").appendChild(oShowingResults);
-           document.getElementById("result-list").appendChild(oContainer);
-           for (var i = 0; i < searchResults.length; i++) {
-               // create elements
-               var oList = document.createElement("div"),
-                   oInfo = document.createElement("div"),
-                   oId = document.createElement("div"),
-                   oTitle = document.createElement("div"),
-                   oOverview = document.createElement("div"),
-                   oPosterPath = document.createElement("div"),
-                   oReleaseDate = document.createElement("div"),
-                   oReleaseYear = document.createElement("div"),
-                   // oRatingStar = document.createElement("span"),
-                   oVoteAverage = document.createElement("div"),
-                   oVoteCount = document.createElement("div"),
-                   oShowMore = document.createElement("button"),
-                   oGenreIds = document.createElement("div");
-
-
-               // assign results to elements
-               oId.innerHTML = searchResults[i].id;
-               oTitle.innerHTML = searchResults[i].title;
-               oOverview.innerHTML = searchResults[i].overview;
-               oPosterPath.innerHTML = (searchResults[i].poster_path == null) ? `<img src="https://cinemaone.net/images/movie_placeholder.png" alt=""/>` : `<img src="https://image.tmdb.org/t/p/w185/${searchResults[i].poster_path}" alt=""/>`;
-               // oReleaseDate.innerHTML = searchResults[i].release_date;
-               if (!genres[i] || genres[i].length === 0) {
-                   oReleaseYear.innerHTML = parseInt(searchResults[i].release_date) + "   |  " + "N/A";
-               } else {
-                   oReleaseYear.innerHTML = parseInt(searchResults[i].release_date) + "   |  " + genres[i];
-               }
-
-               // oRatingStar.innerHTML = "\u2B51";
-               var rating = (parseFloat(searchResults[i].vote_average) / 2.0),
-                   ratingFloat = Number.isInteger(rating) ? rating.toString() + ".0" : rating.toString();
-               oVoteAverage.innerHTML = "\u2B51 " + ratingFloat + "/5";
-               oVoteCount.innerHTML =  searchResults[i].vote_count.toString() + " votes";
-               oShowMore.innerHTML = "Show more";
+            if (!isShowed && searchResults.length !== 0) {
+                var oShowingResults = document.createElement("div");
+                oShowingResults.id = "showing-result";
+                oShowingResults.innerHTML = "Showing results...";
+                // console.log("Again"+ oShowingResults);
+                document.getElementById("result-list").appendChild(oShowingResults);
+                document.getElementById("result-list").appendChild(oContainer);
+                for (var i = 0; i < searchResults.length; i++) {
+                    // create elements
+                    var oList = document.createElement("div"),
+                        oInfo = document.createElement("div"),
+                        oId = document.createElement("div"),
+                        oTitle = document.createElement("div"),
+                        oOverview = document.createElement("div"),
+                        oPosterPath = document.createElement("div"),
+                        oReleaseDate = document.createElement("div"),
+                        oReleaseYear = document.createElement("div"),
+                        // oRatingStar = document.createElement("span"),
+                        oVoteAverage = document.createElement("div"),
+                        oVoteCount = document.createElement("div"),
+                        oShowMore = document.createElement("button"),
+                        oGenreIds = document.createElement("div");
 
 
-               // oGenreIds.innerHTML = genres[i];
-               // id and className
-               oList.id = "r-list" + i.toString();
-               oList.className = "r-list-class";
-               oInfo.id = "r-info" + i.toString();
-               oInfo.className = "r-info-class";
-               oId.className = "r-id";
-               oTitle.className = "r-title";
-               oOverview.className = "r-overview";
-               oPosterPath.className = "r-poster-path";
-               // oReleaseDate.className = "r-release-date";
-               oReleaseYear.className = "r-release-year";
-               oVoteAverage.className = "r-vote-average";
-               // oRatingStar.className = "r-rating-star";
-               oVoteCount.className = "r-vote-count";
-               oShowMore.className = "r-show-more";
-               oShowMore.id = i.toString();
-               // oGenreIds.className = "r-genre-ids";
+                    // assign results to elements
+                    oId.innerHTML = searchResults[i].id;
+                    oTitle.innerHTML = searchResults[i].title;
+                    oOverview.innerHTML = searchResults[i].overview;
+                    oPosterPath.innerHTML = (searchResults[i].poster_path == null) ? `<img src="https://cinemaone.net/images/movie_placeholder.png" alt=""/>` : `<img src="https://image.tmdb.org/t/p/w185/${searchResults[i].poster_path}" alt=""/>`;
+                    // oReleaseDate.innerHTML = searchResults[i].release_date;
+                    if (!genres[i] || genres[i].length === 0) {
+                        oReleaseYear.innerHTML = parseInt(searchResults[i].release_date) + "   |  " + "N/A";
+                    } else {
+                        oReleaseYear.innerHTML = parseInt(searchResults[i].release_date) + "   |  " + genres[i];
+                    }
+
+                    // oRatingStar.innerHTML = "\u2B51";
+                    var rating = (parseFloat(searchResults[i].vote_average) / 2.0),
+                        ratingFloat = Number.isInteger(rating) ? rating.toString() + ".0" : rating.toString();
+                    oVoteAverage.innerHTML = "\u2B51 " + ratingFloat + "/5";
+                    oVoteCount.innerHTML =  searchResults[i].vote_count.toString() + " votes";
+                    oShowMore.innerHTML = "Show more";
 
 
-               document.getElementById("r-container").appendChild(oList);
-               document.getElementById("r-list" + i.toString()).appendChild(oPosterPath);
-               document.getElementById("r-list" + i.toString()).appendChild(oInfo);
-               document.getElementById("r-info" + i.toString()).appendChild(oTitle);
-               // document.getElementById("r-info").appendChild(oId);
-               document.getElementById("r-info" + i.toString()).appendChild(oReleaseYear);
-               // document.getElementById("r-info" + i.toString()).appendChild(oRatingStar);
-               document.getElementById("r-info" + i.toString()).appendChild(oVoteAverage);
-               document.getElementById("r-info"+ i.toString()).appendChild(oVoteCount);
-               // document.getElementById("r-info" + i.toString()).appendChild(oGenreIds);
-               document.getElementById("r-info" + i.toString()).appendChild(oOverview);
-               document.getElementById("r-info" + i.toString()).appendChild(oShowMore);
-               oShowMore.addEventListener('click', function(){
-                   btnType = searchResults[parseInt(this.id)].media_type.toString();
-                   btnNo = parseInt(this.id);
-                   getInfo();}, false);
-               isShowed = true;
-           }
-       }
+                    // oGenreIds.innerHTML = genres[i];
+                    // id and className
+                    oList.id = "r-list" + i.toString();
+                    oList.className = "r-list-class";
+                    oInfo.id = "r-info" + i.toString();
+                    oInfo.className = "r-info-class";
+                    oId.className = "r-id";
+                    oTitle.className = "r-title";
+                    oOverview.className = "r-overview";
+                    oPosterPath.className = "r-poster-path";
+                    // oReleaseDate.className = "r-release-date";
+                    oReleaseYear.className = "r-release-year";
+                    oVoteAverage.className = "r-vote-average";
+                    // oRatingStar.className = "r-rating-star";
+                    oVoteCount.className = "r-vote-count";
+                    oShowMore.className = "r-show-more";
+                    oShowMore.id = i.toString();
+                    // oGenreIds.className = "r-genre-ids";
+
+
+                    document.getElementById("r-container").appendChild(oList);
+                    document.getElementById("r-list" + i.toString()).appendChild(oPosterPath);
+                    document.getElementById("r-list" + i.toString()).appendChild(oInfo);
+                    document.getElementById("r-info" + i.toString()).appendChild(oTitle);
+                    // document.getElementById("r-info").appendChild(oId);
+                    document.getElementById("r-info" + i.toString()).appendChild(oReleaseYear);
+                    // document.getElementById("r-info" + i.toString()).appendChild(oRatingStar);
+                    document.getElementById("r-info" + i.toString()).appendChild(oVoteAverage);
+                    document.getElementById("r-info"+ i.toString()).appendChild(oVoteCount);
+                    // document.getElementById("r-info" + i.toString()).appendChild(oGenreIds);
+                    document.getElementById("r-info" + i.toString()).appendChild(oOverview);
+                    document.getElementById("r-info" + i.toString()).appendChild(oShowMore);
+                    oShowMore.addEventListener('click', function(){
+                        btnType = searchResults[parseInt(this.id)].media_type.toString();
+                        btnNo = parseInt(this.id);
+                        getInfo();}, false);
+                    isShowed = true;
+                }
+            }
+        }
+
     }
 
     async function showDetails() {
