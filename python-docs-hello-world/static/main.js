@@ -31,8 +31,11 @@
         isShowed = false,
         isLoaded = false;
 
+    let host = window.location.hostname;
+
 
     function init() {
+        console.log(host);
         loadHomePage();
         bindEvent();
         getMovieGenres();
@@ -41,15 +44,13 @@
 
     function bindEvent() {
         oHomeBtn.addEventListener('click', function (){loadHomePage()}, {once: false});
-        oSearchBtn.addEventListener('click', function(){
-            // removeElements();
-            loadSearchPage()}, {once: false});
+        oSearchBtn.addEventListener('click', function(){loadSearchPage()}, {once: false});
         oSearchFormBtn.addEventListener('click', function(){showResults()}, {once: false});
         oClearBtn.addEventListener('click', function(){clearFields()}, {once: false});
     }
 
     function getTrending() {
-        // return new Promise(function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -63,20 +64,18 @@
                     }
                     var trendingShowName = trendingMovies[0].title == undefined ? "N/A" : trendingMovies[0].title,
                         trendingShowYear = trendingMovies[0].year == undefined ? "N/A" : trendingMovies[0].year;
-                    console.log(trendingShowName);
-                    console.log(trendingShowYear);
                     oTrendingTitle.innerHTML = `${trendingShowName} (${trendingShowYear})`;
                     oTrendingPic.innerHTML = (trendingMovies[0].backdrop_path == null || trendingMovies[0].backdrop_path == undefined) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${trendingMovies[0].backdrop_path}" alt="">`;
-                    // resolve();
+                    resolve();
                 }
             };
-            xhttp.open("GET", "https://mono-cs571-python.azurewebsites.net/trending", true);
+            xhttp.open("GET", "/trending", true);
             xhttp.send();
-        // });
+        });
     }
 
     function getTVShows() {
-        // return new Promise(function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -92,29 +91,36 @@
                     var tvShowName = tvShows[0].name == undefined ? "N/A" : tvShows[0].name,
                         tvShowYear = tvShows[0].year == undefined ? "N/A" : tvShows[0].year;
                     oTvTitle.innerHTML = `${tvShowName} (${tvShowYear})`;
-                    // resolve();
+                    resolve();
                 }
             };
-            xhttp.open("GET", "https://mono-cs571-python.azurewebsites.net/tvshows", true);
+            xhttp.open("GET", "/tvshows", true);
             xhttp.send();
-        // });
+        });
     }
 
-    var x = 1;
+    var x = 0;
     function displayNextTrending() {
         x = (x == trendingMovies.length - 1) ? 0 : x + 1;
+        // display trending movies
         oTrendingPic.innerHTML = (trendingMovies[x].backdrop_path == null || trendingMovies[x].backdrop_path == undefined) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` :  `<img src="https://image.tmdb.org/t/p/w780/${trendingMovies[x].backdrop_path}" alt="">`;
-        var trendingShowName = trendingMovies[x].name == undefined ? "N/A" : trendingMovies[x].name,
+        var trendingShowName = trendingMovies[x].title == undefined ? "N/A" : trendingMovies[x].title,
             trendingShowYear = trendingMovies[x].year == undefined ? "N/A" : trendingMovies[x].year;
-        oTvTitle.innerHTML = `${trendingShowName} (${trendingShowYear})`;
-        oTrendingTitle.innerHTML = `${trendingMovies[x].title} (${trendingMovies[x].year})`;
+        oTrendingTitle.innerHTML = `${trendingShowName} (${trendingShowYear})`;
+        // display tv shows
         oTvPic.innerHTML = (tvShows[x].backdrop_path == null || tvShows[x].backdrop_path == undefined) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` :  `<img src="https://image.tmdb.org/t/p/w780/${tvShows[x].backdrop_path}" alt="">`;
         var tvShowName = tvShows[x].name == undefined ? "N/A" : tvShows[x].name,
             tvShowYear = tvShows[x].year == undefined ? "N/A" : tvShows[x].year;
         oTvTitle.innerHTML = `${tvShowName} (${tvShowYear})`;
+        console.log(trendingShowName);
+        console.log(trendingShowYear);
+        // console.log(tvShowName);
+        // console.log(tvShowYear);
     }
 
-    function setTimer() {
+    async function setTimer() {
+        await getTrending();
+        await getTVShows();
         setInterval(displayNextTrending, 3000);
     }
 
@@ -124,7 +130,7 @@
             var category = document.getElementsByName("category")[0].value;
             clearResults();
             if (keyword == "" || category == "") {
-                alert("Please fill out this field");
+                alert("Please enter valid values.");
             } else {
                 var xttp = new XMLHttpRequest();
                 xttp.onreadystatechange = function () {
@@ -132,13 +138,6 @@
                         var data = JSON.parse(this.responseText);
 
                         console.log("data" + data[0]);
-                        // if (!data || data.length == 0 || data == undefined) {
-                        //     var errMsg = document.createElement("div");
-                        //     errMsg.innerHTML = "No result found";
-                        //     errMsg.id = "err-msg";
-                        //     console.log("err!");
-                        //     document.getElementById("result-list").appendChild(errMsg);
-                        // } else {
                             if (searchResults.length != 0) searchResults = [];
                             var len = Math.min(data.results.length, 10);
                             for (var i = 0; i < len; i++) {
@@ -204,9 +203,7 @@
                                 }
                             }
 
-                        // }
                         resolve();
-                        // showResults();
                     }
                 };
                 let cat;
@@ -222,12 +219,9 @@
                         break;
                 }
                 keyword += "%20of";
-                let url = "https://mono-cs571-python.azurewebsites.net/searchMovies" + '?keyword=' + keyword + '&category=' + cat;
-                xttp.open('GET', url, true);
+                let searchURL = "/search" + '?keyword=' + keyword + '&category=' + cat;
+                xttp.open('GET', searchURL, true);
                 xttp.send();
-                // console.log(keyword);
-                // console.log(category);
-                // console.log("I am searching!");
             }
         });
 
@@ -241,7 +235,7 @@
                 genresMovieList = data.genres;
             }
         };
-        xhttp.open("GET", "https://mono-cs571-python.azurewebsites.net/getMovieGenres", true);
+        xhttp.open("GET", "/getMovieGenres", true);
         xhttp.send();
     }
 
@@ -253,7 +247,8 @@
                 genresTVList = data.genres;
             }
         };
-        xhttp.open("GET", "https://mono-cs571-python.azurewebsites.net/getTVGenres", true);
+        // let tvGenresURL = host + "/getTVGenres";
+        xhttp.open("GET", "getTVGenres", true);
         xhttp.send();
     }
 
@@ -324,7 +319,7 @@
                 }
             };
 
-            let url_detail = "https://mono-cs571-python.azurewebsites.net/getDetails" + '?type=' + type + '&id=' + id;
+            let url_detail = "/getDetails" + '?type=' + type + '&id=' + id;
             xttp.open('GET', url_detail, true);
             xttp.send();
         });
@@ -357,7 +352,7 @@
             };
             let type2 = searchResults[btnNo].media_type;
             let id2 = searchResults[btnNo].id;
-            let url_credit = "https://mono-cs571-python.azurewebsites.net/getCredits" + '?type=' + type2 + '&id=' + id2;
+            let url_credit = "/getCredits" + '?type=' + type2 + '&id=' + id2;
             xttpCredits.open('GET', url_credit, true);
             xttpCredits.send();
         });
@@ -393,7 +388,7 @@
             };
             let type = searchResults[btnNo].media_type;
             let id = searchResults[btnNo].id;
-            let url_reviews = "https://mono-cs571-python.azurewebsites.net/getReviews" + '?type=' + type + '&id=' + id;
+            let url_reviews = "/getReviews" + '?type=' + type + '&id=' + id;
             xhttpReviews.open('GET', url_reviews, true);
             xhttpReviews.send();
         });
@@ -561,7 +556,9 @@
 
             if (btnType == 'movie') {
                 dPosterPath.innerHTML = (movieDetails.backdrop_path == null || false) ? `<img src="https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/movie-placeholder.jpg" alt="">` : `<img src="https://image.tmdb.org/t/p/w780/${movieDetails.backdrop_path}" alt="">`;
+                console.log(movieDetails.title);
                 dTitle.innerHTML = movieDetails.title;
+
                 var releaseYear;
                 if (isNaN(parseInt(movieDetails.release_date))) {
                     releaseYear = "N/A";
@@ -578,7 +575,15 @@
                 dVoteAverage.innerHTML = "\u2B51 " + ratingFloat1 + "/5";
                 dVoteCount.innerHTML =  movieDetails.vote_count.toString() + " votes";
                 dOverview.innerHTML = searchResults[btnNo].overview;
-                dLanguage.innerHTML = "Spoken languages: " + movieDetails.spoken_languages;
+
+                var language = movieDetails.spoken_languages;
+                console.log(language);
+                if (language == undefined || !language) {
+                    language = "N/A";
+                } else {
+                    language = movieDetails.spoken_languages;
+                }
+                dLanguage.innerHTML = "Spoken languages: " + language;
                 console.log("Spoken languages: " + movieDetails.spoken_languages);
                 // dInfo.innerHTML = `"https://www.themoviedb.org/movie/${movieDetails.id}"`;
                 dMore.onclick = function openUrl() {window.open("http://themoviedb.org/movie/" + searchResults[btnNo].id);};
@@ -779,27 +784,24 @@
     function loadHomePage() {
         clearFields();
         activeBtn("home-btn", "home");
+        document.getElementById("home").style.display = "";
+        document.getElementById("search-container").style.display = "none";
         if (oHomeBtn.className === 'tab-btn active') {
             if (!isLoaded) {
-                getTrending();
-                getTVShows();
+                // getTrending();
+                // getTVShows();
                 isLoaded = true;
                 isHome = true;
                 setTimer();
-                // timer;
             }
         }
     }
 
-    function removeElements() {
-        oTrendingPic.innerHTML = " ";
-        oTrendingTitle.innerHTML = " ";
-        oTvPic.innerHTML = " ";
-        oTvTitle.innerHTML = " ";
-    }
 
     function loadSearchPage() {
         activeBtn("search-btn", "search");
+        document.getElementById("home").style.display = "none";
+        document.getElementById("search-container").style.display = "flex";
         isHome = false;
         isLoaded = false;
     }

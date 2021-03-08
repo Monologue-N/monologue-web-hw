@@ -27,7 +27,7 @@ def getTVShows():
     result = requests.get("https://api.themoviedb.org/3/tv/airing_today?api_key=5cb255aabd11100bc162d4bd13d7359c")
     return result.json()
 
-@app.route('/searchMovies', methods=['GET'])
+@app.route('/search', methods=['GET'])
 def searchMovies(): 
     @after_this_request
     def add_header(response):
@@ -36,13 +36,8 @@ def searchMovies():
     # if request.method == 'GET':
     keyword = request.args.get('keyword', type=str)
     category = request.args.get('category', type=str)
-    # keyword += "%20of"
     info = {'api_key': '5cb255aabd11100bc162d4bd13d7359c', 'language': 'en-US', 'query': keyword, 'page': '1', 'include_adult': 'false'}
-    #result = requests.get("https://api.themoviedb.org/3/search/movie?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&query=avengers&page=1&include_adult=false")
-    
-    #result = requests.get("https://api.themoviedb.org/3/search/" + category + "?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&query=" + keyword + "%20of&page=1&include_adult=false")
     result = requests.get("https://api.themoviedb.org/3/search/" + category, params=info)
-    #result = requests.get("https://api.themoviedb.org/3/search/multi?api_key=97588ddc4a26e3091152aa0c9a40de22&language=en-US&query=game%20of&page=1&include_adult=false")
     return result.json()
 
 
