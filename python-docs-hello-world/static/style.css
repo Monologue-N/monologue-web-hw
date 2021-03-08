@@ -22,8 +22,7 @@ body {
     position: relative;
     flex-flow: column;
     border-left: 1px solid lightgrey;
-    /*padding-left: 20px;*/
-    height: fit-content;
+    min-height: fit-content;
     width: 100%;
     margin-top: 10px;
 }
@@ -68,10 +67,6 @@ body {
     padding-top: 5px;
 }
 
-
-#content {
-    /*position: relative;*/
-}
 
 #back {
     height: 300px;
@@ -185,6 +180,10 @@ body {
     padding-bottom: 100px;
 }
 
+#search-container {
+    min-height: 700px;
+}
+
 
 #search-content {
     top: 0;
@@ -296,9 +295,11 @@ body {
     color: white;
     font-size: 18px;
     margin-left: -20px;
-    margin-top: -800px;
+    margin-top: 500px;
+    /*margin-top: -800px;*/
     padding-left: 20px;
-    height: 100%;
+    /*height: 100%;*/
+    height: fit-content;
     width: 100%;
 }
 
@@ -340,18 +341,15 @@ body {
 .r-title {
     font-weight: bold;
     font-size: 24px;
-    font-family: Arial;
     margin-bottom: 20px;
     margin-top: 15px;
 }
 .r-overview {
-    font-family: Raleway;
     font-size: 12px;
     margin-top: 20px;
 }
 
 .r-release-year {
-    font-family: Raleway;
     font-weight: lighter;
     font-size: 12px;
 }
@@ -363,7 +361,6 @@ body {
 .r-vote-average {
     color: rgba(168,1,15,255);
     font-size: 12px;
-    font-family: Raleway;
     display: inline;
     padding-right: 8px;
 }
@@ -371,7 +368,6 @@ body {
 .r-vote-count {
     color: white;
     font-size: 12px;
-    font-family: Raleway;
     display: inline;
 }
 
@@ -381,7 +377,6 @@ body {
     border-radius: 2px;
     color: white;
     font-size: 14px;
-    font-family: Arial;
     font-weight: lighter;
     padding: 5px 10px;
     text-align: center;
@@ -510,7 +505,6 @@ body {
     align-content: center;
     margin-bottom: 40px;
     font-weight: bolder;
-    font-family: Raleway;
     font-style: italic;
 }
 
@@ -575,7 +569,7 @@ body {
 }
 
 .d-review-list {
-    height: 100px;
+    height: 95px;
 }
 
 .d-review-list > * {
