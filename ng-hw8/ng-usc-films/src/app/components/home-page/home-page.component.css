@@ -1,0 +1,12 @@
+.popular-movies-title {
+    color: white;
+    font-size: 28px;
+    margin-top: 200px;
+    margin-left: 200px;
+  }
+  
+.home-layout{
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
