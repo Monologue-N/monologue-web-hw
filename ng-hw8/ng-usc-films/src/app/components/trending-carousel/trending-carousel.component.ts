@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-trending-carousel',
@@ -10,9 +11,10 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 // providers: [NgbCarouselConfig]
 export class TrendingCarouselComponent implements OnInit {
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-
-  public message: string = "Passing the data!";
-  public posts: any
+  @Input() dataReceived = 'DefaultValue!';
+  //
+  // public message: string = "Passing the data!";
+  // public posts: any
 
   // constructor(config: NgbCarouselConfig) {
   //   constructor() {
@@ -21,8 +23,7 @@ export class TrendingCarouselComponent implements OnInit {
     // config.pauseOnHover = true;
   //
   // }
-  constructor(private ) {
-  }
+  constructor() {}
 
   ngOnInit(): void {
   }

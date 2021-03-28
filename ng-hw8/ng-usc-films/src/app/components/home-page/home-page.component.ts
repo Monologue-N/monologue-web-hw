@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
+  public message = 'Passing the data!';
+  public posts: object = {};
 
   constructor() { }
 

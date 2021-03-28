@@ -1,4 +1,9 @@
-<div class="home-layout">
-  <app-trending-carousel></app-trending-carousel>
+<div class="container-fluid">
+  <app-trending-carousel [dataReceived]="message"></app-trending-carousel>
   <div class="popular-movies-title">Popular Movies</div>
+<!--  <app-trending-carousel [dataReceived]="'This is another'"></app-trending-carousel>-->
 </div>
+
+
+<h1 style="color: white">All Posts</h1>
+<!--<div style="color: white">{{ 'posts' }}</div>-->
