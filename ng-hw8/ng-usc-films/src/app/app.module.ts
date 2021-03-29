@@ -12,6 +12,7 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { TvShowDetailsComponent } from './components/tv-show-details/tv-show-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TrendingCarouselComponent } from './components/trending-carousel/trending-carousel.component';
+import { MultiCarouselComponent } from './components/multi-carousel/multi-carousel.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TrendingCarouselComponent } from './components/trending-carousel/trendi
     WatchlistComponent,
     MovieDetailsComponent,
     TvShowDetailsComponent,
-    TrendingCarouselComponent
+    TrendingCarouselComponent,
+    MultiCarouselComponent
   ],
   imports: [
     BrowserModule,
