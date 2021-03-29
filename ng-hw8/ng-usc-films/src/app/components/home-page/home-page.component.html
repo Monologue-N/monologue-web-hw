@@ -1,6 +1,15 @@
 <div class="container-fluid">
   <app-trending-carousel *ngIf="posts" [posts]="posts"></app-trending-carousel>
-  <div class="popular-movies-title">Popular Movies</div>
-<!--  <app-trending-carousel [dataReceived]="'This is another'"></app-trending-carousel>-->
-  <app-multi-carousel></app-multi-carousel>
+  <div class="subtitle">Popular Movies</div>
+  <app-multi-carousel *ngIf="popularMovies" [data]="popularMovies"></app-multi-carousel>
+  <div class="subtitle">Top Rated Movies</div>
+  <app-multi-carousel *ngIf="topRatedMovies" [data]="topRatedMovies"></app-multi-carousel>
+  <div class="subtitle">Trending Movies</div>
+  <app-multi-carousel *ngIf="trendingMovies" [data]="trendingMovies"></app-multi-carousel>
+  <div class="subtitle">Popular TV Shows</div>
+  <app-multi-carousel *ngIf="popularTvShows" [data]="popularTvShows"></app-multi-carousel>
+  <div class="subtitle">Top Rated TV Shows</div>
+  <app-multi-carousel *ngIf="topRatedTvShows" [data]="topRatedTvShows"></app-multi-carousel>
+  <div class="subtitle">Trending TV Shows</div>
+  <app-multi-carousel *ngIf="trendingTvShows" [data]="trendingTvShows"></app-multi-carousel>
 </div>

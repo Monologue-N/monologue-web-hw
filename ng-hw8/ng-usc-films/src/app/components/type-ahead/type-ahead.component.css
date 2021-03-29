@@ -1,0 +1,12 @@
+.form-control {
+  width: 200px;
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom-color: white;
+  border-radius: 0;
+}
+
+.typeahead-format {
+  right: 50px;
+  position: absolute;
+}

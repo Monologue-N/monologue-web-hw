@@ -1,0 +1,24 @@
+ngb-carousel {
+  width: min-content;
+  text-align: center;
+  margin-top: 100px;
+  margin-left: 20%;
+  outline: none;
+  height: 500px;
+  overflow: hidden;
+}
+
+/*.carousel-inner > .item > img{*/
+/*  height: 200px;*/
+/*  width: 100px;*/
+/*}*/
+
+.wrapper {
+
+}
+
+
+
+.gradient {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 50%);
+}

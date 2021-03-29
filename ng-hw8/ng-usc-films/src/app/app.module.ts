@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { TvShowDetailsComponent } from './components/tv-show-details/tv-show-det
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TrendingCarouselComponent } from './components/trending-carousel/trending-carousel.component';
 import { MultiCarouselComponent } from './components/multi-carousel/multi-carousel.component';
+import { TypeAheadComponent } from './components/type-ahead/type-ahead.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,16 @@ import { MultiCarouselComponent } from './components/multi-carousel/multi-carous
     MovieDetailsComponent,
     TvShowDetailsComponent,
     TrendingCarouselComponent,
-    MultiCarouselComponent
+    MultiCarouselComponent,
+    TypeAheadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    LayoutModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
 @Component({

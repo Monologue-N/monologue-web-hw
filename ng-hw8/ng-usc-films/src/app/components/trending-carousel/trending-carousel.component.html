@@ -2,8 +2,13 @@
   <div *ngIf="posts">
       <ngb-carousel>
             <ng-template ngbSlide *ngFor="let i of [0,1,2,3,4]">
-              <div class="wrapper">
-                <img [src]="'https://image.tmdb.org/t/p/w780/' + posts[i].backdrop_path" alt="Random first slide">
+              <div class="hover-overlay ripple">
+                <div class="wrapper">
+                  <img [src]="'https://image.tmdb.org/t/p/w780/' + posts[i].backdrop_path" alt="Random first slide" >
+                </div>
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)">
+                  <p class="white-text">{{posts[i].title}}</p>
+                </div>
               </div>
             </ng-template>
       </ngb-carousel>
