@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -12,21 +12,18 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 export class TrendingCarouselComponent implements OnInit {
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   @Input() dataReceived = 'DefaultValue!';
-  //
-  // public message: string = "Passing the data!";
-  // public posts: any
+  @Input() posts: any;
 
-  // constructor(config: NgbCarouselConfig) {
-  //   constructor() {
-      // config.interval = 2000;
-    // config.keyboard = true;
-    // config.pauseOnHover = true;
-  //
-  // }
   constructor() {}
 
   ngOnInit(): void {
+    this.getData();
   }
 
+  getData() {
+    this.posts = this.posts.results;
+    console.log('images is ' + typeof(this.images));
+    console.log('images[0] is ' + typeof(this.images[0]));
+  }
 
 }

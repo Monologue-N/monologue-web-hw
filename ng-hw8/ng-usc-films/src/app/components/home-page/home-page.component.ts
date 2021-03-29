@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
+import { PostsService } from '../../services/posts.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -7,11 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
   public message = 'Passing the data!';
-  public posts: object = {};
+  @Output() public posts: any;
+  public trending: any;
+  public trendingTitle: string = 'Default Title';
 
-  constructor() { }
+  constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
+    this.fetchData();
+    // this.getTrending();
   }
+
+  fetchData() {
+     this.postsService.getAllPosts().subscribe(res => {
+         this.posts = res;
+         this.trendingTitle = this.posts.results[0].title;
+         console.log(this.trendingTitle);
+         this.trending = this.posts;
+    });
+  }
+
+  // getTrending() {
+  //   this.trendings = this.posts.results;
+  // }
 
 }
