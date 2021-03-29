@@ -1,6 +1,10 @@
 ngb-carousel {
-  width: 900px;
+  width: min-content;
   text-align: center;
   margin-top: 100px;
   margin-left: 20%;
+}
+
+.carousel-inner > .item {
+  width: 1200px;
 }

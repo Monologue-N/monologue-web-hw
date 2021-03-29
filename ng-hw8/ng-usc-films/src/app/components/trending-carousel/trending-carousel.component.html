@@ -1,13 +1,9 @@
 <div class="container-fluid">
   <div *ngIf="posts">
       <ngb-carousel>
-            <ng-template ngbSlide *ngFor="let post of posts">
+            <ng-template ngbSlide *ngFor="let i of [0,1,2,3,4]">
               <div class="wrapper">
-                <img [src]="'https://image.tmdb.org/t/p/w780/' + post.backdrop_path" alt="Random first slide">
-              </div>
-              <div class="carousel-caption">
-                <h3>{{post.title}}</h3>
-                <p> Angular 10 Carousel Example </p>
+                <img [src]="'https://image.tmdb.org/t/p/w780/' + posts[i].backdrop_path" alt="Random first slide">
               </div>
             </ng-template>
       </ngb-carousel>
