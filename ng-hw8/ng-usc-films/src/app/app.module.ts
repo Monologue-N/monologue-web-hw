@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +18,7 @@ import { TrendingCarouselComponent } from './components/trending-carousel/trendi
 import { MultiCarouselComponent } from './components/multi-carousel/multi-carousel.component';
 import { TypeAheadComponent } from './components/type-ahead/type-ahead.component';
 import {FormsModule} from '@angular/forms';
+import { VideoComponent } from './components/video/video.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import {FormsModule} from '@angular/forms';
     TvShowDetailsComponent,
     TrendingCarouselComponent,
     MultiCarouselComponent,
-    TypeAheadComponent
+    TypeAheadComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,8 @@ import {FormsModule} from '@angular/forms';
     NgbModule,
     HttpClientModule,
     LayoutModule,
-    FormsModule
+    FormsModule,
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -43,4 +43,24 @@ export class PostsService {
     const url = 'http://localhost:8080/posts/trendingTvShows';
     return this.httpClient.get(url);
   }
+
+  getMovieDetails(id: string) {
+    const url = 'http://localhost:8080/posts/movieDetails/' + id;
+    return this.httpClient.get(url);
+  }
+
+  getMovieVideos(id: string) {
+    const url = 'http://localhost:8080/posts/movieVideos/' + id;
+    return this.httpClient.get(url);
+  }
+
+  getTvShowDetails(id: string) {
+    const url = 'http://localhost:8080/posts/tvshow/' + id;
+    return this.httpClient.get(url);
+  }
+
+  getTvShowVideos(id: string) {
+    const url = 'http://localhost:8080/posts/tvshowVideos/' + id;
+    return this.httpClient.get(url);
+  }
 }

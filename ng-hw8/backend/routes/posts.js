@@ -65,10 +65,39 @@ router.get('/trendingTvShows', function(req, res) {
     })
 });
 
-
-router.get('/:id', function(req, res) {
+router.get('/movieDetails/:id', function(req, res) {
     let id = req.params.id;
-    let url = "https://jsonplaceholder.typicode.com/posts/" + id;
+    let url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.get('/movieVideos/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/movie/" + id + "/videos?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.get('tvshowDetails/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/tv/"+ id + "?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.get('tvshowVideos/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/tv/" + id + "/videos?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
     axios.get(url).then(posts => {
         res.json(posts.data);
     }).catch(err => {
