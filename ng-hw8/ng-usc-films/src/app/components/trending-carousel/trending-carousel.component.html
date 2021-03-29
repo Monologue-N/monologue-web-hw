@@ -4,7 +4,9 @@
             <ng-template ngbSlide *ngFor="let i of [0,1,2,3,4]">
               <div class="hover-overlay ripple">
                 <div class="wrapper">
-                  <img [src]="'https://image.tmdb.org/t/p/w780/' + posts[i].backdrop_path" alt="Random first slide" >
+                  <a href="" routerLink="/watch/movie/{{posts[i].id}}">
+                    <img [src]="'https://image.tmdb.org/t/p/w780/' + posts[i].backdrop_path" alt="Random first slide" >
+                  </a>
                 </div>
                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)">
                   <p class="white-text">{{posts[i].title}}</p>
