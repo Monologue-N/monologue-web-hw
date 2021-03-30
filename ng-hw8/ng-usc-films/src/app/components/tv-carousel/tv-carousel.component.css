@@ -35,3 +35,28 @@ ngb-carousel {
 .six-wrapper-container {
   margin-bottom: 7%;
 }
+
+
+ngb-carousel:hover .mask {
+  opacity: 1;
+}
+
+.mask {
+  opacity: 0;
+  padding-bottom: 10%;
+  position: absolute;
+  width: 13%;
+  height: 50%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0));
+}
+
+.wrapper:hover .wrapper > a > img{
+  transform: scale(1.05);
+}
+
+.white-text {
+  color: white;
+  margin-top: 10%;
+  text-align: left;
+  margin-left: 10%;
+}
