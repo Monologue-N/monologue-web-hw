@@ -85,6 +85,27 @@ router.get('/movieVideos/:id', function(req, res) {
     })
 });
 
+router.get('/recommendedMovies/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/movie/" + id + "/recommendations?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.get('/similarMovies/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/movie/" + id + "/similar?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+
 router.get('/tvshowDetails/:id', function(req, res) {
     let id = req.params.id;
     let url = "https://api.themoviedb.org/3/tv/"+ id + "?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
@@ -97,8 +118,38 @@ router.get('/tvshowDetails/:id', function(req, res) {
 
 router.get('/tvshowVideos/:id', function(req, res) {
     let id = req.params.id;
-    console.log("I am in posts.js: " + id);
     let url = "https://api.themoviedb.org/3/tv/" + id + "/videos?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.get('/recommendedTvShows/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/tv/" + id + "/recommendations?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.get('/similarTvShows/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/tv/" + id + "/videos?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+
+router.get('/search/:keyword', function(req, res) {
+    let keyword = req.params.keyword;
+    let url = "https://api.themoviedb.org/3/search/multi?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&query=" + keyword;
     axios.get(url).then(posts => {
         res.json(posts.data);
     }).catch(err => {

@@ -1,4 +1,4 @@
-<div class="container box">
+<div class="container box" *ngIf="movieDetails">
 
   <i class="fab fa-twitter"></i>
   <div class=" top-row">
@@ -36,7 +36,7 @@
   <div>
     <p>Share</p>
     <a class="twitter-share-button"
-       href="https://twitter.com/intent/tweet?text=Hello%20world"
+       href="https://twitter.com/intent/tweet?text=Watch%20{{ movieDetails.title }}%0Dhttps://www.youtube.com/watch?v={{ key }}%0D%0A%23USC%20%23CSCI571%20%23FightOn"
        data-size="large">
       Tweet</a>
     <i class="fab fa-twitter"></i>

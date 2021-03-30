@@ -81,6 +81,10 @@ export class TypeAheadComponent implements OnInit {
 
   formatter = (x: {name: string}) => x.name;
 
+  fetchData() {
+
+  }
+
 }
 
 

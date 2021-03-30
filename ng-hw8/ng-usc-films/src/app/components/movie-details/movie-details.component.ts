@@ -22,6 +22,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public genres: any = [];
   public spokenLanguages: any = [];
   public overview: any;
+  public tweet: any;
 
   constructor(private route: ActivatedRoute, private postsService: PostsService) { }
 
@@ -29,9 +30,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       console.log(params);
       console.log(params.id);
-      console.log(params.type);
       this.id = params.id;
-      this.mediaType = params.type;
     });
     this.fetchData();
   }
@@ -54,6 +53,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       }
       this.spokenLanguages.join(', ');
       this.overview = this.movieDetails.overview;
+      this.tweet = 'Watch%20' + this.movieDetails.toString() + 'https://www.youtube.com/watch?v=' + this.key.toString() + '#USC%20#CSCI571%20#FightOn';
     });
     this.postsService.getMovieVideos(this.id).subscribe(res => {
       this.movieVideos = res;
