@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 
 router.get('/', function(req, res) {
-    let url = "https://api.themoviedb.org/3/trending/movie/week?api_key=5cb255aabd11100bc162d4bd13d7359c";
+    let url = "https://api.themoviedb.org/3/movie/now_playing?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
     axios.get(url).then(posts => {
         res.json(posts.data);
     }).catch(err => {

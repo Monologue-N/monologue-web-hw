@@ -13,13 +13,15 @@
 //   }
 //
 // }
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  template: '<youtube-player videoId="6zTc2hD2npA"></youtube-player>',
   selector: 'app-video',
+  templateUrl: './video.component.html'
 })
 export class VideoComponent implements OnInit {
+  @Input() key: any;
+
   ngOnInit() {
     const tag = document.createElement('script');
 
@@ -27,3 +29,4 @@ export class VideoComponent implements OnInit {
     document.body.appendChild(tag);
   }
 }
+//  template: '<youtube-player videoId="6zTc2hD2npA"></youtube-player>',

@@ -1,3 +1,37 @@
 .video {
-  margin-left: 10%;
+  /*margin-left: 10%;*/
+  /*margin-top: 10%;*/
+  /*margin-right: 5%;*/
+  /*width: 600px;*/
+}
+
+.test {
+  color: white;
+  margin-top: 5%;
+}
+
+.card {
+  /*margin-top: 10%;*/
+  /*margin-left: 5%;*/
+  background-color: transparent;
+  color: white;
+}
+
+
+.grey-text {
+  color: darkgrey;
+}
+
+.card-title {
+  font-size: 32px;
+}
+
+.box{
+  display: flex;
+  margin-top: 5%;
+  color: white;
+}
+
+.top-row {
+
 }

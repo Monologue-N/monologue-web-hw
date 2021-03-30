@@ -1,14 +1,62 @@
-<div class="container-fluid">
-  <p>movie-details works!</p>
-  <div style="color: white">{{id}}</div>
-  <app-video class="video"></app-video>
+<div class="container box">
 
-  <div class="card" style="width: 18rem;" *ngIf="movieDetails">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{ movieDetails.title }}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+  <i class="fab fa-twitter"></i>
+  <div class=" top-row">
+    <app-video class="video col-8" [key]="key"></app-video>
+    <div class="col">
+      <div class="card" *ngIf="movieDetails">
+        <div class="card-body">
+          <h5 class="card-title row">{{ movieDetails.title }}</h5>
+          <p class="card-text row">{{ movieDetails.tagline }}</p>
+          <div class="row">
+            <p class="card-text" *ngIf="releaseYear">{{ releaseYear }}&nbsp;&nbsp;|</p>
+            <p class="card-text">&nbsp;&nbsp;&#9733; &nbsp;{{ voteAverage }}&nbsp;&nbsp;|</p>
+            <p class="card-text" *ngIf="hours && minutes">&nbsp;&nbsp;{{ hours }}hrs&nbsp;{{ minutes }}mins &nbsp;</p>
+          </div>
+          <div class="row">
+            <p class="subtitle">Genres:</p>
+            <p class="card-text grey-text" *ngIf="genres">&nbsp;{{ genres }}</p>
+          </div>
+          <div class="row">
+            <p>Spoken Languages:</p>
+            <p class="card-text grey-text" *ngIf="spokenLanguages">&nbsp;{{ spokenLanguages }}</p>
+          </div>
+          <a href="#" class="btn btn-primary row">Add to watchlist</a>
+        </div>
+      </div>
     </div>
+
   </div>
+
+  <div class="">
+    <p>Description</p>
+    <p class="grey-text" *ngIf="overview">{{ overview }}</p>
+  </div>
+
+  <div>
+    <p>Share</p>
+    <a class="twitter-share-button"
+       href="https://twitter.com/intent/tweet?text=Hello%20world"
+       data-size="large">
+      Tweet</a>
+    <i class="fab fa-twitter"></i>
+
+    <span style="font-size: 48px; color: Dodgerblue;">
+      <i class="fas fa-camera"></i>
+      </span>
+  </div>
+
+
 </div>
+
+
+<!--<div class="row test">-->
+<!--  <div class="col">1</div>-->
+<!--  <div class="col">2</div>-->
+<!--  <div class="col">3</div>-->
+<!--</div>-->
+<!--<div class="row test">-->
+<!--  <div class="col">1</div>-->
+<!--  <div class="col">2</div>-->
+<!--  <div class="col">3</div>-->
+<!--</div>-->

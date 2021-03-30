@@ -11,7 +11,16 @@ import { PostsService } from '../../services/posts.service';
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription | undefined;
   public id = '';
+  public key = '';
   public movieDetails: any;
+  public movieVideos: any;
+  public releaseYear: number | undefined;
+  public voteAverage: any;
+  public hours: any;
+  public minutes: any;
+  public genres: any = [];
+  public spokenLanguages: any = [];
+  public overview: any;
 
   constructor(private route: ActivatedRoute, private postsService: PostsService) { }
 
@@ -27,8 +36,26 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   fetchData() {
     this.postsService.getMovieDetails(this.id).subscribe(res => {
       this.movieDetails = res;
+      // tslint:disable-next-line:radix
+      this.releaseYear = parseInt(this.movieDetails.release_date);
+      this.voteAverage = parseFloat(this.movieDetails.vote_average).toFixed(1);
+      // tslint:disable-next-line:radix
+      this.hours = Math.floor(this.movieDetails.runtime / 60);
+      this.minutes = this.movieDetails.runtime - this.hours * 60;
+      for (const genre of this.movieDetails.genres) {
+        this.genres.push(genre.name);
+      }
+      this.genres = this.genres.join(', ');
+      for (const language of this.movieDetails.spoken_languages) {
+        this.spokenLanguages.push(language.english_name);
+      }
+      this.spokenLanguages.join(', ');
+      this.overview = this.movieDetails.overview;
     });
-    console.log(this.movieDetails);
+    this.postsService.getMovieVideos(this.id).subscribe(res => {
+      this.movieVideos = res;
+      this.key = this.movieVideos.results[0].key;
+    });
   }
 
   ngOnDestroy() {
