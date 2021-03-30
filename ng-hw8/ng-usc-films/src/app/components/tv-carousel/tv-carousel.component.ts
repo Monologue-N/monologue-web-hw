@@ -1,11 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-multi-carousel',
-  templateUrl: './multi-carousel.component.html',
-  styleUrls: ['./multi-carousel.component.css']
+  selector: 'app-tv-carousel',
+  templateUrl: './tv-carousel.component.html',
+  styleUrls: ['./tv-carousel.component.css']
 })
-export class MultiCarouselComponent implements OnInit {
+export class TvCarouselComponent implements OnInit {
+
   @Input() data: any;
   public mobile: any;
   public dataArray: any = [];

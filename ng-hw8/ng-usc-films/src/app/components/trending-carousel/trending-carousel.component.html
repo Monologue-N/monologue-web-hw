@@ -4,15 +4,22 @@
             <ng-template ngbSlide *ngFor="let i of [0,1,2,3,4]">
               <div class="hover-overlay ripple">
                 <div class="wrapper">
-                  <a href="" routerLink="/watch/movie/{{posts[i].id}}">
-                    <img [src]="'https://image.tmdb.org/t/p/w780/' + posts[i].backdrop_path" alt="Random first slide" >
-                  </a>
-                </div>
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)">
-                  <p class="white-text">{{posts[i].title}}</p>
+                    <a href="" routerLink="/watch/movie/{{posts[i].id}}">
+                        <img [src]="'https://image.tmdb.org/t/p/w780/' + posts[i].backdrop_path" className="img-fluid" alt=""/>
+                    </a>
+                   <div class="mask">
+                    <p class="white-text">{{posts[i].title}}</p>
+                  </div>
                 </div>
               </div>
             </ng-template>
       </ngb-carousel>
   </div>
 </div>
+
+<!--<div class="view overlay">-->
+<!--  <img src="https://mdbootstrap.com/img/Photos/Others/forest-sm.jpg" class="img-fluid " alt="smaple image">-->
+<!--  <div class="mask flex-center rgba-red-strong">-->
+<!--    <p class="white-text">Strong overlay</p>-->
+<!--  </div>-->
+<!--</div>-->

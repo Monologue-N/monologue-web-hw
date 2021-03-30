@@ -18,6 +18,7 @@ import { MultiCarouselComponent } from './components/multi-carousel/multi-carous
 import { TypeAheadComponent } from './components/type-ahead/type-ahead.component';
 import { FormsModule } from '@angular/forms';
 import { VideoComponent } from './components/video/video.component';
+import { TvCarouselComponent } from './components/tv-carousel/tv-carousel.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { VideoComponent } from './components/video/video.component';
     TrendingCarouselComponent,
     MultiCarouselComponent,
     TypeAheadComponent,
-    VideoComponent
+    VideoComponent,
+    TvCarouselComponent
   ],
   imports: [
     BrowserModule,

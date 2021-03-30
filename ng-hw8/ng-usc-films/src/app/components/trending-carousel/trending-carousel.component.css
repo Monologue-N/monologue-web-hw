@@ -6,16 +6,29 @@ ngb-carousel {
   outline: none;
 }
 
-.carousel {
-
-}
-
 .carousel-inner > .item > img{
   width: 1200px;
   height: 500px;
   overflow: hidden;
+  position: relative;
 }
 
-.gradient {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 50%);
+
+.white-text {
+  color: white;
+  margin-top: 20px;
 }
+
+.mask:hover{
+  display: block;
+}
+
+.mask {
+  /*display: none;*/
+  margin-top: -70px;
+  position: absolute;
+  padding-bottom: 10%;
+  width: 800px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, rgba(255, 255, 255, 0));
+}
+

@@ -11,6 +11,7 @@ import { PostsService } from '../../services/posts.service';
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription | undefined;
   public id = '';
+  public mediaType = '';
   public key = '';
   public movieDetails: any;
   public movieVideos: any;
@@ -28,7 +29,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       console.log(params);
       console.log(params.id);
+      console.log(params.type);
       this.id = params.id;
+      this.mediaType = params.type;
     });
     this.fetchData();
   }

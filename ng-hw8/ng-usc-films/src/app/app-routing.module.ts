@@ -8,12 +8,14 @@ import {TvShowDetailsComponent} from './components/tv-show-details/tv-show-detai
 const routes: Routes = [
   { path: '', component: HomePageComponent},
   {
-    path: 'watch/movie',
+    path: 'watch',
     children: [
-      {path: ':id', component: MovieDetailsComponent}
+      {path: ':type',
+        children: [
+          { path: ':id', component: MovieDetailsComponent }
+        ]}
     ]
   },
-  { path: 'watch/tv/:id', component: TvShowDetailsComponent},
   { path: 'mylist', component: WatchlistComponent}
 ];
 
