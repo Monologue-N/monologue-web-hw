@@ -20,8 +20,8 @@ export class TvCarouselComponent implements OnInit {
     this.data = this.data.results;
     this.transformData();
     console.log(this.dataArray);
-    for (let group of this.dataArray) {
-      for (let one of group) {
+    for (const group of this.dataArray) {
+      for (const one of group) {
         console.log(one.backdrop_path);
       }
     }

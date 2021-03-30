@@ -5,8 +5,13 @@
     margin-left: 200px;
   }
 
-/*.home-layout{*/
-/*    min-height: fit-content;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
+.home-layout{
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+
+app-trending-carousel {
+  text-align: center;
+}

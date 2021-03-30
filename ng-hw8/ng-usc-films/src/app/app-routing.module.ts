@@ -10,9 +10,13 @@ const routes: Routes = [
   {
     path: 'watch',
     children: [
-      {path: ':type',
+      {path: 'movie',
         children: [
           { path: ':id', component: MovieDetailsComponent }
+        ]},
+      {path: 'tv',
+        children: [
+          { path: ':id', component: TvShowDetailsComponent }
         ]}
     ]
   },
