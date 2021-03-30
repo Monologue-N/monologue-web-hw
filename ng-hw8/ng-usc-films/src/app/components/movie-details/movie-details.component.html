@@ -1,6 +1,5 @@
 <div class="container box" *ngIf="movieDetails">
 
-  <i class="fab fa-twitter"></i>
   <div class=" top-row">
     <app-video class="video col-8" [key]="key"></app-video>
     <div class="col">
@@ -37,15 +36,17 @@
     <p>Share</p>
     <a class="twitter-share-button"
        href="https://twitter.com/intent/tweet?text=Watch%20{{ movieDetails.title }}%0Dhttps://www.youtube.com/watch?v={{ key }}%0D%0A%23USC%20%23CSCI571%20%23FightOn"
-       data-size="large">
-      Tweet</a>
-    <i class="fab fa-twitter"></i>
+       data-size="large"
+       style="font-size: 36px; color: #1ea2f1;">
+      <i class="fa fa-twitter"></i>
+    </a>
 
-    <span style="font-size: 48px; color: Dodgerblue;">
-      <i class="fas fa-camera"></i>
-      </span>
+
+      <a target="_blank" style="font-size: 36px; color: #0926cd;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        <i class="fa fa-facebook-square"></i>
+      </a>
+
   </div>
-
 
 </div>
 

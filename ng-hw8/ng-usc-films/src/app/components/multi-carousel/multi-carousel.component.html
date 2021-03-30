@@ -4,13 +4,13 @@
       <ng-template ngbSlide *ngFor="let sixData of dataArray">
         <div class="six-wrapper-container">
           <div class="six-wrapper" *ngFor="let oneData of sixData">
-            <div class="wrapper" *ngIf="oneData.id">
-              <a href="" routerLink="/watch/movie/{{oneData.id}}">
-                <img [src]="'https://image.tmdb.org/t/p/w500' + oneData.poster_path" alt="Random first slide">
-              </a>
-            </div>
-              <div class="mask">
-                <p class="white-text">{{oneData.title}}</p>
+              <div class="wrapper" *ngIf="oneData.id">
+                <a href="" routerLink="/watch/movie/{{oneData.id}}">
+                  <img [src]="'https://image.tmdb.org/t/p/w500' + oneData.poster_path" alt="Random first slide">
+                </a>
+                <div class="mask">
+                  <p class="white-text">{{oneData.title}}</p>
+                </div>
               </div>
           </div>
         </div>

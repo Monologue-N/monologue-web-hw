@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+// import { faFontAwesome } from '@fortawesome/free-brands-svg-icons';
+// import { faFontAwesomeFlag } from '@fortawesome/free-brands-svg-icons';
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { VideoComponent } from './components/video/video.component';
 import { TvCarouselComponent } from './components/tv-carousel/tv-carousel.component';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +46,7 @@ import { TvCarouselComponent } from './components/tv-carousel/tv-carousel.compon
     HttpClientModule,
     LayoutModule,
     FormsModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
