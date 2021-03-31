@@ -85,6 +85,27 @@ router.get('/movieVideos/:id', function(req, res) {
     })
 });
 
+router.get('/movieCast/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/movie/" + id + "/credits?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.get('/movieReviews/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/movie/" + id + "/reviews?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+
 router.get('/recommendedMovies/:id', function(req, res) {
     let id = req.params.id;
     let url = "https://api.themoviedb.org/3/movie/" + id + "/recommendations?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
@@ -126,6 +147,27 @@ router.get('/tvshowVideos/:id', function(req, res) {
     })
 });
 
+router.get('/tvshowCast/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/tv/" + id + "/credits?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.get('/tvshowReviews/:id', function(req, res) {
+    let id = req.params.id;
+    let url = "https://api.themoviedb.org/3/tv/" + id + "/reviews?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+
 router.get('/recommendedTvShows/:id', function(req, res) {
     let id = req.params.id;
     let url = "https://api.themoviedb.org/3/tv/" + id + "/recommendations?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
@@ -147,11 +189,20 @@ router.get('/similarTvShows/:id', function(req, res) {
 });
 
 
-router.get('/search/:keyword', function(req, res) {
-    let keyword = req.params.keyword;
-    let url = "https://api.themoviedb.org/3/search/multi?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&query=" + keyword;
+router.get('/search/:term', function(req, res) {
+    let term = req.params.term;
+    let url = "https://api.themoviedb.org/3/search/multi?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&query=" + term;
     axios.get(url).then(posts => {
-        res.json(posts.data);
+        let formattedData = [];
+        for (let i = 0; i < 7; i++) {
+            let obj = posts.data.results[i];
+            if (obj.media_type === 'movie') {
+                formattedData.push({id: obj.id, 'title': obj.title, 'backdrop_path': 'https://image.tmdb.org/t/p/w500' + obj.backdrop_path, 'media_type': obj.media_type});
+            } else if (obj.media_type === 'tv') {
+                formattedData.push({id: obj.id, 'title': obj.name, 'backdrop_path': 'https://image.tmdb.org/t/p/w500' + obj.backdrop_path, 'media_type': obj.media_type})
+            }
+        }
+        res.json(formattedData);
     }).catch(err => {
         res.send(err);
     })

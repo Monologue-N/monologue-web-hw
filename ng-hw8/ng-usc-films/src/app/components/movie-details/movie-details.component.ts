@@ -58,6 +58,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.postsService.getMovieVideos(this.id).subscribe(res => {
       this.movieVideos = res;
       this.key = this.movieVideos.results[0].key;
+      if (!this.key) {
+        this.key = 'tzkWB85ULJY';
+      }
     });
   }
 

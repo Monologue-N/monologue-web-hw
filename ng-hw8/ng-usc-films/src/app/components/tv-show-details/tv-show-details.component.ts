@@ -58,7 +58,9 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
     this.postsService.getTvShowVideos(this.id).subscribe(res => {
       this.tvShowVideos = res;
       this.key = this.tvShowVideos.results[0].key;
-      console.log(this.tvShowVideos);
+      if (!this.key) {
+        this.key = 'tzkWB85ULJY';
+      }
     });
   }
 

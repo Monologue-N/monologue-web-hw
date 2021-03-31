@@ -6,7 +6,19 @@
   border-radius: 0;
 }
 
-.typeahead-format {
-  right: 50px;
+.form-container {
+  right: 5%;
   position: absolute;
+}
+
+::ng-deep .dropdown-menu{
+  background-color: #050a30;
+  color: white;
+  border-color: white;
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+.highlight-item {
+  color: white;
 }
