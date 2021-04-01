@@ -1,11 +1,14 @@
-<div class="container box" *ngIf="movieDetails">
+<div class="container-fluid box" *ngIf="movieDetails">
 
-  <div class=" top-row">
-    <app-video class="video col-8" [key]="key"></app-video>
-    <div class="col">
-      <div class="card" *ngIf="movieDetails">
+  <div class="first-row-container">
+    <div style="width: 700px">
+      <app-video class="video" [key]="key"></app-video>
+    </div>
+    <div>
+      <div class="card" *ngIf="movieDetails" style="background-color: transparent;
+  color: white; width: 300px">
         <div class="card-body">
-          <h5 class="card-title row">{{ movieDetails.title }}</h5>
+          <h5 class="card-title row" style="font-size: 46px; font-weight: normal">{{ movieDetails.title }}</h5>
           <p class="card-text row">{{ movieDetails.tagline }}</p>
           <div class="row">
             <p class="card-text" *ngIf="releaseYear">{{ releaseYear }}&nbsp;&nbsp;|</p>
@@ -13,50 +16,64 @@
             <p class="card-text" *ngIf="hours && minutes">&nbsp;&nbsp;{{ hours }}hrs&nbsp;{{ minutes }}mins &nbsp;</p>
           </div>
           <div class="row">
-            <p class="subtitle">Genres:</p>
-            <p class="card-text grey-text" *ngIf="genres">&nbsp;{{ genres }}</p>
+            <div class="subtitle">Genres:</div>
+            <div class="card-text grey-text" style="display: inline" *ngIf="genres">&nbsp;{{ genres }}</div>
           </div>
           <div class="row">
             <p>Spoken Languages:</p>
             <p class="card-text grey-text" *ngIf="spokenLanguages">&nbsp;{{ spokenLanguages }}</p>
           </div>
-          <a href="#" class="btn btn-primary row">Add to watchlist</a>
+          <div id="watchlist-container">
+            <button id="watchlist-btn"class="btn btn-primary row">Add to watchlist</button>
+          </div>
         </div>
       </div>
     </div>
 
+
   </div>
 
-  <div class="">
-    <p>Description</p>
+  <div style="display: block; margin-bottom: 20px;">
+    <div>Description</div>
     <p class="grey-text" *ngIf="overview">{{ overview }}</p>
   </div>
 
-  <div>
-    <p>Share</p>
+  <div style="display: block; margin-bottom: 40px;">
+    <div>Share</div>
     <a class="twitter-share-button"
        href="https://twitter.com/intent/tweet?text=Watch%20{{ movieDetails.title }}%0Dhttps://www.youtube.com/watch?v={{ key }}%0D%0A%23USC%20%23CSCI571%20%23FightOn"
        data-size="large"
-       style="font-size: 36px; color: #1ea2f1;">
+       style="font-size: 30px; color: #1ea2f1; margin-right: 10px">
       <i class="fab fa-twitter"></i>
     </a>
-    <a target="_blank" style="font-size: 36px; color: #0926cd;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+    <a target="_blank" style="font-size: 30px; color: #0926cd;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
       <i class="fab fa-facebook-square"></i>
     </a>
   </div>
 
-  <div class="cast-crew" >
-    <div class="card" style="width: 18rem; background: white; color: black">
-      <img class="card-img-top" src="..." alt="Card image cap">
-      <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+</div>
+
+<div style="color: white; font-size: 36px; font-weight: bold; margin-left: 11%; margin-bottom: 10px">Full Cast and Crew</div>
+<div class="outer-container">
+  <div class="cast-crew-container">
+    <div *ngFor="let person of cast">
+      <div *ngIf="person.profile_path">
+        <div class="card" style="width: 175px; height: 380px; align-items: center; margin-right: 10px; border-radius: 20px; overflow: hidden; border: none">
+          <a href="">
+            <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500/' + person.profile_path" alt="Card image cap" style="width: 100%;">
+          </a>
+          <div class="card-body" style="text-align: center">
+            <p class="card-text" style="margin-top: -7px; font-size: 14px; font-weight: bold; width: 170px">{{ person.name }}</p>
+            <p class="card-text" style="font-weight: bolder; margin-top: -7px;">AS</p>
+            <p class="card-text" style="margin-top: -7px; font-size: 14px; ">{{ person.character }}</p>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
-
-
 </div>
+
+
 
 
 <!--<div class="row test">-->

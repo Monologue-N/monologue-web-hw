@@ -1,18 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-//
-// @Component({
-//   selector: 'app-video',
-//   templateUrl: './video.component.html',
-//   styleUrls: ['./video.component.css']
-// })
-// export class VideoComponent implements OnInit {
-//
-//   constructor() { }
-//
-//   ngOnInit(): void {
-//   }
-//
-// }
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
@@ -29,4 +14,3 @@ export class VideoComponent implements OnInit {
     document.body.appendChild(tag);
   }
 }
-//  template: '<youtube-player videoId="6zTc2hD2npA"></youtube-player>',

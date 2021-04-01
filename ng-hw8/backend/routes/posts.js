@@ -208,5 +208,25 @@ router.get('/search/:term', function(req, res) {
     })
 });
 
+router.get('/castDetails/:person', function(req, res) {
+    let person = req.params.person;
+    let url = "https://api.themoviedb.org/3/person/" + person + "?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.get('/castExternal/:person', function(req, res) {
+    let person = req.params.person;
+    let url = "https://api.themoviedb.org/3/person/" + person + "/external_ids?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&page=1";
+    axios.get(url).then(posts => {
+        res.json(posts.data);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
 module.exports = router;
 

@@ -60,7 +60,7 @@ export class PostsService {
   }
 
   getMovieCast(id: string) {
-    const url = 'http://localhost:8080/posts/cast/' + id;
+    const url = 'http://localhost:8080/posts/movieCast/' + id;
     return this.httpClient.get(url);
   }
 
@@ -111,6 +111,11 @@ export class PostsService {
 
   getCastDetails(person: string) {
     const url = 'http://localhost:8080/posts/castDetails/' + person;
+    return this.httpClient.get(url);
+  }
+
+  getCastExternal(person: string) {
+    const url = 'http://localhost:8080/posts/castExternal/' + person;
     return this.httpClient.get(url);
   }
 }
