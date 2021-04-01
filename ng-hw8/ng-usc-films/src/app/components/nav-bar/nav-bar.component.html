@@ -1,30 +1,4 @@
-<!--<div class="nav-bar">-->
-<!--    <button class="usc-film-title" routerLink="/">USC Film</button>-->
-<!--    <button class="home-title" routerLink="/">home</button>-->
-<!--    <button class="my-list-title" routerLink="/mylist">my list</button>-->
-
-<!--    <app-type-ahead></app-type-ahead>-->
-<!--</div>-->
-
-
-<!--<nav class="navbar navbar-expand-md navbar-light bg-dark">-->
-<!--&lt;!&ndash;  <a href="#" class="navbar-brand usc-film-title" routerLink="/">USC Film</a>&ndash;&gt;-->
-<!--  <button class="usc-film-title" routerLink="/">USC Film</button>-->
-<!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--    <span class="navbar-toggler-icon"></span>-->
-<!--  </button>-->
-<!--  <div class="collapse navbar-collapse" id="navbarNav">-->
-<!--    <ul class="navbar-nav">-->
-<!--      <li class="nav-item">-->
-<!--        <a href="#" class="nav-link" routerLink="/">home</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a href="#" class="nav-link" routerLink="/mylist">my list</a>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
-<!--</nav>-->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" style="position: fixed; top: 0; background: black; height: 70px; width: 100%;  z-index: 20">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"  routerLink="/">USC Films</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"  routerLink="/">Home</a>
+          <a class="nav-link active" id="home"  aria-current="page" href="#"  routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"  routerLink="/mylist">my list</a>
+          <a class="nav-link" id="my-list" href="#"  routerLink="/mylist">My List</a>
         </li>
       </ul>
-      <app-type-ahead></app-type-ahead>
+      <app-type-ahead style="right: 0;"></app-type-ahead>
     </div>
   </div>
 </nav>

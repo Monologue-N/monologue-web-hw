@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" style="margin-left: 1%">
   <div *ngIf="dataArray">
-    <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true">
+    <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" style="width: 120%">
       <ng-template ngbSlide *ngFor="let sixData of dataArray">
         <div class="six-wrapper-container">
           <div class="six-wrapper" *ngFor="let oneData of sixData">

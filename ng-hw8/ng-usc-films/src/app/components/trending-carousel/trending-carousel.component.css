@@ -5,7 +5,7 @@ ngb-carousel {
   width: min-content;
   text-align: center;
   margin-top: 5%;
-  margin-left: 10%;
+  margin-left: 12.9%;
   left:auto;
   right: auto;
   outline: none;
@@ -13,9 +13,9 @@ ngb-carousel {
 
 .white-text {
   color: white;
-  margin-top: 10%;
+  margin-top: 11.5%;
   text-align: left;
-  margin-left: 10%;
+  margin-left: 8%;
 }
 
 .wrapper:hover .mask {

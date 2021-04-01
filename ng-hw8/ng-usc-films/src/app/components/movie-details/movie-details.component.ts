@@ -70,12 +70,13 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     });
     this.postsService.getMovieVideos(this.id).subscribe(res => {
       this.movieVideos = res;
-      if (!this.key || !this.movieVideos.results) {
+      if (this.movieVideos.results.length === 0 || !this.movieVideos.results.length) {
         this.key = 'tzkWB85ULJY';
       } else {
-        console.log(this.movieVideos.results[0].key);
         this.key = this.movieVideos.results[0].key;
-        console.log(this.key);
+        if (!this.key) {
+          this.key = 'tzkWB85ULJY';
+        }
       }
     });
     this.postsService.getMovieCast(this.id).subscribe(res => {
@@ -85,15 +86,22 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.postsService.getMovieReviews(this.id).subscribe(res => {
         this.reviews = res;
         this.reviews = this.reviews.results;
-        console.log(this.reviews);
+        // deal with reviews data
         for (const review of this.reviews) {
-          console.log(review);
-          if (review.author_details.avatar_path) {
-            review.avatar_path = 'https://image.tmdb.org/t/p/original' + review.author_details.avatar_path;
-          } else {
+          // format avatar path
+          if (!review.author_details.avatar_path) {
             review.avatar_path = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHnPmUvFLjjmoYWAbLTEmLLIRCPpV_OgxCVA&usqp=CAU';
+          } else {
+            if (review.author_details.avatar_path.substring(0, 6) === '/https') {
+               review.avatar_path = review.author_details.avatar_path.substring(1);
+            } else {
+              review.avatar_path = 'https://image.tmdb.org/t/p/original' + review.author_details.avatar_path;
+            }
           }
-          console.log(review.avatar_path);
+          // format date created
+          const date = review.created_at.match(/\d+/g);
+          review.created_at = + date[1] + '/' + date[2] + '/' + date[0];
+
         }
     });
   }

@@ -6,10 +6,11 @@ ngb-carousel {
   outline: none;
   /*height: 300px;*/
   /*overflow: hidden;*/
-  padding-left: 10%;
+  padding-left: 12%;
   paddding-right: 2%;
   background-color: transparent;
 }
+
 
 .wrapper:hover{
   transform: scale(1.05);
