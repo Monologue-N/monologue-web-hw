@@ -24,8 +24,23 @@
             <p class="card-text grey-text" *ngIf="spokenLanguages">&nbsp;{{ spokenLanguages }}</p>
           </div>
           <div id="watchlist-container">
-            <button id="watchlist-btn"class="btn btn-primary row">Add to watchlist</button>
+            <button id="watchlist-btn"class="btn btn-primary row" (click)="toggle()" style="font-size: 18px;">Add to watchlist</button>
+
+            <div id="add-alert"  class="init alert alert-success alert-dismissible fade show" role="alert" style="margin-left: -14px; margin-top: 10px;">
+              Added to watchlist.
+              <button type="button" class="close" (click)="hideAddedAlert()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div id="remove-alert"  class="init alert alert-success alert-dismissible fade show" role="alert" style="margin-left: -14px; margin-top: 10px;">
+              Removed to watchlist.
+              <button type="button" class="close" (click)="hideRemovedAlert()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -90,5 +105,27 @@
           </div>
       </div>
     </div>
+</div>
+
+
+
+<div style="width: 100%; margin-left: 11%; margin-top: 100px;" class="row">
+  <div style="color: white; font-weight: bolder; font-size: 36px; ">Recommended Movies</div>
+</div>
+<div *ngIf="recommendedMovies">
+  <div *ngIf="recommendedMovies.results.length !== 0">
+    <app-multi-carousel [data]="recommendedMovies"></app-multi-carousel>
+  </div>
+</div>
+
+
+
+<div style="width: 100%; margin-left: 11%; margin-top: 100px;" class="row">
+  <div style="color: white; font-weight: bolder; font-size: 36px; ">Similar Movies</div>
+</div>
+<div *ngIf="similarMovies">
+  <div *ngIf="similarMovies.results.length !== 0">
+    <app-multi-carousel [data]="similarMovies"></app-multi-carousel>
+  </div>
 </div>
 

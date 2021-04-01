@@ -25,6 +25,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public tweet: any;
   public cast: any;
   public reviews: any;
+  public recommendedMovies: any;
+  public similarMovies: any;
   myStorage = window.localStorage;
   addToWatchListBtn = document.getElementById('watchlist-btn');
 
@@ -101,8 +103,15 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
           // format date created
           const date = review.created_at.match(/\d+/g);
           review.created_at = + date[1] + '/' + date[2] + '/' + date[0];
-
         }
+    });
+    // fetch recommended movies data
+    this.postsService.getRecommendedMovies(this.id).subscribe(res => {
+        this.recommendedMovies = res;
+    });
+    // fetch similar movies data
+    this.postsService.getSimilarMovies(this.id).subscribe(res => {
+      this.similarMovies = res;
     });
   }
 
@@ -111,17 +120,17 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
   }
 
-  createBtn() {
-    const addToWatchListBtn = document.createElement('button');
-    const watchListContainer = document.getElementById('watchlist-btn-container');
-    addToWatchListBtn.id = 'watchlist-btn';
-    addToWatchListBtn.className = 'btn btn-primary row';
-    addToWatchListBtn.innerHTML = 'Add to watchlist';
-    // @ts-ignore
-    if (watchListContainer) {
-      watchListContainer.appendChild(addToWatchListBtn);
-    }
-  }
+  // createBtn() {
+  //   const addToWatchListBtn = document.createElement('button');
+  //   const watchListContainer = document.getElementById('watchlist-btn-container');
+  //   addToWatchListBtn.id = 'watchlist-btn';
+  //   addToWatchListBtn.className = 'btn btn-primary row';
+  //   addToWatchListBtn.innerHTML = 'Add to watchlist';
+  //   // @ts-ignore
+  //   if (watchListContainer) {
+  //     watchListContainer.appendChild(addToWatchListBtn);
+  //   }
+  // }
 
   // listenBtn() {
   //   const addToWatchListBtn = document.getElementById('watchlist-btn');
@@ -132,35 +141,58 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   //     console.log('listenBtn');
   //   }
   // }
-  //
-  // toggle() {
-  //   const addToWatchListBtn = document.getElementById('watchlist-btn');
-  //   // @ts-ignore
-  //   if (addToWatchListBtn.innerHTML === 'Add to watchlist') {
-  //     // @ts-ignore
-  //     addToWatchListBtn();
-  //   } else {
-  //     // @ts-ignore
-  //     removeEventListener();
-  //   }
-  // }
-  //
-  // addToWatchList() {
-  //   this.myStorage.setItem(this.movieDetails.id, this.movieDetails.id);
-  //   const addToWatchListBtn = document.getElementById('watchlist-btn');
-  //   // @ts-ignore
-  //   addToWatchListBtn.innerHTML = 'Remove from watchlist';
-  // }
-  //
-  // removeFromWatchList() {
-  //   this.myStorage.removeItem(this.movieDetails.id);
-  //   const addToWatchListBtn = document.getElementById('watchlist-btn');
-  //   // @ts-ignore
-  //   addToWatchListBtn.innerHTML = 'Add to watchlist';
-  // }
-  //
-  // sum() {
-  //   console.log('one click');
-  // }
+
+  toggle() {
+    const addToWatchListBtn = document.getElementById('watchlist-btn');
+    // @ts-ignore
+    if (addToWatchListBtn.innerHTML === 'Add to watchlist') {
+      // @ts-ignore
+      this.addToWatchList();
+    } else {
+      // @ts-ignore
+      this.removeFromWatchList();
+    }
+  }
+
+  addToWatchList() {
+    this.myStorage.setItem(this.movieDetails.id, this.movieDetails.id);
+    const addToWatchListBtn = document.getElementById('watchlist-btn');
+    const addedAlert = document.getElementById('add-alert');
+    const removeAlert = document.getElementById('remove-alert');
+    // @ts-ignore
+    addToWatchListBtn.innerHTML = 'Remove from watchlist';
+    // @ts-ignore
+    addedAlert.style.display = 'block';
+    // @ts-ignore
+    removeAlert.style.display = 'none';
+  }
+
+  removeFromWatchList() {
+    this.myStorage.removeItem(this.movieDetails.id);
+    const addToWatchListBtn = document.getElementById('watchlist-btn');
+    const addedAlert = document.getElementById('add-alert');
+    const removeAlert = document.getElementById('remove-alert');
+    // @ts-ignore
+    addToWatchListBtn.innerHTML = 'Add to watchlist';
+    // @ts-ignore
+    addedAlert.style.display = 'none';
+    // @ts-ignore
+    removeAlert.style.display = 'block';
+  }
+
+  sum() {
+    console.log('one click');
+  }
+
+  hideAddedAlert() {
+    const addedAlert = document.getElementById('add-alert');
+    // @ts-ignore
+    addedAlert.style.display = 'none';
+  }
+  hideRemovedAlert() {
+    const removeAlert = document.getElementById('remove-alert');
+    // @ts-ignore
+    removeAlert.style.display = 'none';
+  }
 
 }
