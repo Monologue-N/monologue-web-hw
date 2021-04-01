@@ -24,6 +24,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public overview: any;
   public tweet: any;
   public cast: any;
+  public reviews: any;
   myStorage = window.localStorage;
   addToWatchListBtn = document.getElementById('watchlist-btn');
 
@@ -69,16 +70,31 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     });
     this.postsService.getMovieVideos(this.id).subscribe(res => {
       this.movieVideos = res;
-      this.key = this.movieVideos.results[0].key;
-      if (!this.key) {
+      if (!this.key || !this.movieVideos.results) {
         this.key = 'tzkWB85ULJY';
+      } else {
+        console.log(this.movieVideos.results[0].key);
+        this.key = this.movieVideos.results[0].key;
+        console.log(this.key);
       }
     });
     this.postsService.getMovieCast(this.id).subscribe(res => {
         this.cast = res;
-        console.log(this.cast);
         this.cast = this.cast.cast;
-        console.log(this.cast);
+    });
+    this.postsService.getMovieReviews(this.id).subscribe(res => {
+        this.reviews = res;
+        this.reviews = this.reviews.results;
+        console.log(this.reviews);
+        for (const review of this.reviews) {
+          console.log(review);
+          if (review.author_details.avatar_path) {
+            review.avatar_path = 'https://image.tmdb.org/t/p/original' + review.author_details.avatar_path;
+          } else {
+            review.avatar_path = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHnPmUvFLjjmoYWAbLTEmLLIRCPpV_OgxCVA&usqp=CAU';
+          }
+          console.log(review.avatar_path);
+        }
     });
   }
 

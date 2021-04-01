@@ -14,10 +14,6 @@ export class PostsService {
     return this.httpClient.get(url);
   }
 
-  // getSearch(keyword: string) {
-  //   const url = 'http://localhost:8080/posts/search/' + keyword;
-  //   return this.httpClient.get(url);
-  // }
 
   getPopularMovies() {
     const url = 'http://localhost:8080/posts/popularMovies';
@@ -65,7 +61,7 @@ export class PostsService {
   }
 
   getMovieReviews(id: string) {
-    const url = 'http://localhost:8080/posts/movieReviews' + id;
+    const url = 'http://localhost:8080/posts/movieReviews/' + id;
     return this.httpClient.get(url);
   }
 
@@ -80,7 +76,7 @@ export class PostsService {
   }
 
   getTvShowDetails(id: string) {
-    const url = 'http://localhost:8080/posts/tvshow/' + id;
+    const url = 'http://localhost:8080/posts/tvshowDetails/' + id;
     return this.httpClient.get(url);
   }
 
@@ -90,12 +86,12 @@ export class PostsService {
   }
 
   getTvShowCast(id: string) {
-    const url = 'http://localhost:8080/posts/tvshowCast' + id;
+    const url = 'http://localhost:8080/posts/tvshowCast/' + id;
     return this.httpClient.get(url);
   }
 
   getTvShowReviews(id: string) {
-    const url = 'http://localhost:8080/posts/tvshowReviews' + id;
+    const url = 'http://localhost:8080/posts/tvshowReviews/' + id;
     return this.httpClient.get(url);
   }
 

@@ -1,12 +1,12 @@
 <div class="container-fluid box" *ngIf="movieDetails">
 
   <div class="first-row-container">
-    <div style="width: 700px">
+    <div style="width: 750px">
       <app-video class="video" [key]="key"></app-video>
     </div>
     <div>
       <div class="card" *ngIf="movieDetails" style="background-color: transparent;
-  color: white; width: 300px">
+  color: white; width: 340px">
         <div class="card-body">
           <h5 class="card-title row" style="font-size: 46px; font-weight: normal">{{ movieDetails.title }}</h5>
           <p class="card-text row">{{ movieDetails.tagline }}</p>
@@ -73,16 +73,11 @@
   </div>
 </div>
 
+<div *ngIf="reviews" style="margin-left: 11%; margin-top: 200px;">
+    <div *ngFor="let review of reviews">
+      <div class="card" style="width: 800px; height: 200px;" >
+        <img class="card-img-overlay"  style="width: 100px; border-radius: 50%;"  [src]="review.avatar_path" alt="">
+      </div>
+    </div>
+</div>
 
-
-
-<!--<div class="row test">-->
-<!--  <div class="col">1</div>-->
-<!--  <div class="col">2</div>-->
-<!--  <div class="col">3</div>-->
-<!--</div>-->
-<!--<div class="row test">-->
-<!--  <div class="col">1</div>-->
-<!--  <div class="col">2</div>-->
-<!--  <div class="col">3</div>-->
-<!--</div>-->
