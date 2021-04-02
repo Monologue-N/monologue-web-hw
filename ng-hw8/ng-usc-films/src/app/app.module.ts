@@ -6,6 +6,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 // import { faFontAwesome } from '@fortawesome/free-brands-svg-icons';
 // import { faFontAwesomeFlag } from '@fortawesome/free-brands-svg-icons';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +24,7 @@ import { TypeAheadComponent } from './components/type-ahead/type-ahead.component
 import { FormsModule } from '@angular/forms';
 import { VideoComponent } from './components/video/video.component';
 import { TvCarouselComponent } from './components/tv-carousel/tv-carousel.component';
+import { CastDetailsComponent } from './components/cast-details/cast-details.component';
 
 // @ts-ignore
 @NgModule({
@@ -37,7 +40,8 @@ import { TvCarouselComponent } from './components/tv-carousel/tv-carousel.compon
     MultiCarouselComponent,
     TypeAheadComponent,
     VideoComponent,
-    TvCarouselComponent
+    TvCarouselComponent,
+    CastDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +51,8 @@ import { TvCarouselComponent } from './components/tv-carousel/tv-carousel.compon
     LayoutModule,
     FormsModule,
     YouTubePlayerModule,
+    NgScrollbarModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

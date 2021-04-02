@@ -9,6 +9,7 @@ export class MultiCarouselComponent implements OnInit {
   @Input() data: any;
   public mobile: any;
   public dataArray: any = [];
+  myStorage = window.localStorage;
 
   constructor() { }
 
@@ -18,12 +19,6 @@ export class MultiCarouselComponent implements OnInit {
     }
     this.data = this.data.results;
     this.transformData();
-    // console.log(this.dataArray);
-    // for (const group of this.dataArray) {
-    //   for (const one of group) {
-    //     console.log(one.backdrop_path);
-    //   }
-    // }
   }
 
   transformData() {
@@ -39,5 +34,4 @@ export class MultiCarouselComponent implements OnInit {
       }
     }
   }
-
 }

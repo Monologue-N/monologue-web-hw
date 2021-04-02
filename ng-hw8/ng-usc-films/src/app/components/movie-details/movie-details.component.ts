@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../../services/posts.service';
@@ -11,6 +11,9 @@ import {PostsService} from '../../services/posts.service';
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription | undefined;
   public id = '';
+  public title = '';
+  // tslint:disable-next-line:variable-name
+  @Input() poster_path: any;
   public mediaType = '';
   public key = '';
   public movieDetails: any;
@@ -27,8 +30,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public reviews: any;
   public recommendedMovies: any;
   public similarMovies: any;
+  public castDetails: any;
   myStorage = window.localStorage;
-  addToWatchListBtn = document.getElementById('watchlist-btn');
 
   constructor(private route: ActivatedRoute, private postsService: PostsService) {
   }
@@ -40,15 +43,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       this.id = params.id;
     });
     this.fetchData();
-    // @ts-ignore
-    // window.onload = this.onLoadListen();
-    console.log('ngOnInit');
+    // this.myStorage.removeItem('watchList');
+    // this.myStorage.removeItem('maxIdx');
+    // this.myStorage.removeItem('length');
   }
-  //
-  // onLoadListen() {
-  //   // @ts-ignore
-  //   document.addEventListener('DOMContentLoaded', this.addToWatchListBtn.addEventListener('click', sum, false));
-  // }
 
   fetchData() {
     this.postsService.getMovieDetails(this.id).subscribe(res => {
@@ -115,32 +113,16 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  getCastDetails(person: string) {
+    this.postsService.getCastDetails(person).subscribe(res => {
+      this.castDetails = res;
+    });
+  }
+
   ngOnDestroy() {
     // @ts-ignore
     this.routeSub.unsubscribe();
   }
-
-  // createBtn() {
-  //   const addToWatchListBtn = document.createElement('button');
-  //   const watchListContainer = document.getElementById('watchlist-btn-container');
-  //   addToWatchListBtn.id = 'watchlist-btn';
-  //   addToWatchListBtn.className = 'btn btn-primary row';
-  //   addToWatchListBtn.innerHTML = 'Add to watchlist';
-  //   // @ts-ignore
-  //   if (watchListContainer) {
-  //     watchListContainer.appendChild(addToWatchListBtn);
-  //   }
-  // }
-
-  // listenBtn() {
-  //   const addToWatchListBtn = document.getElementById('watchlist-btn');
-  //   console.log(addToWatchListBtn);
-  //   // @ts-ignore
-  //   if (addToWatchListBtn) {
-  //     addToWatchListBtn.addEventListener('click', this.sum.bind(this), false);
-  //     console.log('listenBtn');
-  //   }
-  // }
 
   toggle() {
     const addToWatchListBtn = document.getElementById('watchlist-btn');
@@ -161,10 +143,18 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     const removeAlert = document.getElementById('remove-alert');
     // @ts-ignore
     addToWatchListBtn.innerHTML = 'Remove from watchlist';
-    // @ts-ignore
-    addedAlert.style.display = 'block';
+    // add to local storage
+    const str = `{"id": ${this.id}}`;
+    this.myStorage.setItem(this.id, str);
+    console.log(window.localStorage);
     // @ts-ignore
     removeAlert.style.display = 'none';
+    // @ts-ignore
+    addedAlert.style.display = 'block';
+    setTimeout(() => {
+      // @ts-ignore
+      addedAlert.style.display = 'none';
+    }, 5000);
   }
 
   removeFromWatchList() {
@@ -174,14 +164,17 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     const removeAlert = document.getElementById('remove-alert');
     // @ts-ignore
     addToWatchListBtn.innerHTML = 'Add to watchlist';
+    // remove from local storage
+    this.myStorage.removeItem(this.id);
+    console.log(window.localStorage);
     // @ts-ignore
     addedAlert.style.display = 'none';
     // @ts-ignore
     removeAlert.style.display = 'block';
-  }
-
-  sum() {
-    console.log('one click');
+    setTimeout(() => {
+      // @ts-ignore
+      removeAlert.style.display = 'none';
+    }, 5000);
   }
 
   hideAddedAlert() {

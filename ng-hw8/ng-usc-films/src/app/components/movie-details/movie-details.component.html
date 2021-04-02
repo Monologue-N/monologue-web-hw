@@ -68,13 +68,16 @@
 
 </div>
 
+<div id="cast-details"></div>
+
+
 <div style="color: white; font-size: 36px; font-weight: bold; margin-left: 11%; margin-bottom: 10px">Full Cast and Crew</div>
-<div class="outer-container">
+<div class="outer-container  container-fluid">
   <div class="cast-crew-container">
     <div *ngFor="let person of cast">
       <div *ngIf="person.profile_path">
         <div class="card" style="width: 175px; height: 380px; align-items: center; margin-right: 10px; border-radius: 20px; overflow: hidden; border: none">
-          <a href="">
+          <a (click)="getCastDetails(person.id)" class="cast-member">
             <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500/' + person.profile_path" alt="Card image cap" style="width: 100%;">
           </a>
           <div class="card-body" style="text-align: center">
@@ -128,4 +131,5 @@
     <app-multi-carousel [data]="similarMovies"></app-multi-carousel>
   </div>
 </div>
+
 
