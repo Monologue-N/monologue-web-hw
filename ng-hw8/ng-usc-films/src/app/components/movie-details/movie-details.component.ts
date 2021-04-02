@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, Input} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../../services/posts.service';
@@ -13,7 +13,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public id = '';
   public title = '';
   // tslint:disable-next-line:variable-name
-  @Input() poster_path: any;
+  public poster_path = '';
   public mediaType = '';
   public key = '';
   public movieDetails: any;
@@ -51,6 +51,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   fetchData() {
     this.postsService.getMovieDetails(this.id).subscribe(res => {
       this.movieDetails = res;
+      this.title = this.movieDetails.title;
+      this.poster_path = this.movieDetails.poster_path;
       // tslint:disable-next-line:radix
       this.releaseYear = parseInt(this.movieDetails.release_date);
       this.voteAverage = parseFloat(this.movieDetails.vote_average).toFixed(1);
@@ -127,7 +129,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   toggle() {
     const addToWatchListBtn = document.getElementById('watchlist-btn');
     // @ts-ignore
-    if (addToWatchListBtn.innerHTML === 'Add to watchlist') {
+    // if (addToWatchListBtn.innerHTML === 'Add to watchlist') {
+    if (!this.myStorage.getItem(this.id)) {
       // @ts-ignore
       this.addToWatchList();
     } else {
@@ -144,7 +147,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     // @ts-ignore
     addToWatchListBtn.innerHTML = 'Remove from watchlist';
     // add to local storage
-    const str = `{"id": ${this.id}}`;
+    const str = `{"id": ${this.id}, "title": ${this.title}, "poster_path": ${this.poster_path}}`;
     this.myStorage.setItem(this.id, str);
     console.log(window.localStorage);
     // @ts-ignore

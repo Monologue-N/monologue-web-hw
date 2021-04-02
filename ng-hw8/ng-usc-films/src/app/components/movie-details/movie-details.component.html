@@ -24,7 +24,14 @@
             <p class="card-text grey-text" *ngIf="spokenLanguages">&nbsp;{{ spokenLanguages }}</p>
           </div>
           <div id="watchlist-container">
-            <button id="watchlist-btn"class="btn btn-primary row" (click)="toggle()" style="font-size: 18px;">Add to watchlist</button>
+            <button id="watchlist-btn"class="btn btn-primary row" (click)="toggle()" style="font-size: 18px;">
+              <div *ngIf="myStorage.getItem(id)">
+                  Remove from watchlist
+              </div>
+              <div *ngIf="!myStorage.getItem(id)">
+                Add to watchlist
+              </div>
+            </button>
 
             <div id="add-alert"  class="init alert alert-success alert-dismissible fade show" role="alert" style="margin-left: -14px; margin-top: 10px;">
               Added to watchlist.
