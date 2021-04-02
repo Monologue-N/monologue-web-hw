@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class WatchlistComponent implements OnInit {
   public myStorage = window.localStorage;
   public json: any;
-  public array: [] = [];
+  public array: any = [];
 
   constructor() { }
 
@@ -18,12 +18,15 @@ export class WatchlistComponent implements OnInit {
         const key = this.myStorage.key(i);
         if (key !== null) {
           const value = this.myStorage.getItem(key);
-          if (typeof value === 'string') {
-            this.json = JSON.parse(value);
-          }
-          console.log(this.json);
+          // @ts-ignore
+          // console.log(value);
+          // @ts-ignore
+          this.json = JSON.parse(value);
+          // console.log(this.json);
+          console.log(this.json.poster_path);
           // @ts-ignore
           this.array.push(this.json);
+          // console.log(typeof(this.array));
         }
       }
     }

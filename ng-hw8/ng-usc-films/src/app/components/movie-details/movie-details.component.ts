@@ -147,7 +147,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     // @ts-ignore
     addToWatchListBtn.innerHTML = 'Remove from watchlist';
     // add to local storage
-    const str = `{"id": ${this.id}, "title": ${this.title}, "poster_path": ${this.poster_path}}`;
+    // tslint:disable-next-line:max-line-length
+    // const str = `{"id":` + `\"` + this.id.toString() + `\","title":\"` + this.title.toString() + `\","poster_path":\"` + this.poster_path.toString() + `\"}`;
+    const str = `{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`;
     this.myStorage.setItem(this.id, str);
     console.log(window.localStorage);
     // @ts-ignore
@@ -169,7 +171,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     addToWatchListBtn.innerHTML = 'Add to watchlist';
     // remove from local storage
     this.myStorage.removeItem(this.id);
-    console.log(window.localStorage);
+    // console.log(window.localStorage);
     // @ts-ignore
     addedAlert.style.display = 'none';
     // @ts-ignore

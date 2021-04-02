@@ -4,8 +4,12 @@
     </div>
 </div>
 
-<div *ngIf="myStorage.length > 0">
-    <app-multi-carousel [data]="array"></app-multi-carousel>
+<div *ngIf="myStorage.length > 0" class="container-fluid">
+    <div *ngFor="let one of array" class="row flex-row flex-nowrap">
+      <div class="col-3">
+        <img [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt="" style="width: 200px; margin-right: 20px;">
+      </div>
+    </div>
 </div>
 
 <div style="color: white; font-weight: bolder; font-size: 36px;">
