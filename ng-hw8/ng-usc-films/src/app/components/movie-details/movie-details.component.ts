@@ -31,6 +31,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public recommendedMovies: any;
   public similarMovies: any;
   public castDetails: any;
+  public external: any;
   public watchlistFlag: any;
   myStorage = window.localStorage;
 
@@ -100,7 +101,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
             review.avatar_path = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHnPmUvFLjjmoYWAbLTEmLLIRCPpV_OgxCVA&usqp=CAU';
           } else {
             if (review.author_details.avatar_path.substring(0, 6) === '/https') {
-               review.avatar_path = review.author_details.avatar_path.substring(1);
+              review.avatar_path = review.author_details.avatar_path.substring(1);
             } else {
               review.avatar_path = 'https://image.tmdb.org/t/p/original' + review.author_details.avatar_path;
             }
@@ -111,15 +112,25 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
           // tslint:disable-next-line:radix
           const newDate = new Date(date);
           console.log(newDate);
-          const mo = new Intl.DateTimeFormat('en', { month: 'long' }).format(newDate);
-          const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(newDate);
+          const mo = new Intl.DateTimeFormat('en', {month: 'long'}).format(newDate);
+          const da = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(newDate);
           // const ho = new Intl.DateTimeFormat('en', { hour: 'numeric' }).format(newDate);
-          const min = new Intl.DateTimeFormat('en', { minute: 'numeric' }).format(newDate);
+          let min = new Intl.DateTimeFormat('en', {minute: 'numeric'}).format(newDate);
+          let sec = new Intl.DateTimeFormat('en', {second: 'numeric'}).format(newDate);
 
-          if (newDate.getHours() > 12) {
-            review.created_at = `${mo} ${da}, ${newDate.getFullYear()}, ${newDate.getHours()}:${min}:${newDate.getSeconds()} PM`;
+          if (min.length < 2) {
+            min = '0' + min;
+          }
+          if (sec.length < 2) {
+            sec = '0' + sec;
+          }
+
+          if (newDate.getHours() === 12) {
+            review.created_at = `${mo} ${da}, ${newDate.getFullYear()}, ${newDate.getHours()}:${min}:${sec} PM`;
+          } else if (newDate.getHours() < 12) {
+            review.created_at = `${mo} ${da}, ${newDate.getFullYear()}, ${newDate.getHours()}:${min}:${sec} AM`;
           } else {
-            review.created_at = `${mo} ${da}, ${newDate.getFullYear()}, ${newDate.getHours()}:${min}:${newDate.getSeconds()} AM`;
+            review.created_at = `${mo} ${da}, ${newDate.getFullYear()}, ${newDate.getHours() - 12}:${min}:${sec} PM`;
           }
         }
     });
@@ -147,9 +158,11 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   getCastDetails(person: string) {
     // this.elementRef.nativeElement.ownerDocument.body.style.position = 'fixed';
-
     this.postsService.getCastDetails(person).subscribe(res => {
       this.castDetails = res;
+    });
+    this.postsService.getCastExternal(person).subscribe(res => {
+      this.external = res;
     });
     if (document.getElementById('card')) {
       // @ts-ignore

@@ -1,4 +1,5 @@
 import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {PostsService} from '../../services/posts.service';
 
 @Component({
   selector: 'app-cast-details',
@@ -8,8 +9,9 @@ import {Component, ElementRef, Input, OnInit} from '@angular/core';
 export class CastDetailsComponent implements OnInit {
   @Input() details: any;
   public gender: any;
+  @Input() external: any;
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef, private postsService: PostsService) { }
 
   ngOnInit(): void {
     if (this.details.gender === 1) {
@@ -17,7 +19,9 @@ export class CastDetailsComponent implements OnInit {
     } else if (this.details.gender === 2) {
       this.gender = 'Male';
     }
+    console.log(this.external);
   }
+
 
   closeDetails() {
     // @ts-ignore

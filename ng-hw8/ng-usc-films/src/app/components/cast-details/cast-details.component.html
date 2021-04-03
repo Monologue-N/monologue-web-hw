@@ -15,19 +15,20 @@
         <div class="">Gender: {{gender}}</div>
         <div class="">Known for: {{details.known_for_department}}</div>
         <div class="">Also known as: {{details.also_known_as}}</div>
-        <div>
-          <a target="_blank" style="font-size: 30px; color: darkgoldenrod;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+        <div *ngIf="external">
+          <a target="_blank" style="font-size: 30px; color: darkgoldenrod;" href="https://www.imdb.com/name/{{external.imdb_id}}" target="_blank">
             <i class="fab fa-imdb"></i>
           </a>
 
-          <a target="_blank" style="font-size: 30px; color: purple;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+          <a target="_blank" style="font-size: 30px; color: purple;" href="https://www.instagram.com/{{external.instagram_id}}" target="_blank">
             <i class="fab fa-instagram"></i>
           </a>
-          <a target="_blank" style="font-size: 30px; color: #0926cd;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+          <a target="_blank" style="font-size: 30px; color: #0926cd;" href="https://www.facebook.com/{{external.facebook_id}}" target="_blank">
             <i class="fab fa-facebook-square"></i>
           </a>
           <a class="twitter-share-button"
-             href=""
+             href="https://www.twitter.com/{{external.twitter_id}}"
+             target="_blank"
              data-size="large"
              style="font-size: 30px; color: #1ea2f1; margin-right: 10px">
             <i class="fab fa-twitter"></i>
