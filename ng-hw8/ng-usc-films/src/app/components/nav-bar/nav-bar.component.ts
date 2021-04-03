@@ -12,4 +12,20 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toggleToHome() {
+    // @ts-ignore
+    document.getElementById('home').className = 'nav-link active';
+    // @ts-ignore
+    document.getElementById('my-list').className = 'nav-link';
+
+  }
+
+  toggleToMyList() {
+    // @ts-ignore
+    document.getElementById('my-list').className = 'nav-link active';
+    // @ts-ignore
+    document.getElementById('home').className = 'nav-link';
+
+  }
+
 }

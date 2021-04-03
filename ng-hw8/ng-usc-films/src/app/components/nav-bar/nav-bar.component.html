@@ -1,21 +1,37 @@
-<nav class="navbar navbar-expand-lg" style="position: fixed; top: 0; background: black; height: 70px; width: 100%;  z-index: 20">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"  routerLink="/">USC Films</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<!--<nav class="navbar navbar-expand-lg" style="position: fixed; top: 0; background: black; height: 70px; width: 100%;  z-index: 20">-->
+<!--  <div class="container-fluid">-->
+<!--    <a class="navbar-brand" href="#"  routerLink="/">USC Films</a>-->
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--      <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active" id="home" (click)="toggleToHome()" aria-current="page" href="#"  routerLink="/">Home</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" id="my-list" (click)="toggleToMyList()" href="#"  routerLink="/mylist">My List</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--      <app-type-ahead style="right: 0;"></app-type-ahead>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-expand-md mb-3 navbar-dark bg-dark" style="position: fixed; top: 0; background: black; height: 70px; width: 100%;  z-index: 20">
+  <div class="container-fluid" style="position: fixed; top: 0; background: black; height: 70px; width: 95%;  z-index: 20">
+    <a href="#" class="navbar-brand mr-3" routerLink="/">USC Films</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon" style="color: darkgrey;"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" id="home"  aria-current="page" href="#"  routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="my-list" href="#"  routerLink="/mylist">My List</a>
-        </li>
-      </ul>
-      <app-type-ahead style="right: 0;"></app-type-ahead>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav">
+        <a href="#" id="home"  class="nav-item nav-link active" (click)="toggleToHome()"  routerLink="/">Home</a>
+        <a href="#" id="my-list" class="nav-item nav-link" (click)="toggleToMyList()"  routerLink="/mylist">My List</a>
+      </div>
+      <div class="navbar-nav ml-auto">
+        <app-type-ahead class="nav-item nav-link"></app-type-ahead>
+      </div>
     </div>
   </div>
 </nav>
-
-

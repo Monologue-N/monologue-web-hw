@@ -19,7 +19,7 @@ export class CastDetailsComponent implements OnInit {
     } else if (this.details.gender === 2) {
       this.gender = 'Male';
     }
-    console.log(this.external);
+    // console.log(this.external);
   }
 
 

@@ -30,6 +30,7 @@ export class SearchService {
     this.data = this.http.get<MultiSearchData[]>(SEARCH_URL + term).pipe(
       map(res => res as MultiSearchData[] || [])
     );
+    // @ts-ignore
     return this.data;
   }
 }

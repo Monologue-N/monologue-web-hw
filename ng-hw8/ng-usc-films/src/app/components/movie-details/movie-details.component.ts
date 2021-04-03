@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy, ElementRef} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../../services/posts.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-movie-details',
@@ -34,6 +35,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public external: any;
   public watchlistFlag: any;
   myStorage = window.localStorage;
+  private selected: any;
 
   constructor(private route: ActivatedRoute, private postsService: PostsService, private elementRef: ElementRef) {
   }
@@ -46,7 +48,11 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     });
     this.fetchData();
     // @ts-ignore
-    // this.addToContinueWatching();
+    this.addToContinueWatching();
+    if (document.getElementById('typeahead-http')) {
+      // @ts-ignore
+      document.getElementById('typeahead-http').innerHTML = '';
+    }
   }
 
   fetchData() {
@@ -108,10 +114,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
           }
           // format date created
           const date = review.created_at;
-          console.log(date);
+         // console.log(date);
           // tslint:disable-next-line:radix
           const newDate = new Date(date);
-          console.log(newDate);
+         // console.log(newDate);
           const mo = new Intl.DateTimeFormat('en', {month: 'long'}).format(newDate);
           const da = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(newDate);
           // const ho = new Intl.DateTimeFormat('en', { hour: 'numeric' }).format(newDate);
@@ -146,13 +152,24 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:variable-name
   addToContinueWatching() {
-    // tslint:disable-next-line:max-line-length
-    if (!this.myStorage.getItem(this.id)) {
-      console.log('addToContinueWatching' + this.title);
-      const str = `{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "continue_watching": "true", "watchlist": "false"}`;
-      this.myStorage.setItem(this.id, str);
+    let continueWatching = [];
+    // if there is already some continue watching
+    if (this.myStorage) {
+      if (this.myStorage.getItem('continue_watching')) {
+        // check if this id exists
+        continueWatching = JSON.parse(this.myStorage.getItem('continue_watching') as string);
+        console.log(continueWatching);
+        // traverse continue watching list
+        for (let idx = 0; idx < continueWatching.length; idx++) {
+          if (continueWatching[idx].id === this.id) {
+            continueWatching.splice(idx, 1);
+          }
+        }
+      }
     }
-    console.log(window.localStorage);
+    continueWatching.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`);
+    this.myStorage.setItem('continue_watching', JSON.stringify(continueWatching));
+    console.log(this.myStorage);
   }
 
 
@@ -178,8 +195,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   toggle() {
     const addToWatchListBtn = document.getElementById('watchlist-btn');
     // @ts-ignore
-    if (this.myStorage.getItem(this.id).watchlist !== 'true') {
-    // if (this.myStorage.getItem(this.id).watchlist !== 'true') {
+    if (addToWatchListBtn.innerHTML === 'Add to watchlist') {
       // @ts-ignore
       this.addToWatchList();
       console.log(' this.addToWatchList();');
@@ -198,11 +214,20 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     // @ts-ignore
     addToWatchListBtn.innerHTML = 'Remove from watchlist';
     // add to local storage
-    // tslint:disable-next-line:max-line-length
-    // const str = `{"id":` + `\"` + this.id.toString() + `\","title":\"` + this.title.toString() + `\","poster_path":\"` + this.poster_path.toString() + `\"}`;
-    this.myStorage.removeItem(this.id);
-    const str = `{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "continue_watching": "true", "watchlist": "true"}`;
-    this.myStorage.setItem(this.id, str);
+    let watchlist = [];
+    // if there is already some in watchlist
+    if (this.myStorage) {
+      if (this.myStorage.getItem('watchlist')) {
+        // extract current watchlist
+        watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        for (let idx = 0; idx < watchlist.length; idx++) {
+          if (watchlist[idx].id === this.id) {
+            this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
+          }
+        }
+      }
+    }
+    watchlist.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`);
     console.log(window.localStorage);
     // @ts-ignore
     removeAlert.style.display = 'none';
@@ -222,11 +247,22 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     // @ts-ignore
     addToWatchListBtn.innerHTML = 'Add to watchlist';
     // remove from local storage
-    this.myStorage.removeItem(this.id);
-    const str = `{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "continue_watching": "true", "watchlist": "false"}`;
-    this.myStorage.setItem(this.id, str);
-
-    // console.log(window.localStorage);
+    let watchlist = [];
+    // if there is already some continue watching
+    if (this.myStorage) {
+      if (this.myStorage.getItem('watchlist')) {
+        // check if this id exists
+        watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        // traverse continue watching list
+        for (let idx = 0; idx < watchlist.length; idx++) {
+          if (watchlist[idx].id === this.id) {
+            watchlist.splice(idx, 1);
+          }
+        }
+      }
+    }
+    this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
+    console.log(window.localStorage);
     // @ts-ignore
     addedAlert.style.display = 'none';
     // @ts-ignore
@@ -247,5 +283,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     // @ts-ignore
     removeAlert.style.display = 'none';
   }
+
+  // redirectTo(uri:string){
+  //   this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+  //     this.router.navigate([uri]));
+  // }
 
 }

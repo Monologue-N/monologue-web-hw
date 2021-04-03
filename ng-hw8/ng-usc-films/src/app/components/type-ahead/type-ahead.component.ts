@@ -3,6 +3,8 @@ import {Observable, of, OperatorFunction} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap, catchError, tap} from 'rxjs/operators';
 import { SearchService } from '../../services/search.service';
 import { MultiSearchData } from '../../interface/multiSearchData';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-type-ahead',
@@ -25,6 +27,11 @@ export class TypeAheadComponent implements OnInit {
       // switchMap allows returning an observable rather than maps array
       switchMap( (term) =>  this.searchService.search(term)),
     );
+  }
+
+  onSelect() {
+    // @ts-ignore
+    document.getElementById('typeahead-http').setAttribute('ng-reflect-model', '');
   }
 
 }

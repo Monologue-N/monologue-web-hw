@@ -7,4 +7,5 @@ body {
     background-color: #050a30;
   /*background-color: white;*/
   z-index: 1;
+  overflow-x: hidden;
 }

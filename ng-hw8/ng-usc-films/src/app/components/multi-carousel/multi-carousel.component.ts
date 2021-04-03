@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-multi-carousel',
@@ -27,7 +28,7 @@ export class MultiCarouselComponent implements OnInit {
   transformData() {
     let j = -1;
     if (this.data) {
-      console.log(this.data);
+      // console.log(this.data);
       for (let i = 0; i < this.data.length; i++) {
         if (i % 6 === 0) {
           j++;
@@ -39,6 +40,10 @@ export class MultiCarouselComponent implements OnInit {
         }
       }
     }
+    console.log(this.dataArray);
   }
 
+  reloadPage(id: any) {
+    window.location.href = `/watch/movie/${id}`;
+  }
 }

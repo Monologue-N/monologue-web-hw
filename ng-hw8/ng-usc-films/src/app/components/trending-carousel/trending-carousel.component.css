@@ -2,20 +2,24 @@
 }
 
 ngb-carousel {
-  width: min-content;
+  width: 80%;
   text-align: center;
+  align-content: center;
   margin-top: 5%;
-  margin-left: 12.9%;
+  margin-left: 9%;
   left:auto;
   right: auto;
   outline: none;
+  height: 50%;
+  overflow: hidden;
 }
 
 .white-text {
   color: white;
-  margin-top: 11.5%;
+  margin-top: 7%;
   text-align: left;
   margin-left: 8%;
+  position: relative;
 }
 
 .wrapper:hover .mask {
@@ -27,13 +31,16 @@ ngb-carousel {
   margin-top: -38%;
   position: absolute;
   padding-bottom: 10%;
+  /*bottom: 50%;*/
   width: 100%;
   height: 50%;
   background: linear-gradient(0deg, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0));
 }
 
 .wrapper > a > img {
-  width: 1000px;
+  /*width: 1000px;*/
+  text-align: center;
+  width: 100%;
 }
 
 ngb-carousel:hover .wrapper > a > img{
@@ -43,4 +50,5 @@ ngb-carousel:hover .wrapper > a > img{
 .wrapper {
   height: 350px;
   overflow: hidden;
+  width: 100%;
 }

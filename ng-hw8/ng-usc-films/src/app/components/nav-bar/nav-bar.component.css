@@ -4,7 +4,11 @@
     height: 70px;
     background-color: black;
     color: white;
-  }
+}
+
+.navbar-dark {
+  background-color: black !important;
+}
 
 .navbar-brand {
   color: white;
@@ -14,7 +18,7 @@
   color: grey;
 }
 
-.nav-link active {
+.nav-link.active {
   color: white;
 }
 
