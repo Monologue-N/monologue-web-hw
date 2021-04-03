@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class MultiCarouselComponent implements OnInit {
   @Input() data: any;
+  @Input() continue: any;
   public mobile: any;
   public dataArray: any = [];
   myStorage = window.localStorage;
@@ -17,21 +18,27 @@ export class MultiCarouselComponent implements OnInit {
     if (window.screen.width === 360) { // 768px portrait
       this.mobile = true;
     }
-    this.data = this.data.results;
+    if (this.continue !== 'true') {
+      this.data = this.data.results;
+    }
     this.transformData();
   }
 
   transformData() {
     let j = -1;
-    for (let i = 0; i < this.data.length; i++) {
-      if (i % 6 === 0) {
-        j++;
-        this.dataArray[j] = [];
-        this.dataArray[j].push(this.data[i]);
-      }
-      else {
-        this.dataArray[j].push(this.data[i]);
+    if (this.data) {
+      console.log(this.data);
+      for (let i = 0; i < this.data.length; i++) {
+        if (i % 6 === 0) {
+          j++;
+          this.dataArray[j] = [];
+          this.dataArray[j].push(this.data[i]);
+        }
+        else {
+          this.dataArray[j].push(this.data[i]);
+        }
       }
     }
   }
+
 }

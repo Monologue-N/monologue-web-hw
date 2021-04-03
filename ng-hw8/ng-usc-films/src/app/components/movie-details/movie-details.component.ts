@@ -31,6 +31,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public recommendedMovies: any;
   public similarMovies: any;
   public castDetails: any;
+  public watchlistFlag: any;
   myStorage = window.localStorage;
 
   constructor(private route: ActivatedRoute, private postsService: PostsService) {
@@ -43,9 +44,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       this.id = params.id;
     });
     this.fetchData();
-    // this.myStorage.removeItem('watchList');
-    // this.myStorage.removeItem('maxIdx');
-    // this.myStorage.removeItem('length');
+    // @ts-ignore
+    // this.addToContinueWatching();
   }
 
   fetchData() {
@@ -69,6 +69,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       this.spokenLanguages.join(', ');
       this.overview = this.movieDetails.overview;
       this.tweet = 'Watch%20' + this.movieDetails.toString() + 'https://www.youtube.com/watch?v=' + this.key.toString() + '#USC%20#CSCI571%20#FightOn';
+      // add to continue watching
     });
     this.postsService.getMovieVideos(this.id).subscribe(res => {
       this.movieVideos = res;
@@ -101,8 +102,19 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
             }
           }
           // format date created
-          const date = review.created_at.match(/\d+/g);
-          review.created_at = + date[1] + '/' + date[2] + '/' + date[0];
+          // const date = review.created_at.match(/\d+/g);
+          // review.created_at = + date[1] + '/' + date[2] + '/' + date[0];
+          const date = review.created_at;
+          console.log(date);
+          // tslint:disable-next-line:radix
+          const newDate = new Date(date);
+          console.log(newDate);
+          const mo = new Intl.DateTimeFormat('en', { month: 'long' }).format(newDate);
+          if (newDate.getHours() > 12) {
+            review.created_at = `${mo} ${newDate.getDay()}, ${newDate.getFullYear()}, ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()} PM`;
+          } else {
+            review.created_at = `${mo} ${newDate.getDay()}, ${newDate.getFullYear()}, ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()} AM`;
+          }
         }
     });
     // fetch recommended movies data
@@ -114,6 +126,18 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       this.similarMovies = res;
     });
   }
+
+  // tslint:disable-next-line:variable-name
+  addToContinueWatching() {
+    // tslint:disable-next-line:max-line-length
+    if (!this.myStorage.getItem(this.id)) {
+      console.log('addToContinueWatching' + this.title);
+      const str = `{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "continue_watching": "true", "watchlist": "false"}`;
+      this.myStorage.setItem(this.id, str);
+    }
+    console.log(window.localStorage);
+  }
+
 
   getCastDetails(person: string) {
     this.postsService.getCastDetails(person).subscribe(res => {
@@ -129,13 +153,15 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   toggle() {
     const addToWatchListBtn = document.getElementById('watchlist-btn');
     // @ts-ignore
-    // if (addToWatchListBtn.innerHTML === 'Add to watchlist') {
-    if (!this.myStorage.getItem(this.id)) {
+    if (this.myStorage.getItem(this.id).watchlist !== 'true') {
+    // if (this.myStorage.getItem(this.id).watchlist !== 'true') {
       // @ts-ignore
       this.addToWatchList();
+      console.log(' this.addToWatchList();');
     } else {
       // @ts-ignore
       this.removeFromWatchList();
+      console.log(' this.removeFromWatchList();\n');
     }
   }
 
@@ -149,7 +175,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     // add to local storage
     // tslint:disable-next-line:max-line-length
     // const str = `{"id":` + `\"` + this.id.toString() + `\","title":\"` + this.title.toString() + `\","poster_path":\"` + this.poster_path.toString() + `\"}`;
-    const str = `{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`;
+    this.myStorage.removeItem(this.id);
+    const str = `{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "continue_watching": "true", "watchlist": "true"}`;
     this.myStorage.setItem(this.id, str);
     console.log(window.localStorage);
     // @ts-ignore
@@ -171,6 +198,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     addToWatchListBtn.innerHTML = 'Add to watchlist';
     // remove from local storage
     this.myStorage.removeItem(this.id);
+    const str = `{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "continue_watching": "true", "watchlist": "false"}`;
+    this.myStorage.setItem(this.id, str);
+
     // console.log(window.localStorage);
     // @ts-ignore
     addedAlert.style.display = 'none';

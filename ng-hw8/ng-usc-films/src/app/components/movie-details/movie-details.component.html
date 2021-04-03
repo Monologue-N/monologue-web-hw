@@ -25,12 +25,12 @@
           </div>
           <div id="watchlist-container">
             <button id="watchlist-btn"class="btn btn-primary row" (click)="toggle()" style="font-size: 18px;">
-              <div *ngIf="myStorage.getItem(id)">
-                  Remove from watchlist
-              </div>
-              <div *ngIf="!myStorage.getItem(id)">
+<!--              <div *ngIf="watchlistFlag === 'true'" id="remove">-->
+<!--                  Remove from watchlist-->
+<!--              </div>-->
+<!--              <div *ngIf="watchlistFlag !== 'true'" id="add">-->
                 Add to watchlist
-              </div>
+<!--              </div>-->
             </button>
 
             <div id="add-alert"  class="init alert alert-success alert-dismissible fade show" role="alert" style="margin-left: -14px; margin-top: 10px;">

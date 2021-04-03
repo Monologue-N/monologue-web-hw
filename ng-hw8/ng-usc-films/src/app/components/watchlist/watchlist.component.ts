@@ -19,14 +19,11 @@ export class WatchlistComponent implements OnInit {
         if (key !== null) {
           const value = this.myStorage.getItem(key);
           // @ts-ignore
-          // console.log(value);
-          // @ts-ignore
           this.json = JSON.parse(value);
-          // console.log(this.json);
-          console.log(this.json.poster_path);
-          // @ts-ignore
-          this.array.push(this.json);
-          // console.log(typeof(this.array));
+          if (this.json.watchlist === 'true') {
+            // @ts-ignore
+            this.array.push(this.json);
+          }
         }
       }
     }

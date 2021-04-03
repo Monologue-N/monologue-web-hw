@@ -16,10 +16,14 @@ export class HomePageComponent implements OnInit {
   public popularTvShows: any;
   public topRatedTvShows: any;
   public trendingTvShows: any;
+  storage = window.localStorage;
+  public json: any;
+  public array: any = [];
 
   constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
+    this.parseContinueWatching();
     this.fetchData();
   }
 
@@ -45,6 +49,28 @@ export class HomePageComponent implements OnInit {
      this.postsService.getTrendingTvShows().subscribe(res => {
       this.trendingTvShows = res;
     });
+  }
+
+  parseContinueWatching() {
+    console.log('parseContinueWatching' + this.storage);
+    if (this.storage) {
+      for (let k = 0; k < this.storage.length; k++) {
+        const key = this.storage.key(k);
+        if (key !== null) {
+          const value = this.storage.getItem(key);
+          // @ts-ignore
+          this.json = JSON.parse(value);
+          console.log('this json is ' + this.json);
+          console.log('continue watching is: ' + this.json.continue_watching);
+          if (this.json.continue_watching === 'true') {
+            // @ts-ignore
+            this.array.push(this.json);
+          }
+        }
+      }
+      console.log(this.array);
+    }
+
   }
 
 }

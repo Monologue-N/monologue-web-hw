@@ -1,5 +1,12 @@
 <div class="container-fluid">
   <app-trending-carousel *ngIf="posts" [posts]="posts"></app-trending-carousel>
+  <div *ngIf="array">
+    <div *ngIf="array.length > 0">
+      <div class="subtitle">Continue Watching</div>
+      <app-multi-carousel [data]="array" [continue]="'true'"></app-multi-carousel>
+    </div>
+  </div>
+
   <div class="subtitle">Popular Movies</div>
   <app-multi-carousel *ngIf="popularMovies" [data]="popularMovies"></app-multi-carousel>
   <div class="subtitle">Top Rated Movies</div>

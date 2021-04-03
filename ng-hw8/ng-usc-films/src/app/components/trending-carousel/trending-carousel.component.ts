@@ -23,8 +23,8 @@ export class TrendingCarouselComponent implements OnInit {
 
   getData() {
     this.posts = this.posts.results;
-    console.log('images is ' + typeof(this.images));
-    console.log('images[0] is ' + typeof(this.images[0]));
+    // console.log('images is ' + typeof(this.images));
+    // console.log('images[0] is ' + typeof(this.images[0]));
   }
 
 }
