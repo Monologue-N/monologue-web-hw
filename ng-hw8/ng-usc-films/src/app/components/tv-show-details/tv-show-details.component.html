@@ -53,23 +53,66 @@
 
 </div>
 
+<!--<div style="color: white; font-size: 36px; font-weight: bold; margin-left: 11%; margin-bottom: 10px">Full Cast and Crew</div>-->
 <div style="color: white; font-size: 36px; font-weight: bold; margin-left: 11%; margin-bottom: 10px">Full Cast and Crew</div>
-<!--<div class="outer-container">-->
-<!--  <div class="cast-crew-container">-->
-<!--    <div *ngFor="let person of cast">-->
-<!--      <div *ngIf="person.profile_path">-->
-<!--        <div class="card" style="width: 175px; height: 380px; align-items: center; margin-right: 10px; border-radius: 20px; overflow: hidden; border: none">-->
-<!--          <a href="">-->
-<!--            <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500/' + person.profile_path" alt="Card image cap" style="width: 100%;">-->
-<!--          </a>-->
-<!--          <div class="card-body" style="text-align: center">-->
-<!--            <p class="card-text" style="margin-top: -7px; font-size: 14px; font-weight: bold; width: 170px">{{ person.name }}</p>-->
-<!--            <p class="card-text" style="font-weight: bolder; margin-top: -7px;">AS</p>-->
-<!--            <p class="card-text" style="margin-top: -7px; font-size: 14px; ">{{ person.character }}</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="outer-container  container-fluid">
+  <div class="cast-crew-container">
+    <div *ngFor="let person of cast">
+      <div *ngIf="person.profile_path">
+        <div (click)="getCastDetails(person.id)" class="card cast-member" style="width: 175px; height: 380px; align-items: center; margin-right: 10px; border-radius: 20px; overflow: hidden; border: none">
+          <div class="">
+            <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500/' + person.profile_path" alt="Card image cap" style="width: 100%;">
+          </div>
+          <div class="card-body" style="text-align: center">
+            <p class="card-text" style="margin-top: -7px; font-size: 14px; font-weight: bold; width: 170px">{{ person.name }}</p>
+            <p class="card-text" style="font-weight: bolder; margin-top: -7px;">AS</p>
+            <p class="card-text" style="margin-top: -7px; font-size: 14px; ">{{ person.character }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="width: 100%; margin-left: 11%; margin-top: 100px;" class="row">
+  <div style="color: white; font-weight: bolder; font-size: 36px; ">Reviews</div>
+  <div style="color: darkgray; font-size: 36px; display: inline; font-weight: bolder; margin-left: 10px;" *ngIf="reviews">{{ reviews.length }}</div>
+</div>
+<div *ngIf="reviews" style="margin-left: 11%; margin-top:20px;">
+  <div *ngFor="let review of reviews">
+    <div class="card" style="width: 1100px; height: 220px; border-radius: 10px; margin-bottom: 20px;" >
+      <img class="card-img-overlay" style="width: 100px; height: 100px; border-radius: 50%; margin-left: 10px;"  [src]="review.avatar_path" alt="">
+
+      <div class="card-body" style="margin-left: 200px;">
+        <p class="card-text" style="font-size: 28px; font-weight: normal; ">A review created by {{review.author}}</p>
+        <p class="card-text" style="color: gray">Written by {{review.author}} on {{review.created_at}}</p>
+        <p class="card-text review-content">{{review.content}}</p>
+        <a [href]="review.url" style="margin-bottom: -10px; text-decoration: underline">Read the rest</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div style="width: 100%; margin-left: 11%; margin-top: 100px;" class="row">
+  <div style="color: white; font-weight: bolder; font-size: 36px; ">Recommended TV Shows</div>
+</div>
+<div *ngIf="recommendedTvShows">
+  <div *ngIf="recommendedTvShows.results.length !== 0">
+    <app-multi-carousel [data]="recommendedTvShows"></app-multi-carousel>
+  </div>
+</div>
+
+
+
+<div style="width: 100%; margin-left: 11%; margin-top: 100px;" class="row">
+  <div style="color: white; font-weight: bolder; font-size: 36px; ">Similar TV Shows</div>
+</div>
+<div *ngIf="similarTvShows">
+  <div *ngIf="similarTvShows.results.length !== 0">
+    <app-multi-carousel [data]="similarTvShows"></app-multi-carousel>
+  </div>
+</div>
+
 

@@ -33,7 +33,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public similarMovies: any;
   public castDetails: any;
   public external: any;
-  public watchlistFlag: any;
+  public watchlistFlag: any = 'false';
   myStorage = window.localStorage;
   private selected: any;
 
@@ -47,8 +47,32 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       this.id = params.id;
     });
     this.fetchData();
-    // @ts-ignore
-    this.addToContinueWatching();
+    // check if it is in watchlist
+    let watchlist = [];
+    // if there is already some continue watching
+    if (this.myStorage) {
+      if (this.myStorage.getItem('watchlist')) {
+        // check if this id exists
+        watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        // traverse continue watching list
+        // tslint:disable-next-line:prefer-for-of
+        for (let idx = 0; idx < watchlist.length; idx++) {
+          if (watchlist[idx].id === this.id) {
+            this.watchlistFlag = 'true';
+          }
+        }
+      }
+    }
+
+    const addToWatchListBtn = document.getElementById('watchlist-btn');
+    if (addToWatchListBtn) {
+      if (this.watchlistFlag === 'true') {
+        addToWatchListBtn.innerHTML = 'Remove from wacthlist';
+      } else {
+        addToWatchListBtn.innerHTML = 'Add to wacthlist';
+      }
+    }
+
     if (document.getElementById('typeahead-http')) {
       // @ts-ignore
       document.getElementById('typeahead-http').innerHTML = '';
@@ -77,6 +101,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       this.overview = this.movieDetails.overview;
       this.tweet = 'Watch%20' + this.movieDetails.toString() + 'https://www.youtube.com/watch?v=' + this.key.toString() + '#USC%20#CSCI571%20#FightOn';
       // add to continue watching
+      // @ts-ignore
+      this.addToContinueWatching();
     });
     this.postsService.getMovieVideos(this.id).subscribe(res => {
       this.movieVideos = res;
@@ -158,18 +184,34 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       if (this.myStorage.getItem('continue_watching')) {
         // check if this id exists
         continueWatching = JSON.parse(this.myStorage.getItem('continue_watching') as string);
-        console.log(continueWatching);
+        // console.log('[you have] ' + continueWatching);
+        const array = [];
+        for (const one of continueWatching) {
+          array.push(one);
+          // console.log(array);
+        }
         // traverse continue watching list
-        for (let idx = 0; idx < continueWatching.length; idx++) {
-          if (continueWatching[idx].id === this.id) {
-            continueWatching.splice(idx, 1);
+        for (let idx = 0; idx < array.length; idx++) {
+          // console.log('[each one] ' + JSON.parse(array[idx]).title);
+          // console.log(parseInt(JSON.parse(array[idx]).id) === parseInt(this.id));
+          // console.log('json id ' + JSON.parse(array[idx]).id + 'type' + typeof(JSON.parse(array[idx]).id));
+          // console.log('type of ' + typeof(this.id));
+          // tslint:disable-next-line:radix
+          // @ts-ignore
+          // tslint:disable-next-line:radix
+          if (parseInt(JSON.parse(array[idx]).id) === parseInt(this.id)) {
+            // console.log('[before]' + array);
+            array.splice(idx, 1);
+            // console.log('[addToContinueWatching]' + array);
           }
         }
+        continueWatching = array;
       }
     }
+    // console.log('[addToContinueWatching] ' + this.title);
     continueWatching.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`);
     this.myStorage.setItem('continue_watching', JSON.stringify(continueWatching));
-    console.log(this.myStorage);
+    // console.log(this.myStorage);
   }
 
 
@@ -220,11 +262,18 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       if (this.myStorage.getItem('watchlist')) {
         // extract current watchlist
         watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        const array = [];
+        for (const one of watchlist) {
+          array.push(one);
+          // console.log(array);
+        }
+        // tslint:disable-next-line:prefer-for-of
         for (let idx = 0; idx < watchlist.length; idx++) {
           if (watchlist[idx].id === this.id) {
             this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
           }
         }
+        watchlist = array;
       }
     }
     watchlist.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`);
@@ -253,6 +302,11 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       if (this.myStorage.getItem('watchlist')) {
         // check if this id exists
         watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        const array = [];
+        for (const one of watchlist) {
+          array.push(one);
+          // console.log(array);
+        }
         // traverse continue watching list
         for (let idx = 0; idx < watchlist.length; idx++) {
           if (watchlist[idx].id === this.id) {

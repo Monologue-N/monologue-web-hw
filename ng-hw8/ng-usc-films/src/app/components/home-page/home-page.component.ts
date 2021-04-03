@@ -52,7 +52,7 @@ export class HomePageComponent implements OnInit {
   }
 
   parseContinueWatching() {
-    console.log('parseContinueWatching' + this.storage);
+    // console.log('parseContinueWatching' + this.storage);
     // if (this.storage) {
     //   for (let k = 0; k < this.storage.length; k++) {
     //     const key = this.storage.key(k);
@@ -72,7 +72,12 @@ export class HomePageComponent implements OnInit {
     // }
     if (this.storage) {
       if (this.storage.continue_watching) {
-        this.array = JSON.parse(this.storage.continue_watching);
+        this.json = JSON.parse(this.storage.continue_watching);
+        for (const one of this.json) {
+          this.array.push(JSON.parse(one));
+        }
+        console.log('[parseContinueWatching] ' + this.array[0].title);
+        console.log('[parseContinueWatching] ' + this.array[0].poster_path);
         console.log(this.array);
       }
     }
