@@ -29,10 +29,10 @@ export class MultiCarouselComponent implements OnInit {
   }
 
   transformData() {
-    console.log(this.data);
+    // console.log(this.data);
     let j = -1;
     if (this.data) {
-      console.log('[transfromData] ' + this.data[0].poster_path);
+      // console.log('[transfromData] ' + this.data[0].poster_path);
       for (let i = 0; i < this.data.length; i++) {
         if (i % 6 === 0) {
           j++;
@@ -44,7 +44,7 @@ export class MultiCarouselComponent implements OnInit {
         }
       }
     }
-    console.log(this.dataArray);
+    // console.log(this.dataArray);
   }
 
   reloadPage(id: any) {

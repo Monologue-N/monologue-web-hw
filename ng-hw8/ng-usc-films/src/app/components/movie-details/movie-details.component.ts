@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ElementRef} from '@angular/core';
+import {Component, OnInit, OnDestroy, ElementRef, Input} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../../services/posts.service';
@@ -11,6 +11,7 @@ import * as $ from 'jquery';
 })
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription | undefined;
+  public btnContent = '';
   public id = '';
   public title = '';
   // tslint:disable-next-line:variable-name
@@ -42,11 +43,19 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
-      console.log(params);
+      // console.log(params);
       console.log(params.id);
       this.id = params.id;
+      this.checkWatchList();
     });
     this.fetchData();
+
+    if (document.getElementById('typeahead-http')) {
+      // @ts-ignore
+      document.getElementById('typeahead-http').innerHTML = '';
+    }
+  }
+  checkWatchList() {
     // check if it is in watchlist
     let watchlist = [];
     // if there is already some continue watching
@@ -54,30 +63,37 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       if (this.myStorage.getItem('watchlist')) {
         // check if this id exists
         watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        const array = [];
+        for (const one of watchlist) {
+          array.push(one);
+          // console.log(array);
+        }
         // traverse continue watching list
-        // tslint:disable-next-line:prefer-for-of
-        for (let idx = 0; idx < watchlist.length; idx++) {
-          if (watchlist[idx].id === this.id) {
+        for (let idx = 0; idx < array.length; idx++) {
+          // console.log('[each one] ' + JSON.parse(array[idx]).title);
+          // console.log(parseInt(JSON.parse(array[idx]).id) === parseInt(this.id));
+          // console.log('json id ' + JSON.parse(array[idx]).id + 'type' + typeof(JSON.parse(array[idx]).id));
+          // console.log('type of ' + typeof(this.id));
+          // tslint:disable-next-line:radix
+          // @ts-ignore
+          // tslint:disable-next-line:radix
+          if (parseInt(JSON.parse(array[idx]).id) === parseInt(this.id)) {
+            // console.log('[before]' + array);
             this.watchlistFlag = 'true';
+            // console.log('[addToContinueWatching]' + array);
           }
         }
       }
     }
-
-    const addToWatchListBtn = document.getElementById('watchlist-btn');
-    if (addToWatchListBtn) {
-      if (this.watchlistFlag === 'true') {
-        addToWatchListBtn.innerHTML = 'Remove from wacthlist';
+    console.log('watchlistFlag is ' + this.watchlistFlag);
+    if (this.watchlistFlag === 'true') {
+        this.btnContent = 'Remove from watchlist';
       } else {
-        addToWatchListBtn.innerHTML = 'Add to wacthlist';
+        this.btnContent = 'Add to watchlist';
       }
-    }
-
-    if (document.getElementById('typeahead-http')) {
-      // @ts-ignore
-      document.getElementById('typeahead-http').innerHTML = '';
-    }
+    console.log(this.btnContent);
   }
+
 
   fetchData() {
     this.postsService.getMovieDetails(this.id).subscribe(res => {
@@ -237,7 +253,17 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   toggle() {
     const addToWatchListBtn = document.getElementById('watchlist-btn');
     // @ts-ignore
-    if (addToWatchListBtn.innerHTML === 'Add to watchlist') {
+    console.log('innerHTML: ' + addToWatchListBtn.innerHTML);
+    console.log('another: ' + 'Add to watchlist');
+    // @ts-ignore
+    console.log(typeof(addToWatchListBtn.innerHTML));
+    console.log(typeof('Add to watchlist'));
+    // @ts-ignore
+    console.log(JSON.stringify(addToWatchListBtn.innerHTML) === JSON.stringify('Add to watchlist'));
+    // @ts-ignore
+    // if (addToWatchListBtn.innerHTML === 'Add to watchlist') {
+    if (this.btnContent === 'Add to watchlist') {
+      console.log('I am here');
       // @ts-ignore
       this.addToWatchList();
       console.log(' this.addToWatchList();');
@@ -254,9 +280,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     const addedAlert = document.getElementById('add-alert');
     const removeAlert = document.getElementById('remove-alert');
     // @ts-ignore
-    addToWatchListBtn.innerHTML = 'Remove from watchlist';
+    this.btnContent = 'Remove from watchlist';
     // add to local storage
     let watchlist = [];
+    // let flag = 'false';
     // if there is already some in watchlist
     if (this.myStorage) {
       if (this.myStorage.getItem('watchlist')) {
@@ -267,16 +294,20 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
           array.push(one);
           // console.log(array);
         }
-        // tslint:disable-next-line:prefer-for-of
-        for (let idx = 0; idx < watchlist.length; idx++) {
-          if (watchlist[idx].id === this.id) {
-            this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
-          }
-        }
+        // // tslint:disable-next-line:prefer-for-of
+        // for (let idx = 0; idx < array.length; idx++) {
+        //   // tslint:disable-next-line:radix
+        //   if (parseInt(array[idx].id) === parseInt(this.id)) {
+        //     flag = 'true';
+        //   }
+        // }
         watchlist = array;
       }
     }
+    // if (flag === 'false') {
     watchlist.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`);
+    // }
+    this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
     console.log(window.localStorage);
     // @ts-ignore
     removeAlert.style.display = 'none';
@@ -294,7 +325,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     const addedAlert = document.getElementById('add-alert');
     const removeAlert = document.getElementById('remove-alert');
     // @ts-ignore
-    addToWatchListBtn.innerHTML = 'Add to watchlist';
+    this.btnContent = 'Add to watchlist';
     // remove from local storage
     let watchlist = [];
     // if there is already some continue watching
@@ -308,11 +339,18 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
           // console.log(array);
         }
         // traverse continue watching list
-        for (let idx = 0; idx < watchlist.length; idx++) {
-          if (watchlist[idx].id === this.id) {
-            watchlist.splice(idx, 1);
+        for (let idx = 0; idx < array.length; idx++) {
+          console.log('[each one] ' + JSON.parse(array[idx]).title);
+          // tslint:disable-next-line:radix
+          console.log(parseInt(JSON.parse(array[idx]).id) === parseInt(this.id));
+          console.log('json id ' + JSON.parse(array[idx]).id + 'type' + typeof(JSON.parse(array[idx]).id));
+          console.log('type of ' + typeof(this.id));
+          // tslint:disable-next-line:radix
+          if (parseInt(array[idx].id) === parseInt(this.id)) {
+            array.splice(idx, 1);
           }
         }
+        watchlist = array;
       }
     }
     this.myStorage.setItem('watchlist', JSON.stringify(watchlist));

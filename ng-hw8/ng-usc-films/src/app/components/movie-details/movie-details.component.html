@@ -23,13 +23,14 @@
             <p>Spoken Languages:</p>
             <p class="card-text grey-text" *ngIf="spokenLanguages">&nbsp;{{ spokenLanguages }}</p>
           </div>
-          <div id="watchlist-container">
+          <div id="watchlist-container" *ngIf="btnContent">
             <button id="watchlist-btn"class="btn btn-primary row" (click)="toggle()" style="font-size: 18px;">
-<!--              <div *ngIf="watchlistFlag === 'true'" id="remove">-->
+        {{btnContent}}
+              <!--              <div *ngIf="watchlistFlag === 'true'" id="remove">-->
 <!--                  Remove from watchlist-->
 <!--              </div>-->
 <!--              <div *ngIf="watchlistFlag !== 'true'" id="add">-->
-                Add to watchlist
+<!--                Add to watchlist-->
 <!--              </div>-->
             </button>
 

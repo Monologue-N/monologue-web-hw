@@ -52,24 +52,6 @@ export class HomePageComponent implements OnInit {
   }
 
   parseContinueWatching() {
-    // console.log('parseContinueWatching' + this.storage);
-    // if (this.storage) {
-    //   for (let k = 0; k < this.storage.length; k++) {
-    //     const key = this.storage.key(k);
-    //     if (key !== null) {
-    //       const value = this.storage.getItem(key);
-    //       // @ts-ignore
-    //       this.json = JSON.parse(value);
-    //       console.log('this json is ' + this.json);
-    //       console.log('continue watching is: ' + this.json.continue_watching);
-    //       if (this.json.continue_watching === 'true') {
-    //         // @ts-ignore
-    //         this.array.push(this.json);
-    //       }
-    //     }
-    //   }
-    //   console.log(this.array);
-    // }
     if (this.storage) {
       if (this.storage.continue_watching) {
         this.json = JSON.parse(this.storage.continue_watching);
