@@ -1,8 +1,47 @@
-<div class="card">
-  <div class="card-header">{{details.name}}
-    <button type="button" class="close" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+<div id="card-details-container" style="" *ngIf="details">
+<!--  <div id="card-mask" style="padding: 100%; background: rgba(0,0,0,0.7); position: fixed;"></div>-->
+  <div class="card" id="card" style="width: 70%; height: 60%; z-index: 19; position: fixed; align-content: center; top: 10%; bottom: auto;">
+    <div class="card-header">{{details.name}}
+      <button type="button" class="close" aria-label="Close" (click)="closeDetails()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="row">
+      <img class="card-img-overlay col-md-2" [src]="'https://image.tmdb.org/t/p/w500/' + details.profile_path" alt="" style="margin-top: 10%;width: 270px;">
+      <div class="row container-fluid" style="display: block; position: relative; margin-left: 20%; margin-top: 10%">
+        <div class="">Birth: {{details.birthday}}</div>
+        <div class="">Birth Place: {{details.place_of_birth}}</div>
+        <div class="">Gender: {{gender}}</div>
+        <div class="">Known for: {{details.known_for_department}}</div>
+        <div class="">Also known as: {{details.also_known_as}}</div>
+        <div>
+          <a target="_blank" style="font-size: 30px; color: darkgoldenrod;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+            <i class="fab fa-imdb"></i>
+          </a>
+
+          <a target="_blank" style="font-size: 30px; color: purple;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a target="_blank" style="font-size: 30px; color: #0926cd;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+            <i class="fab fa-facebook-square"></i>
+          </a>
+          <a class="twitter-share-button"
+             href=""
+             data-size="large"
+             style="font-size: 30px; color: #1ea2f1; margin-right: 10px">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row" style="width: 90%; margin-left: 10%">
+      <div>Biography</div>
+      <div>{{details.biography}}</div>
+    </div>
+
   </div>
 </div>
 

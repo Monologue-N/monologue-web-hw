@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ElementRef} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../../services/posts.service';
@@ -34,7 +34,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public watchlistFlag: any;
   myStorage = window.localStorage;
 
-  constructor(private route: ActivatedRoute, private postsService: PostsService) {
+  constructor(private route: ActivatedRoute, private postsService: PostsService, private elementRef: ElementRef) {
   }
 
   ngOnInit(): void {
@@ -89,6 +89,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.postsService.getMovieReviews(this.id).subscribe(res => {
         this.reviews = res;
         this.reviews = this.reviews.results;
+        const tmpReviews = [];
+        for (let i = 0; i < 10; i++) {
+          tmpReviews.push(this.reviews[i]);
+        }
         // deal with reviews data
         for (const review of this.reviews) {
           // format avatar path
@@ -102,18 +106,20 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
             }
           }
           // format date created
-          // const date = review.created_at.match(/\d+/g);
-          // review.created_at = + date[1] + '/' + date[2] + '/' + date[0];
           const date = review.created_at;
           console.log(date);
           // tslint:disable-next-line:radix
           const newDate = new Date(date);
           console.log(newDate);
           const mo = new Intl.DateTimeFormat('en', { month: 'long' }).format(newDate);
+          const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(newDate);
+          // const ho = new Intl.DateTimeFormat('en', { hour: 'numeric' }).format(newDate);
+          const min = new Intl.DateTimeFormat('en', { minute: 'numeric' }).format(newDate);
+
           if (newDate.getHours() > 12) {
-            review.created_at = `${mo} ${newDate.getDay()}, ${newDate.getFullYear()}, ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()} PM`;
+            review.created_at = `${mo} ${da}, ${newDate.getFullYear()}, ${newDate.getHours()}:${min}:${newDate.getSeconds()} PM`;
           } else {
-            review.created_at = `${mo} ${newDate.getDay()}, ${newDate.getFullYear()}, ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()} AM`;
+            review.created_at = `${mo} ${da}, ${newDate.getFullYear()}, ${newDate.getHours()}:${min}:${newDate.getSeconds()} AM`;
           }
         }
     });
@@ -140,9 +146,15 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
 
   getCastDetails(person: string) {
+    // this.elementRef.nativeElement.ownerDocument.body.style.position = 'fixed';
+
     this.postsService.getCastDetails(person).subscribe(res => {
       this.castDetails = res;
     });
+    if (document.getElementById('card')) {
+      // @ts-ignore
+      document.getElementById('card').style.display = 'block';
+    }
   }
 
   ngOnDestroy() {

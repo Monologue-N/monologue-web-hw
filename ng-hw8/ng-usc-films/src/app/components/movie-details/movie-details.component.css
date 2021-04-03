@@ -43,3 +43,7 @@
 .init {
   display: none;
 }
+
+.cast-member:hover {
+  cursor: pointer;
+}

@@ -52,7 +52,7 @@ import { CastDetailsComponent } from './components/cast-details/cast-details.com
     FormsModule,
     YouTubePlayerModule,
     NgScrollbarModule,
-    ScrollingModule
+    ScrollingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

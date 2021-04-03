@@ -75,7 +75,9 @@
 
 </div>
 
-<div id="cast-details"></div>
+<div id="cast-details" *ngIf="castDetails">
+  <app-cast-details [details]="castDetails"></app-cast-details>
+</div>
 
 
 <div style="color: white; font-size: 36px; font-weight: bold; margin-left: 11%; margin-bottom: 10px">Full Cast and Crew</div>
@@ -83,10 +85,10 @@
   <div class="cast-crew-container">
     <div *ngFor="let person of cast">
       <div *ngIf="person.profile_path">
-        <div class="card" style="width: 175px; height: 380px; align-items: center; margin-right: 10px; border-radius: 20px; overflow: hidden; border: none">
-          <a (click)="getCastDetails(person.id)" class="cast-member">
+        <div (click)="getCastDetails(person.id)" class="card cast-member" style="width: 175px; height: 380px; align-items: center; margin-right: 10px; border-radius: 20px; overflow: hidden; border: none">
+          <div class="">
             <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500/' + person.profile_path" alt="Card image cap" style="width: 100%;">
-          </a>
+          </div>
           <div class="card-body" style="text-align: center">
             <p class="card-text" style="margin-top: -7px; font-size: 14px; font-weight: bold; width: 170px">{{ person.name }}</p>
             <p class="card-text" style="font-weight: bolder; margin-top: -7px;">AS</p>
