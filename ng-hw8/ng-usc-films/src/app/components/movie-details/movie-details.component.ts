@@ -98,6 +98,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   fetchData() {
     this.postsService.getMovieDetails(this.id).subscribe(res => {
       this.movieDetails = res;
+      this.mediaType = 'movie';
       this.title = this.movieDetails.title;
       this.poster_path = this.movieDetails.poster_path;
       // tslint:disable-next-line:radix
@@ -305,7 +306,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       }
     }
     // if (flag === 'false') {
-    watchlist.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`);
+    watchlist.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "type": \"${this.mediaType}\"}`);
     // }
     this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
     console.log(window.localStorage);

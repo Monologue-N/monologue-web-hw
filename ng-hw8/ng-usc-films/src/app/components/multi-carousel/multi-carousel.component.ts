@@ -33,6 +33,7 @@ export class MultiCarouselComponent implements OnInit {
     let j = -1;
     if (this.data) {
       for (let i = 0; i < this.data.length && i < 24; i++) {
+        console.log(this.data[i].poster_path);
         if (i % 6 === 0) {
           j++;
           this.dataArray[j] = [];

@@ -3,7 +3,6 @@
   margin-top: 5%;
 }
 
-
 .grey-text {
   color: darkgrey;
 }
@@ -29,3 +28,21 @@
   margin-bottom: 20px;
 }
 
+.review-content {
+  margin-top: 0px;
+  overflow: hidden;
+  height: 52px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.init {
+  display: none;
+}
+
+.cast-member:hover {
+  cursor: pointer;
+}

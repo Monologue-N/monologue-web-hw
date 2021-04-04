@@ -23,9 +23,23 @@
             <p>Spoken Languages:</p>
             <p class="card-text grey-text" *ngIf="spokenLanguages">&nbsp;{{ spokenLanguages }}</p>
           </div>
-          <div id="watchlist-container">
-            <button id="watchlist-btn"class="btn btn-primary row">Add to watchlist</button>
-          </div>
+          <div id="watchlist-container" *ngIf="btnContent">
+            <button id="watchlist-btn"class="btn btn-primary row" (click)="toggle()" style="font-size: 18px;">
+              {{btnContent}}
+              <!--              <div *ngIf="watchlistFlag === 'true'" id="remove">-->
+              <!--                  Remove from watchlist-->
+              <!--              </div>-->
+              <!--              <div *ngIf="watchlistFlag !== 'true'" id="add">-->
+              <!--                Add to watchlist-->
+              <!--              </div>-->
+            </button>
+
+            <div id="add-alert"  class="init alert alert-success alert-dismissible fade show" role="alert" style="margin-left: -14px; margin-top: 10px;">
+              Added to watchlist.
+              <button type="button" class="close" (click)="hideAddedAlert()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
         </div>
       </div>
     </div>
@@ -100,7 +114,7 @@
 </div>
 <div *ngIf="recommendedTvShows">
   <div *ngIf="recommendedTvShows.results.length !== 0">
-    <app-multi-carousel [data]="recommendedTvShows"></app-multi-carousel>
+    <app-tv-carousel [data]="recommendedTvShows"></app-tv-carousel>
   </div>
 </div>
 
@@ -111,7 +125,7 @@
 </div>
 <div *ngIf="similarTvShows">
   <div *ngIf="similarTvShows.results.length !== 0">
-    <app-multi-carousel [data]="similarTvShows"></app-multi-carousel>
+    <app-tv-carousel [data]="similarTvShows"></app-tv-carousel>
   </div>
 </div>
 

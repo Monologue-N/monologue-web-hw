@@ -22,7 +22,7 @@
   <div class="" style="margin-left: 10%">
     <div *ngFor="let four of dataArray" style="">
       <div *ngFor="let one of four" style="display: inline; text-align: left;">
-        <img class="col" [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt="" style="width:13%; margin-right: 20px; text-align: left;">
+        <img class="col watchlist-img" routerLink="/watch/{{one.type}}/{{one.id}}" [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt="" style="width:13%; margin-right: 20px; text-align: left;">
       </div>
       <hr>
     </div>

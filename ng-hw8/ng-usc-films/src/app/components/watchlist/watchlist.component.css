@@ -1,3 +1,7 @@
 .my-list-container {
   height: 73vh;
 }
+
+.watchlist-img:hover {
+  cursor: pointer;
+}

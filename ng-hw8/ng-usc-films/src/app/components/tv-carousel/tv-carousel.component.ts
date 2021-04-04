@@ -6,10 +6,11 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./tv-carousel.component.css']
 })
 export class TvCarouselComponent implements OnInit {
-
   @Input() data: any;
+  @Input() continue: any;
   public mobile: any;
   public dataArray: any = [];
+  myStorage = window.localStorage;
 
   constructor() { }
 
@@ -17,28 +18,35 @@ export class TvCarouselComponent implements OnInit {
     if (window.screen.width === 360) { // 768px portrait
       this.mobile = true;
     }
-    this.data = this.data.results;
+    // console.log('continue is ' + this.continue);
+    // console.log('array is  ' + this.data);
+    if (this.continue !== 'true') {
+      this.data = this.data.results;
+      // console.log('check if continue');
+    }
     this.transformData();
-    // console.log(this.dataArray);
-    // for (const group of this.dataArray) {
-    //   for (const one of group) {
-    //     console.log(one.backdrop_path);
-    //   }
-    // }
   }
 
   transformData() {
+    // console.log(this.data);
     let j = -1;
-    for (let i = 0; i < this.data.length; i++) {
-      if (i % 6 === 0) {
-        j++;
-        this.dataArray[j] = [];
-        this.dataArray[j].push(this.data[i]);
-      }
-      else {
-        this.dataArray[j].push(this.data[i]);
+    if (this.data) {
+      for (let i = 0; i < this.data.length && i < 24; i++) {
+        console.log(this.data[i].poster_path);
+        if (i % 6 === 0) {
+          j++;
+          this.dataArray[j] = [];
+          this.dataArray[j].push(this.data[i]);
+        }
+        else {
+          this.dataArray[j].push(this.data[i]);
+        }
       }
     }
+    // console.log(this.dataArray);
   }
 
+  reloadPage(id: any) {
+    window.location.href = `/watch/tv/${id}`;
+  }
 }

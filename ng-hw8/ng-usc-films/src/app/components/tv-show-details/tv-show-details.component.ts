@@ -10,8 +10,12 @@ import {PostsService} from '../../services/posts.service';
 })
 export class TvShowDetailsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription | undefined;
+  public btnContent = '';
   public id = '';
+  public title = '';
   public mediaType = '';
+  // tslint:disable-next-line:variable-name
+  public poster_path = '';
   public key = '';
   public tvShowDetails: any;
   public tvShowVideos: any;
@@ -37,18 +41,65 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
-      console.log(params);
+      // console.log(params);
       console.log(params.id);
-      console.log(params.type);
       this.id = params.id;
-      this.mediaType = params.type;
+      this.checkWatchList();
     });
     this.fetchData();
+
+    if (document.getElementById('typeahead-http')) {
+      // @ts-ignore
+      document.getElementById('typeahead-http').innerHTML = '';
+    }
   }
+  checkWatchList() {
+    // check if it is in watchlist
+    let watchlist = [];
+    // if there is already some continue watching
+    if (this.myStorage) {
+      if (this.myStorage.getItem('watchlist')) {
+        // check if this id exists
+        watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        const array = [];
+        for (const one of watchlist) {
+          array.push(one);
+          // console.log(array);
+        }
+        // traverse continue watching list
+        // tslint:disable-next-line:prefer-for-of
+        for (let idx = 0; idx < array.length; idx++) {
+          // console.log('[each one] ' + JSON.parse(array[idx]).title);
+          // console.log(parseInt(JSON.parse(array[idx]).id) === parseInt(this.id));
+          // console.log('json id ' + JSON.parse(array[idx]).id + 'type' + typeof(JSON.parse(array[idx]).id));
+          // console.log('type of ' + typeof(this.id));
+          // tslint:disable-next-line:radix
+          // @ts-ignore
+          // tslint:disable-next-line:radix
+          if (parseInt(JSON.parse(array[idx]).id) === parseInt(this.id)) {
+            // console.log('[before]' + array);
+            this.watchlistFlag = 'true';
+            // console.log('[addToContinueWatching]' + array);
+          }
+        }
+      }
+    }
+    console.log('watchlistFlag is ' + this.watchlistFlag);
+    if (this.watchlistFlag === 'true') {
+      this.btnContent = 'Remove from watchlist';
+    } else {
+      this.btnContent = 'Add to watchlist';
+    }
+    console.log(this.btnContent);
+  }
+
 
   fetchData() {
     this.postsService.getTvShowDetails(this.id).subscribe(res => {
       this.tvShowDetails = res;
+      this.mediaType = 'tv';
+      this.title = this.tvShowDetails.title;
+      this.poster_path = this.tvShowDetails.poster_path;
       // tslint:disable-next-line:radix
       this.releaseYear = parseInt(this.tvShowDetails.release_date);
       this.voteAverage = parseFloat(this.tvShowDetails.vote_average).toFixed(1);
@@ -64,12 +115,20 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
       }
       this.spokenLanguages.join(', ');
       this.overview = this.tvShowDetails.overview;
+      this.tweet = 'Watch%20' + this.tvShowDetails.toString() + 'https://www.youtube.com/watch?v=' + this.key.toString() + '#USC%20#CSCI571%20#FightOn';
+      // add to continue watching
+      // @ts-ignore
+      this.addToContinueWatching();
     });
     this.postsService.getTvShowVideos(this.id).subscribe(res => {
       this.tvShowVideos = res;
-      this.key = this.tvShowVideos.results[0].key;
-      if (!this.key) {
+      if (this.tvShowVideos.results.length === 0 || !this.tvShowVideos.results.length) {
         this.key = 'tzkWB85ULJY';
+      } else {
+        this.key = this.tvShowVideos.results[0].key;
+        if (!this.key) {
+          this.key = 'tzkWB85ULJY';
+        }
       }
     });
     this.postsService.getTvShowCast(this.id).subscribe(res => {
@@ -133,10 +192,44 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    // @ts-ignore
-    this.routeSub.unsubscribe();
+  // tslint:disable-next-line:variable-name
+  addToContinueWatching() {
+    let continueWatching = [];
+    // if there is already some continue watching
+    if (this.myStorage) {
+      if (this.myStorage.getItem('continue_watching')) {
+        // check if this id exists
+        continueWatching = JSON.parse(this.myStorage.getItem('continue_watching') as string);
+        // console.log('[you have] ' + continueWatching);
+        const array = [];
+        for (const one of continueWatching) {
+          array.push(one);
+          // console.log(array);
+        }
+        // traverse continue watching list
+        for (let idx = 0; idx < array.length; idx++) {
+          // console.log('[each one] ' + JSON.parse(array[idx]).title);
+          // console.log(parseInt(JSON.parse(array[idx]).id) === parseInt(this.id));
+          // console.log('json id ' + JSON.parse(array[idx]).id + 'type' + typeof(JSON.parse(array[idx]).id));
+          // console.log('type of ' + typeof(this.id));
+          // tslint:disable-next-line:radix
+          // @ts-ignore
+          // tslint:disable-next-line:radix
+          if (parseInt(JSON.parse(array[idx]).id) === parseInt(this.id)) {
+            // console.log('[before]' + array);
+            array.splice(idx, 1);
+            // console.log('[addToContinueWatching]' + array);
+          }
+        }
+        continueWatching = array;
+      }
+    }
+    // console.log('[addToContinueWatching] ' + this.title);
+    continueWatching.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`);
+    this.myStorage.setItem('continue_watching', JSON.stringify(continueWatching));
+    // console.log(this.myStorage);
   }
+
 
   getCastDetails(person: string) {
     // this.elementRef.nativeElement.ownerDocument.body.style.position = 'fixed';
@@ -150,6 +243,142 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
       // @ts-ignore
       document.getElementById('card').style.display = 'block';
     }
+  }
+
+  ngOnDestroy() {
+    // @ts-ignore
+    this.routeSub.unsubscribe();
+  }
+
+  toggle() {
+    const addToWatchListBtn = document.getElementById('watchlist-btn');
+    // @ts-ignore
+    console.log('innerHTML: ' + addToWatchListBtn.innerHTML);
+    console.log('another: ' + 'Add to watchlist');
+    // @ts-ignore
+    console.log(typeof(addToWatchListBtn.innerHTML));
+    console.log(typeof('Add to watchlist'));
+    // @ts-ignore
+    console.log(JSON.stringify(addToWatchListBtn.innerHTML) === JSON.stringify('Add to watchlist'));
+    // @ts-ignore
+    // if (addToWatchListBtn.innerHTML === 'Add to watchlist') {
+    if (this.btnContent === 'Add to watchlist') {
+      console.log('I am here');
+      // @ts-ignore
+      this.addToWatchList();
+      console.log(' this.addToWatchList();');
+    } else {
+      // @ts-ignore
+      this.removeFromWatchList();
+      console.log(' this.removeFromWatchList();\n');
+    }
+  }
+
+  addToWatchList() {
+    this.myStorage.setItem(this.tvShowDetails.id, this.tvShowDetails.id);
+    const addToWatchListBtn = document.getElementById('watchlist-btn');
+    const addedAlert = document.getElementById('add-alert');
+    const removeAlert = document.getElementById('remove-alert');
+    // @ts-ignore
+    this.btnContent = 'Remove from watchlist';
+    // add to local storage
+    let watchlist = [];
+    // let flag = 'false';
+    // if there is already some in watchlist
+    if (this.myStorage) {
+      if (this.myStorage.getItem('watchlist')) {
+        // extract current watchlist
+        watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        const array = [];
+        for (const one of watchlist) {
+          array.push(one);
+          // console.log(array);
+        }
+        // // tslint:disable-next-line:prefer-for-of
+        // for (let idx = 0; idx < array.length; idx++) {
+        //   // tslint:disable-next-line:radix
+        //   if (parseInt(array[idx].id) === parseInt(this.id)) {
+        //     flag = 'true';
+        //   }
+        // }
+        watchlist = array;
+      }
+    }
+    // if (flag === 'false') {
+    watchlist.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "type": \"${this.mediaType}\"}`);
+    // }
+    this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
+    console.log(window.localStorage);
+    // @ts-ignore
+    removeAlert.style.display = 'none';
+    // @ts-ignore
+    addedAlert.style.display = 'block';
+    setTimeout(() => {
+      // @ts-ignore
+      addedAlert.style.display = 'none';
+    }, 5000);
+  }
+
+  removeFromWatchList() {
+    this.myStorage.removeItem(this.tvShowDetails.id);
+    const addToWatchListBtn = document.getElementById('watchlist-btn');
+    const addedAlert = document.getElementById('add-alert');
+    const removeAlert = document.getElementById('remove-alert');
+    // @ts-ignore
+    this.btnContent = 'Add to watchlist';
+    // remove from local storage
+    let watchlist = [];
+    // if there is already some continue watching
+    if (this.myStorage) {
+      if (this.myStorage.getItem('watchlist')) {
+        // check if this id exists
+        watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        // console.log('[you have] ' + continueWatching);
+        const array = [];
+        for (const one of watchlist) {
+          array.push(one);
+          // console.log(array);
+        }
+        // traverse continue watching list
+        for (let idx = 0; idx < array.length; idx++) {
+          // console.log('[each one] ' + JSON.parse(array[idx]).title);
+          // console.log(parseInt(JSON.parse(array[idx]).id) === parseInt(this.id));
+          // console.log('json id ' + JSON.parse(array[idx]).id + 'type' + typeof(JSON.parse(array[idx]).id));
+          // console.log('type of ' + typeof(this.id));
+          // tslint:disable-next-line:radix
+          // @ts-ignore
+          // tslint:disable-next-line:radix
+          if (parseInt(JSON.parse(array[idx]).id) === parseInt(this.id)) {
+            // console.log('[before]' + array);
+            array.splice(idx, 1);
+            // console.log('[addToContinueWatching]' + array);
+          }
+        }
+        watchlist = array;
+      }
+    }
+    // console.log('[addToContinueWatching] ' + this.title);
+    this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
+    console.log(window.localStorage);
+    // @ts-ignore
+    addedAlert.style.display = 'none';
+    // @ts-ignore
+    removeAlert.style.display = 'block';
+    setTimeout(() => {
+      // @ts-ignore
+      removeAlert.style.display = 'none';
+    }, 5000);
+  }
+
+  hideAddedAlert() {
+    const addedAlert = document.getElementById('add-alert');
+    // @ts-ignore
+    addedAlert.style.display = 'none';
+  }
+  hideRemovedAlert() {
+    const removeAlert = document.getElementById('remove-alert');
+    // @ts-ignore
+    removeAlert.style.display = 'none';
   }
 
 
