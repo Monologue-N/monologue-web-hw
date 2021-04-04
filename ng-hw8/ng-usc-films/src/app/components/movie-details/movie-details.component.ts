@@ -226,7 +226,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       }
     }
     // console.log('[addToContinueWatching] ' + this.title);
-    continueWatching.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`);
+    continueWatching.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "type": \"${this.mediaType}\" }`);
     this.myStorage.setItem('continue_watching', JSON.stringify(continueWatching));
     // console.log(this.myStorage);
   }

@@ -6,14 +6,21 @@
     </div>
     <div>
       <div class="card" *ngIf="tvShowDetails" style="background-color: transparent;
-  color: white; width: 350px; ">
+  color: white; width: 340px">
         <div class="card-body">
           <h5 class="card-title row" style="font-size: 46px; font-weight: normal">{{ tvShowDetails.name }}</h5>
           <p class="card-text row">{{ tvShowDetails.tagline }}</p>
           <div class="row">
             <p class="card-text" *ngIf="releaseYear">{{ releaseYear }}&nbsp;&nbsp;|</p>
             <p class="card-text">&nbsp;&nbsp;&#9733; &nbsp;{{ voteAverage }}&nbsp;&nbsp;|</p>
-            <p class="card-text" *ngIf="hours && minutes">&nbsp;&nbsp;{{ hours }}hrs&nbsp;{{ minutes }}mins &nbsp;</p>
+            <div class="card-text" *ngIf="hours || minutes">&nbsp;
+              <div *ngIf="hours" style="display: inline;">
+            &nbsp;{{ hours }}hrs&nbsp;
+             </div>
+            <div *ngIf="minutes" style="display: inline;">
+              {{ minutes }}mins
+            </div>
+            </div>
           </div>
           <div class="row">
             <div class="subtitle">Genres:</div>
@@ -40,13 +47,21 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
+            <div id="remove-alert"  class="init alert alert-success alert-dismissible fade show" role="alert" style="margin-left: -14px; margin-top: 10px;">
+              Removed to watchlist.
+              <button type="button" class="close" (click)="hideRemovedAlert()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
 
 
   </div>
-
   <div style="display: block; margin-bottom: 20px;">
     <div>Description</div>
     <p class="grey-text" *ngIf="overview">{{ overview }}</p>
@@ -60,7 +75,7 @@
        style="font-size: 30px; color: #1ea2f1; margin-right: 10px">
       <i class="fab fa-twitter"></i>
     </a>
-    <a target="_blank" style="font-size: 30px; color: #0926cd;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+    <a target="_blank" style="font-size: 30px; color: #0926cd;" href="https://www.facebook.com/sharer/sharer.php?u=https://www.youtube.com/watch?v={{ key }}" class="fb-xfbml-parse-ignore">
       <i class="fab fa-facebook-square"></i>
     </a>
   </div>

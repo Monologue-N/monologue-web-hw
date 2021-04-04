@@ -1,0 +1,72 @@
+ngb-carousel {
+  /*width: 1200px;*/
+  /*text-align: center;*/
+  margin-top: 2%;
+  /*margin-left: 20%;*/
+  outline: none;
+  /*height: 300px;*/
+  /*overflow: hidden;*/
+  padding-left: 12%;
+  paddding-right: 2%;
+  background-color: transparent;
+}
+
+
+.wrapper:hover{
+  transform: scale(1.05);
+}
+
+.six-wrapper {
+  display: inline;
+}
+
+.wrapper {
+  display: inline;
+  padding-right: 2.5%;
+}
+
+.wrapper > a > img {
+  width: 13%;
+}
+
+.wrapper > a > img:hover {
+  transform: scale(1.05);
+}
+
+.six-wrapper-container {
+  margin-bottom: 7%;
+  margin-right: 2%;
+}
+
+.carousel-inner {
+
+}
+
+ngb-carousel:hover .mask {
+  opacity: 1;
+}
+
+.mask {
+  opacity: 0;
+  margin-top: -10%;
+  margin-bottom: -10%;
+  position: absolute;
+  width: 13%;
+  height: 40%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0));
+  display: flex;
+}
+
+.outer-wrapper:hover .wrapper > a > img{
+  transform: scale(1.05);
+}
+
+.white-text {
+  color: white;
+  margin-top: 10%;
+  text-align: left;
+  margin-left: 10%;
+}
+
+
+

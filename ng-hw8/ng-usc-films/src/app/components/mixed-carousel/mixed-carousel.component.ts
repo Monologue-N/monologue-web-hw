@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-tv-carousel',
-  templateUrl: './tv-carousel.component.html',
-  styleUrls: ['./tv-carousel.component.css']
+  selector: 'app-mixed-carousel',
+  templateUrl: './mixed-carousel.component.html',
+  styleUrls: ['./mixed-carousel.component.css']
 })
-export class TvCarouselComponent implements OnInit {
+export class MixedCarouselComponent implements OnInit {
   @Input() data: any;
   @Input() continue: any;
   public mobile: any;
@@ -47,6 +47,6 @@ export class TvCarouselComponent implements OnInit {
   }
 
   reloadPage(id: any) {
-    window.location.href = `/watch/tv/${id}`;
+    window.location.href = `/watch/movie/${id}`;
   }
 }

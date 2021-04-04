@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { VideoComponent } from './components/video/video.component';
 import { TvCarouselComponent } from './components/tv-carousel/tv-carousel.component';
 import { CastDetailsComponent } from './components/cast-details/cast-details.component';
+import { MixedCarouselComponent } from './components/mixed-carousel/mixed-carousel.component';
 
 // @ts-ignore
 @NgModule({
@@ -41,7 +42,8 @@ import { CastDetailsComponent } from './components/cast-details/cast-details.com
     TypeAheadComponent,
     VideoComponent,
     TvCarouselComponent,
-    CastDetailsComponent
+    CastDetailsComponent,
+    MixedCarouselComponent
   ],
   imports: [
     BrowserModule,

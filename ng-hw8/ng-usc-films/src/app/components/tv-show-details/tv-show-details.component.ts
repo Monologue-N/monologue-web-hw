@@ -98,14 +98,17 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
     this.postsService.getTvShowDetails(this.id).subscribe(res => {
       this.tvShowDetails = res;
       this.mediaType = 'tv';
-      this.title = this.tvShowDetails.title;
+      this.title = this.tvShowDetails.name;
       this.poster_path = this.tvShowDetails.poster_path;
       // tslint:disable-next-line:radix
-      this.releaseYear = parseInt(this.tvShowDetails.release_date);
+      this.releaseYear = parseInt(this.tvShowDetails.first_air_date);
       this.voteAverage = parseFloat(this.tvShowDetails.vote_average).toFixed(1);
       // tslint:disable-next-line:radix
-      this.hours = Math.floor(this.tvShowDetails.runtime / 60);
-      this.minutes = this.tvShowDetails.runtime - this.hours * 60;
+      if (this.tvShowDetails.episode_run_time) {
+        this.hours = Math.floor(this.tvShowDetails.episode_run_time[0] / 60);
+        this.minutes = this.tvShowDetails.episode_run_time[0] - this.hours * 60;
+        console.log('[episode_run_time] ' + this.tvShowDetails.episode_run_time[0]);
+      }
       for (const genre of this.tvShowDetails.genres) {
         this.genres.push(genre.name);
       }
@@ -225,7 +228,7 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
       }
     }
     // console.log('[addToContinueWatching] ' + this.title);
-    continueWatching.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\"}`);
+    continueWatching.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "type": "tv"}`);
     this.myStorage.setItem('continue_watching', JSON.stringify(continueWatching));
     // console.log(this.myStorage);
   }
@@ -305,7 +308,7 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
       }
     }
     // if (flag === 'false') {
-    watchlist.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "type": \"${this.mediaType}\"}`);
+    watchlist.unshift(`{"id": ${this.id}, "title": \"${this.title}\", "poster_path": \"${this.poster_path}\", "type": "tv"}`);
     // }
     this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
     console.log(window.localStorage);
