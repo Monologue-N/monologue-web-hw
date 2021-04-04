@@ -40,6 +40,17 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private postsService: PostsService) { }
 
   ngOnInit(): void {
+    if (window.location.pathname === '/mylist') {
+      // @ts-ignore
+      document.getElementById('my-list').className = 'nav-link active';
+      // @ts-ignore
+      document.getElementById('home').className = 'nav-link';
+    } else {
+      // @ts-ignore
+      document.getElementById('home').className = 'nav-link active';
+      // @ts-ignore
+      document.getElementById('my-list').className = 'nav-link';
+    }
     this.routeSub = this.route.params.subscribe(params => {
       // console.log(params);
       console.log(params.id);

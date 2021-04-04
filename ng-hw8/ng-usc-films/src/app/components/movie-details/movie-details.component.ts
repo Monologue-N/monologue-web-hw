@@ -42,6 +42,18 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (window.location.pathname === '/mylist') {
+      // @ts-ignore
+      document.getElementById('my-list').className = 'nav-link active';
+      // @ts-ignore
+      document.getElementById('home').className = 'nav-link';
+    } else {
+      // @ts-ignore
+      document.getElementById('home').className = 'nav-link active';
+      // @ts-ignore
+      document.getElementById('my-list').className = 'nav-link';
+    }
+
     this.routeSub = this.route.params.subscribe(params => {
       // console.log(params);
       console.log(params.id);
@@ -69,6 +81,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
           // console.log(array);
         }
         // traverse continue watching list
+        // tslint:disable-next-line:prefer-for-of
         for (let idx = 0; idx < array.length; idx++) {
           // console.log('[each one] ' + JSON.parse(array[idx]).title);
           // console.log(parseInt(JSON.parse(array[idx]).id) === parseInt(this.id));

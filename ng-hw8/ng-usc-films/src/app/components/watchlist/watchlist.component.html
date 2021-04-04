@@ -8,10 +8,10 @@
   <div style="color: white; font-weight: bolder; font-size: 36px; margin-left: 10%; margin-bottom: 5%">
     My WatchList
   </div>
-  <div class="my-list-container" style="background: purple">
+  <div class="my-list-container">
   <div *ngFor="let six of dataArray">
-    <div  class="watchlist-six-wrapper" style="background: darkgoldenrod">
-        <div class="watchlist-wrapper"  style="background: #1ea2f1" *ngFor="let one of six">
+    <div  class="watchlist-six-wrapper">
+        <div class="watchlist-wrapper" *ngFor="let one of six">
           <img class="watchlist-img" routerLink="/watch/{{one.type}}/{{one.id}}" [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt=""/>
           <div class="overlay">
             <div class="text">{{one.title}}</div>

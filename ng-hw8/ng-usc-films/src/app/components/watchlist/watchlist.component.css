@@ -1,12 +1,11 @@
 .my-list-container {
-  /*height: 73vh;*/
-  margin-left: 10%;
+  margin-left: 9%;
   width: 80%;
+  min-height: 50vh;
 }
 
 .watchlist-six-wrapper {
   height: min-content;
-  /*margin-left: 10%;*/
   width: 100%;
   display: flex;
   text-align: left;
@@ -15,18 +14,21 @@
 
 .watchlist-wrapper {
   height: min-content;
-  width: 16%;
+  width: 14.7%;
   margin-right: 2%;
+  margin-bottom: 2%;
+  position: relative;
 }
 
 .watchlist-wrapper > img {
   width: 100%;
 }
 
-
-.watchlist-wrapper > img:hover {
-  cursor: pointer;
+.watchlist-wrapper:hover .watchlist-wrapper > img {
   transform: scale(1.05);
+}
+.watchlist-wrapper:hover {
+  cursor: pointer;
 }
 
 .overlay {
@@ -39,10 +41,11 @@
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  background: linear-gradient(0deg, rgba(255, 0, 0, 1) 10%, rgba(255, 255, 255, 0));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 255, 255, 0));
+  align-items: center;
 }
 
-.wrapper:hover .overlay {
+.watchlist-wrapper:hover .overlay {
   opacity: 1;
 }
 
@@ -50,10 +53,10 @@
   color: white;
   font-size: 20px;
   position: absolute;
-  bottom: 10%;
-  left: 15%;
+  bottom: 2%;
+  left: 50%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  text-align: right;
+  text-align: center;
 }
