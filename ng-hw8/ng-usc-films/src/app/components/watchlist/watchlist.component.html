@@ -31,9 +31,9 @@
 <!--    </div>-->
 <!--  </div>-->
   <div class="six-wrapper-container" *ngFor="let sixData of dataArray" style="margin-left: 10%">
-    <div class="six-wrapper" *ngFor="let oneData of sixData" style="display: inline;">
-      <div class="wrapper" *ngIf="oneData.id" style="display: inline;">
-        <a href="" routerLink="/watch/{{oneData.type}}/{{oneData.id}}">
+    <div *ngFor="let oneData of sixData" style="width: 12%; display: inline; ">
+      <div class="wrapper2" *ngIf="oneData.id" style="display: inline; position: relative; width: 100%;">
+        <a href="" routerLink="/watch/{{oneData.type}}/{{oneData.id}}" class="img-wrapper">
           <img class="watchlist-img col"  [src]="'https://image.tmdb.org/t/p/w500' + oneData.poster_path" alt="Random first slide" style="width:13%; margin-right: 20px; text-align: left; display: inline;">
         </a>
         <div class="overlay" style="display: inline;">

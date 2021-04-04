@@ -1,10 +1,10 @@
 <div class="container" style="margin-left: 1%">
   <div *ngIf="dataArray">
-    <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" style="width: 120%;">
+    <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" [interval] = "0"  style="width: 120%;">
       <ng-template ngbSlide *ngFor="let sixData of dataArray">
         <div class="six-wrapper-container">
           <div class="six-wrapper" *ngFor="let oneData of sixData">
-              <div class="wrapper" *ngIf="oneData.id">
+              <div class="wrapper" *ngIf="oneData.id" style="position: relative">
                 <a href="" routerLink="/watch/movie/{{oneData.id}}" (click)="reloadPage(oneData.id)">
                   <img [src]="'https://image.tmdb.org/t/p/w500' + oneData.poster_path" alt="Random first slide">
                 </a>
