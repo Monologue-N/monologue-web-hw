@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ElementRef} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../../services/posts.service';
@@ -37,7 +37,7 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
   myStorage = window.localStorage;
   private selected: any;
 
-  constructor(private route: ActivatedRoute, private postsService: PostsService) { }
+  constructor(private route: ActivatedRoute, private postsService: PostsService, private elementRef: ElementRef) { }
 
   ngOnInit(): void {
     if (window.location.pathname === '/mylist') {
@@ -194,6 +194,14 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
         } else {
           review.created_at = `${mo} ${da}, ${newDate.getFullYear()}, ${newDate.getHours() - 12}:${min}:${sec} PM`;
         }
+        console.log(review.rating);
+
+        if (!review.author_details.rating) {
+          review.rating = 0;
+        } else {
+          review.rating = review.author_details.rating;
+        }
+        console.log(review.rating);
       }
     });
     // fetch recommended movies data
@@ -246,6 +254,14 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
 
 
   getCastDetails(person: string) {
+    // @ts-ignore
+    // document.getElementById('layout').style.overflow =  'hidden';
+    // this.elementRef.nativeElement.ownerDocument.body.style = 'body::-webkit-scrollbar: { overflow: hidden; }';
+    this.elementRef.nativeElement.ownerDocument.body.style.overflow = 'hidden';
+    // @ts-ignore
+    document.getElementById('mask').style.display = 'block';
+    // @ts-ignore
+    document.getElementById('mask').style.background = 'rgba(0,0,0,0.6)';
     // this.elementRef.nativeElement.ownerDocument.body.style.position = 'fixed';
     this.postsService.getCastDetails(person).subscribe(res => {
       this.castDetails = res;

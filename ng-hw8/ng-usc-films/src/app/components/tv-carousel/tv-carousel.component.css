@@ -1,62 +1,94 @@
 ngb-carousel {
-  /*width: 1200px;*/
-  /*text-align: center;*/
-  margin-top: 2%;
-  /*margin-left: 20%;*/
   outline: none;
-  /*height: 300px;*/
-  /*overflow: hidden;*/
-  padding-left: 12%;
-  padding-right: 2%;
   background-color: transparent;
+  width: 100%;
+  text-align: center;
+  align-items: center;
 }
 
-.wrapper:hover{
-  transform: scale(1.05);
+.my-carousel_container {
+
+}
+.my-carousel_container::ng-deep.carousel-inner {
+  padding: 2%;
+}
+.my-carousel_container::ng-deep.slide {
+  padding: 2%;
+}
+
+.my-carousel_container::ng-deep.carousel-control-prev {
+  left: -10%;
+}
+
+.my-carousel_container::ng-deep.carousel-control-next {
+  right: -10%;
+}
+
+.container {
+  left: auto;
+  right: auto;
+  text-align: center;
 }
 
 .six-wrapper {
-  display: inline;
+  height: min-content;
+  /*width: 80%;*/
+  display: flex;
+  text-align: center;
+  /*margin-left: 12%;*/
 }
+
 
 .wrapper {
-  display: inline;
-  padding-right: 2.5%;
+  height: min-content;
+  width: 14.7%;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  position: relative;
 }
 
-.wrapper > a > img {
-  width: 13%;
+.wrapper > img {
+  width: 100%;
 }
 
-.wrapper > a > img:hover {
-  transform: scale(1.05);
+.wrapper:hover .carousel-img{
+  transform: scale(1.08);
+}
+.wrapper:hover {
+  cursor: pointer;
 }
 
-.six-wrapper-container {
-  margin-bottom: 7%;
+.overlay {
+  position: absolute;
+  top: 30%;
+  /*bottom: 0;*/
+  left: -5%;
+  right: 0;
+  height: 75%;
+  width: 110%;
+  opacity: 0;
+  transition: .5s ease;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0));
+  align-items: center;
+  text-align: center;
 }
 
-
-ngb-carousel:hover .mask {
+.wrapper:hover .overlay {
   opacity: 1;
 }
 
-.mask {
-  opacity: 0;
-  padding-bottom: 10%;
-  position: absolute;
-  width: 13%;
-  height: 50%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0));
-}
-
-.wrapper:hover .wrapper > a > img{
-  transform: scale(1.05);
-}
-
-.white-text {
+.text {
   color: white;
-  margin-top: 10%;
-  text-align: left;
-  margin-left: 10%;
+  font-size: 20px;
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
+
+
+
+

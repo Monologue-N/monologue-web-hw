@@ -194,6 +194,14 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
           } else {
             review.created_at = `${mo} ${da}, ${newDate.getFullYear()}, ${newDate.getHours() - 12}:${min}:${sec} PM`;
           }
+          console.log(review.rating);
+
+          if (!review.author_details.rating) {
+            review.rating = 0;
+          } else {
+            review.rating = review.author_details.rating;
+          }
+          console.log(review.rating);
         }
     });
     // fetch recommended movies data
@@ -246,7 +254,15 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
 
   getCastDetails(person: string) {
-    // this.elementRef.nativeElement.ownerDocument.body.style.position = 'fixed';
+    // @ts-ignore
+    // document.getElementById('layout').style.overflow =  'hidden';
+    // this.elementRef.nativeElement.ownerDocument.body.style = 'body::-webkit-scrollbar: { overflow: hidden; }';
+    this.elementRef.nativeElement.ownerDocument.body.style.overflow = 'hidden';
+    // @ts-ignore
+    document.getElementById('mask').style.display = 'block';
+    // @ts-ignore
+    document.getElementById('mask').style.background = 'rgba(0,0,0,0.6)';
+
     this.postsService.getCastDetails(person).subscribe(res => {
       this.castDetails = res;
     });
