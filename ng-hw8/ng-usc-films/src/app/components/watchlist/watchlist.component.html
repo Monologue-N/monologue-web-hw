@@ -4,10 +4,27 @@
     </div>
 </div>
 
-<div *ngIf="array.length > 0" class="container-fluid">
-    <div *ngFor="let one of array" class="row flex-row flex-nowrap">
-      <div class="col-3">
-        <img [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt="" style="width: 200px; margin-right: 20px;">
+<!--<div *ngIf="array.length > 0" class="container-fluid">-->
+<!--  <div style="color: white; font-weight: bolder; font-size: 36px; height: 60vh; margin-left: 10%">-->
+<!--    My WatchList-->
+<!--  </div>-->
+<!--    <div *ngFor="let one of array" class="row flex-row flex-nowrap">-->
+<!--      <div class="col-3">-->
+<!--        <img [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt="" style="width: 200px; margin-right: 20px;">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div  *ngIf="array.length > 0" class="">
+  <div style="color: white; font-weight: bolder; font-size: 36px; margin-left: 10%; margin-bottom: 5%">
+    My WatchList
+  </div>
+  <div class="" style="margin-left: 10%">
+    <div *ngFor="let four of dataArray" style="">
+      <div *ngFor="let one of four" style="display: inline; text-align: left;">
+        <img class="col" [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt="" style="width:13%; margin-right: 20px; text-align: left;">
       </div>
+      <hr>
     </div>
+  </div>
 </div>

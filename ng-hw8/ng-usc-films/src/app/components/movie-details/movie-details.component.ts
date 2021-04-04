@@ -333,6 +333,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       if (this.myStorage.getItem('watchlist')) {
         // check if this id exists
         watchlist = JSON.parse(this.myStorage.getItem('watchlist') as string);
+        // console.log('[you have] ' + continueWatching);
         const array = [];
         for (const one of watchlist) {
           array.push(one);
@@ -340,19 +341,23 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         }
         // traverse continue watching list
         for (let idx = 0; idx < array.length; idx++) {
-          console.log('[each one] ' + JSON.parse(array[idx]).title);
+          // console.log('[each one] ' + JSON.parse(array[idx]).title);
+          // console.log(parseInt(JSON.parse(array[idx]).id) === parseInt(this.id));
+          // console.log('json id ' + JSON.parse(array[idx]).id + 'type' + typeof(JSON.parse(array[idx]).id));
+          // console.log('type of ' + typeof(this.id));
           // tslint:disable-next-line:radix
-          console.log(parseInt(JSON.parse(array[idx]).id) === parseInt(this.id));
-          console.log('json id ' + JSON.parse(array[idx]).id + 'type' + typeof(JSON.parse(array[idx]).id));
-          console.log('type of ' + typeof(this.id));
+          // @ts-ignore
           // tslint:disable-next-line:radix
-          if (parseInt(array[idx].id) === parseInt(this.id)) {
+          if (parseInt(JSON.parse(array[idx]).id) === parseInt(this.id)) {
+            // console.log('[before]' + array);
             array.splice(idx, 1);
+            // console.log('[addToContinueWatching]' + array);
           }
         }
         watchlist = array;
       }
     }
+    // console.log('[addToContinueWatching] ' + this.title);
     this.myStorage.setItem('watchlist', JSON.stringify(watchlist));
     console.log(window.localStorage);
     // @ts-ignore

@@ -32,8 +32,7 @@ export class MultiCarouselComponent implements OnInit {
     // console.log(this.data);
     let j = -1;
     if (this.data) {
-      // console.log('[transfromData] ' + this.data[0].poster_path);
-      for (let i = 0; i < this.data.length; i++) {
+      for (let i = 0; i < this.data.length && i < 24; i++) {
         if (i % 6 === 0) {
           j++;
           this.dataArray[j] = [];
