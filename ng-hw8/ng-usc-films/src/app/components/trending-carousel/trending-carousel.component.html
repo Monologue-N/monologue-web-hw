@@ -7,8 +7,8 @@
                     <a href="" routerLink="/watch/movie/{{posts[i].id}}">
                         <img [src]="'https://image.tmdb.org/t/p/w780/' + posts[i].backdrop_path" className="img-fluid" alt="" style="align-content: center; text-align: center;"/>
                     </a>
-                  <div class="mask">
-                    <p class="white-text">{{posts[i].title}}</p>
+                  <div class="overlay">
+                    <p class="text">{{posts[i].title}}</p>
                   </div>
                 </div>
               </div>

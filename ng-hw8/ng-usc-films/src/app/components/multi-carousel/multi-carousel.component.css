@@ -42,7 +42,7 @@ ngb-carousel {
 
 }
 
-ngb-carousel:hover .mask {
+.wrapper > a > img:hover .mask {
   opacity: 1;
 }
 

@@ -7,11 +7,7 @@
           <ngb-highlight class="highlight-item" [result]="r.title" [term]="t"></ngb-highlight>
         </div>
       </ng-template>
-      <input id="typeahead-http" type="text" class="form-control mx-sm-3" (selectItem)="onSelect()" [class.is-invalid]="searchFailed" [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Search" [resultTemplate]="rt"/>
-      <!--    <small *ngIf="searching" class="form-text text-muted">searching...</small>-->
-      <!--    <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>-->
+      <input id="typeahead-http" type="text" class="form-control mx-sm-3" (selectItem)="onSelect($event)" [class.is-invalid]="searchFailed" [(ngModel)]="model"  [ngbTypeahead]="search" placeholder="Search" [resultTemplate]="rt"/>
     </div>
   </fieldset>
   <hr>
-
-

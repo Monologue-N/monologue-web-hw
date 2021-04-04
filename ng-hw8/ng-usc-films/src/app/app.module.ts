@@ -8,6 +8,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import {Router, ActivatedRoute, ParamMap, RouterModule} from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,6 +56,7 @@ import { MixedCarouselComponent } from './components/mixed-carousel/mixed-carous
     YouTubePlayerModule,
     NgScrollbarModule,
     ScrollingModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

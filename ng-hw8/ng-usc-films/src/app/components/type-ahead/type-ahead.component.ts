@@ -4,7 +4,8 @@ import {debounceTime, distinctUntilChanged, switchMap, catchError, tap} from 'rx
 import { SearchService } from '../../services/search.service';
 import { MultiSearchData } from '../../interface/multiSearchData';
 import * as $ from 'jquery';
-
+import {NgbTypeaheadSelectItemEvent} from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-type-ahead',
@@ -12,10 +13,11 @@ import * as $ from 'jquery';
   styleUrls: ['./type-ahead.component.css']
 })
 export class TypeAheadComponent implements OnInit {
+  selectedOne: any;
   model: any;
   searching = false;
   searchFailed = false;
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService, private route: ActivatedRoute, private router: Router ) {}
 
   ngOnInit(): void {
     }
@@ -29,9 +31,18 @@ export class TypeAheadComponent implements OnInit {
     );
   }
 
-  onSelect() {
+  formatter = (result: string) => result.toUpperCase();
+
+  onSelect(selected: any) {
     // @ts-ignore
-    document.getElementById('typeahead-http').setAttribute('ng-reflect-model', '');
+    // document.getElementById('typeahead-http').setAttribute('ng-reflect-model', '');
+    this.selectedOne = selected.item;
+    console.log(this.selectedOne);
+    console.log(this.selectedOne.id);
+    console.log(this.selectedOne.media_type);
+    // @ts-ignore
+    // this.router.navigateByUrl(`/watch/${this.selectedOne.media_type}/${this.selectedOne.id}`);
+    window.location.href = `/watch/${this.selectedOne.media_type}/${this.selectedOne.id}`;
   }
 
 }
