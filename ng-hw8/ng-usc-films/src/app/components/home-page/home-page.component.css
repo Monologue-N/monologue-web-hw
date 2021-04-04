@@ -1,16 +1,16 @@
 .subtitle {
     color: white;
     font-size: 36px;
-    margin-top: 100px;
-    margin-left: 13%;
-  }
+    margin-top: 10vh;
+    text-align: left;
+    margin-left: 10%;
+}
 
 .home-layout{
     min-height: fit-content;
     display: flex;
     flex-direction: column;
 }
-
 
 app-trending-carousel {
   text-align: center;

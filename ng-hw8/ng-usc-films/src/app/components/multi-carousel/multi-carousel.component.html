@@ -5,7 +5,7 @@
         <ng-template ngbSlide *ngFor="let six of dataArray">
           <div  class="six-wrapper">
             <div class="wrapper" *ngFor="let one of six" routerLink="/watch/movie/{{one.id}}" (click)="reloadPage(one.id)">
-              <img [src]="'https://image.tmdb.org/t/p/w500' + one.poster_path" alt="Random first slide">
+              <img class="carousel-img"  [src]="'https://image.tmdb.org/t/p/w500' + one.poster_path" alt="Random first slide">
               <div class="overlay">
                 <div class="text">{{one.title}}</div>
               </div>
