@@ -4,42 +4,21 @@
     </div>
 </div>
 
-<!--<div *ngIf="array.length > 0" class="container-fluid">-->
-<!--  <div style="color: white; font-weight: bolder; font-size: 36px; height: 60vh; margin-left: 10%">-->
-<!--    My WatchList-->
-<!--  </div>-->
-<!--    <div *ngFor="let one of array" class="row flex-row flex-nowrap">-->
-<!--      <div class="col-3">-->
-<!--        <img [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt="" style="width: 200px; margin-right: 20px;">-->
-<!--      </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<div  *ngIf="array.length > 0" class="">
+<div  *ngIf="dataArray.length > 0" class="">
   <div style="color: white; font-weight: bolder; font-size: 36px; margin-left: 10%; margin-bottom: 5%">
     My WatchList
   </div>
-<!--  <div class="" style="margin-left: 10%">-->
-<!--    <div *ngFor="let four of dataArray" style="">-->
-<!--      <div *ngFor="let one of four" style="display: inline; text-align: left;">-->
-<!--        <img class="col watchlist-img" routerLink="/watch/{{one.type}}/{{one.id}}" [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt="" style="position: relative;   width:13%; margin-right: 20px; text-align: left;">-->
-<!--                <div class="overlay" style="display: inline;">-->
-<!--                  <div class="text" style="display: inline;">{{one.title}}</div>-->
-<!--                </div>-->
-<!--      </div>-->
-<!--      <hr>-->
-<!--    </div>-->
-<!--  </div>-->
-  <div class="six-wrapper-container" *ngFor="let sixData of dataArray" style="margin-left: 10%">
-    <div *ngFor="let oneData of sixData" style="width: 12%; display: inline; ">
-      <div class="wrapper2" *ngIf="oneData.id" style="display: inline; position: relative; width: 100%;">
-        <a href="" routerLink="/watch/{{oneData.type}}/{{oneData.id}}" class="img-wrapper">
-          <img class="watchlist-img col"  [src]="'https://image.tmdb.org/t/p/w500' + oneData.poster_path" alt="Random first slide" style="width:13%; margin-right: 20px; text-align: left; display: inline;">
-        </a>
-        <div class="overlay" style="display: inline;">
-          <div class="text" style="display: inline;">{{oneData.title}}</div>
+  <div class="my-list-container" style="background: purple">
+  <div *ngFor="let six of dataArray">
+    <div  class="watchlist-six-wrapper" style="background: darkgoldenrod">
+        <div class="watchlist-wrapper"  style="background: #1ea2f1" *ngFor="let one of six">
+          <img class="watchlist-img" routerLink="/watch/{{one.type}}/{{one.id}}" [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt=""/>
+          <div class="overlay">
+            <div class="text">{{one.title}}</div>
+          </div>
         </div>
-      </div>
+      <hr>
     </div>
+  </div>
   </div>
 </div>

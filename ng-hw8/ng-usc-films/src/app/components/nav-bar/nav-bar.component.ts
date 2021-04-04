@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // console.log(window.location.pathname);
+    // @ts-ignore
+    if (window.location.pathname === '/mylist') {
+      // @ts-ignore
+      document.getElementById('my-list').className = 'nav-link active';
+      // @ts-ignore
+      document.getElementById('home').className = 'nav-link';
+    } else {
+      // @ts-ignore
+      document.getElementById('home').className = 'nav-link active';
+      // @ts-ignore
+      document.getElementById('my-list').className = 'nav-link';
+    }
   }
 
   toggleToHome() {
