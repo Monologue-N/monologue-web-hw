@@ -1,4 +1,5 @@
-<div class="container-fluid">
+
+  <div class="container-fluid">
   <app-trending-carousel *ngIf="posts" [posts]="posts"></app-trending-carousel>
   <div *ngIf="array">
     <div *ngIf="array.length > 0">
@@ -20,3 +21,5 @@
   <div class="subtitle">Trending TV Shows</div>
   <app-tv-carousel *ngIf="trendingTvShows" [data]="trendingTvShows"></app-tv-carousel>
 </div>
+
+

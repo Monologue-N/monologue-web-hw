@@ -8,6 +8,8 @@ import {Observable} from 'rxjs';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
+
+  items = Array.from({length: 1000}, (v, k) => k + 1);
   public message = 'Passing the data!';
   @Output() public posts: any;
   public popularMovies: any;
