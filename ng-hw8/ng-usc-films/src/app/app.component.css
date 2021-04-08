@@ -4,3 +4,9 @@
   position: absolute;
   display: none;
 }
+
+@media only screen and (max-width: 500px) {
+  .layout {
+    overflow-x: hidden;
+  }
+}

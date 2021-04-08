@@ -269,6 +269,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       document.getElementById('mask').style.display = 'block';
       // @ts-ignore
       document.getElementById('mask').style.background = 'rgba(0,0,0,0.6)';
+      // @ts-ignore
+      document.getElementById('cast-details-card').style.overflowY = 'scroll';
+      console.log('here');
 
       this.postsService.getCastDetails(person).subscribe(res => {
         this.castDetails = res;
@@ -282,9 +285,11 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       }
     }
     else if (this.isMobile) {
-      // @ts-ignore
-      // document.getElementById('layout').style.overflow =  'hidden';
-      // this.elementRef.nativeElement.ownerDocument.body.style = 'body::-webkit-scrollbar: { overflow: hidden; }';
+      // const cast = document.createElement('app-cast-details');
+      // cast.setAttribute('target', 'castDetails');
+      // cast.setAttribute('external', 'external');
+      // // @ts-ignore
+      // document.getElementById('cast-details').appendChild(cast);
       this.elementRef.nativeElement.ownerDocument.body.style.overflow = 'hidden';
       // @ts-ignore
       document.getElementById('mask').style.display = 'block';

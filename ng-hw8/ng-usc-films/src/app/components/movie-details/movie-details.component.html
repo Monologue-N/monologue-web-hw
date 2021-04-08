@@ -66,6 +66,7 @@
     <a class="twitter-share-button"
        href="https://twitter.com/intent/tweet?text=Watch%20{{ movieDetails.title }}%0Dhttps://www.youtube.com/watch?v={{ key }}%0D%0A%23USC%20%23CSCI571%20%23FightOn"
        data-size="large"
+       [target]="'_blank'"
        style="font-size: 30px; color: #1ea2f1; margin-right: 10px">
       <i class="fab fa-twitter"></i>
     </a>
@@ -77,8 +78,11 @@
 
 </div>
 
-<div id="cast-details" *ngIf="castDetails && external">
-  <app-cast-details [details]="castDetails" [external]="external"></app-cast-details>
+<div id="cast-details">
+  <div *ngIf="castDetails && external">
+      <app-cast-details [details]="castDetails" [external]="external"></app-cast-details>
+
+  </div>
 </div>
 
 

@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
 import {PostsService} from '../../services/posts.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
@@ -7,7 +7,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   templateUrl: './cast-details.component.html',
   styleUrls: ['./cast-details.component.css']
 })
-export class CastDetailsComponent implements OnInit {
+export class CastDetailsComponent implements OnInit, OnChanges {
   @Input() details: any;
   public gender: any;
   @Input() external: any;
@@ -32,6 +32,12 @@ export class CastDetailsComponent implements OnInit {
     //   }
     // };
   }
+  ngOnChanges(): void {
+    // @ts-ignore
+    document.getElementById('cast-details-card').style.overflow = 'scroll !important';
+    // @ts-ignore
+    document.getElementById('card2').style.height = '98vh';
+  }
 
 
   closeDetails() {
@@ -51,6 +57,10 @@ export class CastDetailsComponent implements OnInit {
     }
 
     else if (this.isMobile) {
+      // @ts-ignore
+      // document.getElementById('cast-details-card').style.overflow = 'scroll !important';
+      // // @ts-ignore
+      // document.getElementById('card2').style.height = '98vh';
       // @ts-ignore
       // document.getElementById('card-details-container').style.background = 'transparent';
       document.getElementById('mask').style.display = 'none';

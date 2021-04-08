@@ -7,7 +7,7 @@
       </button>
     </div>
 
-    <div class="container-fluid" style="overflow-y: scroll; text-align: center">
+    <div class="container-fluid" id="cast-details-card" style="overflow-y: scroll !important; text-align: center; height: 90vh;">
         <img  [src]="'https://image.tmdb.org/t/p/w500/' + details.profile_path" alt="" style="margin-top: 2%; width: 98%; ">
       <div class="row " style="display: block; width: 98%; text-align: center; align-content: center; margin-left: 2%; left: auto; right: auto;">
         <div style="text-align: left; width: 100%">
@@ -47,11 +47,13 @@
 
 
           <div *ngIf="external.twitter_id" style="display: inline;">
-            <a class="twitter-share-button"
+            <a target="_blank"
+              class="twitter-share-button"
                ngbPopover="Visit Twitter"
                triggers="mouseenter:mouseleave"
                href="https://www.twitter.com/{{external.twitter_id}}"
                target="_blank"
+               [target]="'_blank'"
                data-size="large"
                style="font-size: 30px; color: #1ea2f1; margin-right: 10px">
               <i class="fab fa-twitter"></i>
