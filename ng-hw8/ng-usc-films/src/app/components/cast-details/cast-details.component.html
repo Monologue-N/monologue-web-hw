@@ -1,15 +1,16 @@
 <div id="card-details-container2" style="" *ngIf="details && isMobile">
 <!--  <div id="card-mask" style="padding: 100%; background: rgba(0,0,0,0.7); position: fixed;"></div>-->
-  <div class="card" id="card2" style="overflow-y: scroll;  width: 98%; height: 2000px; z-index: 22; position: fixed; align-content: center; left: 1%; top: 1%">
+  <div class="card" id="card2" style=" width: 96%; height: 98vh; z-index: 22; position: fixed; align-content: center; left: 2%; top: 1vh">
     <div class="card-header" *ngIf="details.name" style="font-size: 24px;">{{details.name}}
       <button type="button" class="close" aria-label="Close" (click)="closeDetails()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
 
-    <div class="container-fluid" style="">
-        <img  [src]="'https://image.tmdb.org/t/p/w500/' + details.profile_path" alt="" style="margin-top: 2%; width: 80%; margin-left: 2%; margin-right: 2%; ">
-      <div class="row container-fluid" style="display: block; width: 70%;  margin-left: 2%; margin-top: 2%; ">
+    <div class="container-fluid" style="overflow-y: scroll; text-align: center">
+        <img  [src]="'https://image.tmdb.org/t/p/w500/' + details.profile_path" alt="" style="margin-top: 2%; width: 98%; ">
+      <div class="row " style="display: block; width: 98%; text-align: center; align-content: center; margin-left: 2%; left: auto; right: auto;">
+        <div style="text-align: left; width: 100%">
         <div class="" *ngIf="details.birthday">Birth: {{details.birthday}}</div>
         <div class="" *ngIf="details.place_of_birth">Birth Place: {{details.place_of_birth}}</div>
         <div class="" *ngIf="gender">Gender: {{gender}}</div>
@@ -57,14 +58,21 @@
             </a>
           </div>
         </div>
+
+
+
+      </div>
+      </div>
+
+
+      <div class="row" style=" width: 98%;text-align: left; height: min-content;  margin-top: 2%; margin-left: 2%; margin-right: 2%;  padding-bottom: 2%; display: block">
+        <div style="font-size: 28px;">Biography</div>
+        <div style="overflow: scroll; height: 70%;">{{details.biography}}</div>
       </div>
 
     </div>
 
-    <div class="row" style=" width: 90%; height: 40%;  margin-top: 2%; margin-left: 2%; margin-right: 2%;  padding-bottom: 2%; display: block">
-      <div style="font-size: 28px;">Biography</div>
-      <div style="overflow: scroll; height: 70%;">{{details.biography}}</div>
-    </div>
+
 
   </div>
 </div>
