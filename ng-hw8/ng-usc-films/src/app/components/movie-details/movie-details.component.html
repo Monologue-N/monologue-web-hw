@@ -1,14 +1,14 @@
 <div class="container-fluid box" *ngIf="movieDetails">
 
-  <div class="first-row-container">
-    <div style="width: 750px">
+  <div class="first-row-container container-fluid">
+    <div style="width: 400px; text-align: left; margin-right: 300px;">
       <app-video class="video" [key]="key"></app-video>
     </div>
     <div>
       <div class="card" *ngIf="movieDetails" style="background-color: transparent;
-  color: white; width: 340px">
+  color: white; width: 300px;">
         <div class="card-body">
-          <h5 class="card-title row" style="font-size: 46px; font-weight: normal">{{ movieDetails.title }}</h5>
+          <h5 class="card-title row" style="width: 100%; font-size: 45px; font-weight: normal">{{ movieDetails.title }}</h5>
           <p class="card-text row">{{ movieDetails.tagline }}</p>
           <div class="row">
             <p class="card-text" *ngIf="releaseYear">{{ releaseYear }}&nbsp;&nbsp;|</p>
@@ -86,7 +86,7 @@
   <div class="cast-crew-container">
     <div *ngFor="let person of cast" style="margin-bottom: 15px;">
       <div *ngIf="person.profile_path">
-        <div (click)="getCastDetails(person.id)" class="card cast-member" style="width: 175px; height: 380px; align-items: center; margin-right: 10px; border-radius: 20px; overflow: hidden; border: none">
+        <div (click)="getCastDetails(person.id)" class="card cast-member cast-card-container" style="">
           <div class="">
             <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500/' + person.profile_path" alt="Card image cap" style="width: 100%;">
           </div>

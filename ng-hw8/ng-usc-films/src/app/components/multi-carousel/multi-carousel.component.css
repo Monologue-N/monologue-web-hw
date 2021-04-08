@@ -1,92 +1,194 @@
-ngb-carousel {
-  outline: none;
-  background-color: transparent;
-  width: 100%;
-  text-align: center;
-  align-items: center;
+@media only screen and (min-width: 500px) {
+  ngb-carousel {
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .my-carousel_container {
+
+  }
+  .my-carousel_container::ng-deep.carousel-inner {
+    padding: 2%;
+  }
+  .my-carousel_container::ng-deep.slide {
+    padding: 2%;
+  }
+
+  .my-carousel_container::ng-deep.carousel-control-prev {
+    left: -10%;
+  }
+
+  .my-carousel_container::ng-deep.carousel-control-next {
+    right: -10%;
+  }
+
+  .container {
+    left: auto;
+    right: auto;
+    text-align: center;
+  }
+
+  .six-wrapper {
+    height: min-content;
+    /*width: 80%;*/
+    display: flex;
+    text-align: center;
+    /*margin-left: 12%;*/
+  }
+
+
+  .wrapper {
+    height: min-content;
+    width: 14.7%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    position: relative;
+  }
+
+  .wrapper > img {
+    width: 100%;
+  }
+
+  .wrapper:hover .carousel-img{
+    transform: scale(1.08);
+  }
+  .wrapper:hover {
+    cursor: pointer;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 30%;
+    /*bottom: 0;*/
+    left: -5%;
+    right: 0;
+    height: 75%;
+    width: 110%;
+    opacity: 0;
+    transition: .5s ease;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0));
+    align-items: center;
+    text-align: center;
+  }
+
+  .wrapper:hover .overlay {
+    opacity: 1;
+  }
+
+  .text {
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    bottom: 1%;
+    left: 40%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: left;
+  }
+
 }
 
-.my-carousel_container {
 
-}
-.my-carousel_container::ng-deep.carousel-inner {
-  padding: 2%;
-}
-.my-carousel_container::ng-deep.slide {
-  padding: 2%;
-}
+@media only screen and (max-width: 500px) {
+  ngb-carousel {
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
 
-.my-carousel_container::ng-deep.carousel-control-prev {
-  left: -10%;
-}
+  .my-carousel_container {
 
-.my-carousel_container::ng-deep.carousel-control-next {
-  right: -10%;
-}
+  }
+  .my-carousel_container::ng-deep.carousel-inner {
+    padding: 2%;
+  }
+  .my-carousel_container::ng-deep.slide {
+    padding: 2%;
+  }
 
-.container {
-  left: auto;
-  right: auto;
-  text-align: center;
-}
+  .my-carousel_container::ng-deep.carousel-control-prev {
+    left: -10%;
+  }
 
-.six-wrapper {
-  height: min-content;
-  /*width: 80%;*/
-  display: flex;
-  text-align: center;
-  /*margin-left: 12%;*/
-}
+  .my-carousel_container::ng-deep.carousel-control-next {
+    right: -10%;
+  }
+
+  .container {
+    left: auto;
+    right: auto;
+    text-align: center;
+  }
+
+  .six-wrapper {
+    height: min-content;
+    /*width: 80%;*/
+    display: flex;
+    text-align: center;
+    /*margin-left: 12%;*/
+  }
 
 
-.wrapper {
-  height: min-content;
-  width: 14.7%;
-  margin-right: 2%;
-  margin-bottom: 2%;
-  position: relative;
-}
+  .wrapper {
+    height: min-content;
+    width: 75%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    position: relative;
+    text-align: center;
+    left: auto;
+    right: auto;
+    margin-left: 10%;
+  }
 
-.wrapper > img {
-  width: 100%;
-}
+  .wrapper > img {
+    width: 100%;
+  }
 
-.wrapper:hover .carousel-img{
-  transform: scale(1.08);
-}
-.wrapper:hover {
-  cursor: pointer;
-}
+  .wrapper:hover .carousel-img{
+    transform: scale(1.08);
+  }
+  .wrapper:hover {
+    cursor: pointer;
+  }
 
-.overlay {
-  position: absolute;
-  top: 30%;
-  /*bottom: 0;*/
-  left: -5%;
-  right: 0;
-  height: 75%;
-  width: 110%;
-  opacity: 0;
-  transition: .5s ease;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0));
-  align-items: center;
-  text-align: center;
-}
+  .overlay {
+    position: absolute;
+    top: 30%;
+    /*bottom: 0;*/
+    /*left: -5%;*/
+    right: 0;
+    height: 70%;
+    width: 100%;
+    /*opacity: 0;*/
+    transition: .5s ease;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0));
+    align-items: center;
+    text-align: center;
+  }
 
-.wrapper:hover .overlay {
-  opacity: 1;
-}
+  /*.wrapper:hover .overlay {*/
+  /*  opacity: 1;*/
+  /*}*/
 
-.text {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  bottom: 1%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
+  .text {
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    bottom: 1%;
+    left: 40%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: left;
+  }
+
 }
 
 

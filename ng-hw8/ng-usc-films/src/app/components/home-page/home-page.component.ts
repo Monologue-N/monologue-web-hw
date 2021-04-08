@@ -1,6 +1,7 @@
 import {Component, OnInit, Output} from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import {Observable} from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home-page',

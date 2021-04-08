@@ -6,6 +6,7 @@ import { MultiSearchData } from '../../interface/multiSearchData';
 import * as $ from 'jquery';
 import {NgbTypeaheadSelectItemEvent} from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-type-ahead',

@@ -7,9 +7,9 @@
       </button>
     </div>
 
-    <div class="container-fluid" style=" height: min-content; background: purple; display: flex; flex-direction: row">
+    <div class="container-fluid" style=" height: min-content; display: flex; flex-direction: row">
         <img  [src]="'https://image.tmdb.org/t/p/w500/' + details.profile_path" alt="" style="margin-top: 2%; width: 20%; margin-left: 2%; margin-right: 2%; ">
-      <div class="row container-fluid" style="display: block; width: 70%;  margin-left: 2%; margin-top: 2%; background: darkgoldenrod">
+      <div class="row container-fluid" style="display: block; width: 70%;  margin-left: 2%; margin-top: 2%; ">
         <div class="" *ngIf="details.birthday">Birth: {{details.birthday}}</div>
         <div class="" *ngIf="details.place_of_birth">Birth Place: {{details.place_of_birth}}</div>
         <div class="" *ngIf="gender">Gender: {{gender}}</div>
@@ -61,7 +61,7 @@
 
     </div>
 
-    <div class="row" style=" background: #1ea2f1;  width: 90%; height: 40%;  margin-top: 2%; margin-left: 2%; margin-right: 2%;  padding-bottom: 2%; display: block">
+    <div class="row" style=" width: 90%; height: 40%;  margin-top: 2%; margin-left: 2%; margin-right: 2%;  padding-bottom: 2%; display: block">
       <div style="font-size: 28px;">Biography</div>
       <div style="overflow: scroll; height: 70%;">{{details.biography}}</div>
     </div>

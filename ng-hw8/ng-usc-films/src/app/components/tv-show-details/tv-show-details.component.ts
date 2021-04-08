@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit, ElementRef} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../../services/posts.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-tv-show-details',

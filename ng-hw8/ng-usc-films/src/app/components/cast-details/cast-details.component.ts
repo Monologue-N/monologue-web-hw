@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {PostsService} from '../../services/posts.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-cast-details',

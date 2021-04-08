@@ -3,6 +3,7 @@ import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../../services/posts.service';
 import * as $ from 'jquery';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-movie-details',
