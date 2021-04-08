@@ -23,12 +23,12 @@
     position: relative;
   }
 
-  .wrapper:hover .mask {
-    opacity: 1;
-  }
+  /*.wrapper:hover .mask {*/
+  /*  opacity: 1;*/
+  /*}*/
 
   .mask {
-    opacity: 0;
+    /*opacity: 0;*/
     margin-top: -38%;
     position: absolute;
     padding-bottom: 10%;
@@ -45,9 +45,12 @@
     height : 300px;
   }
 
-  ngb-carousel:hover .wrapper > a > img{
-    transform: scale(1.05);
+  @media(any-pointer: coarse) {
+    ngb-carousel:hover .wrapper > a > img{
+      transform: scale(1.05);
+    }
   }
+
 
   .wrapper {
     height: 350px;
@@ -63,18 +66,16 @@
     right: 0;
     height: 50%;
     width: 100%;
-    opacity: 0;
+    /*opacity: 0;*/
     transition: .5s ease;
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 255, 255, 0));
   }
 
-  @media(any-pointer: coarse) {
-    .wrapper:hover .overlay {
-      opacity: 1;
-    }
-  }
-
-
+  /*@media(any-pointer: coarse) {*/
+  /*  .wrapper:hover .overlay {*/
+  /*    opacity: 1;*/
+  /*  }*/
+  /*}*/
 
   .text {
     color: white;
@@ -88,6 +89,8 @@
     text-align: right;
   }
 }
+
+
 @media only screen and (min-width: 500px) {
   .carousel {
   }

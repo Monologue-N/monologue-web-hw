@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="isDesktop">
   <div *ngIf="dataArray">
     <ngb-carousel  class="my-carousel_container" [showNavigationArrows]="true" [showNavigationIndicators]="true" [interval] = "0">
 <!--      <div class="my-carousel_container" style="background: #1ea2f1">-->
@@ -18,19 +18,25 @@
   </div>
 </div>
 
+<div class="container" *ngIf="isMobile">
+  <div *ngIf="dataArray">
+    <ngb-carousel  class="my-carousel_container" [showNavigationArrows]="true" [showNavigationIndicators]="false" [interval] = "0">
+      <!--      <div class="my-carousel_container" style="background: #1ea2f1">-->
+      <ng-template ngbSlide *ngFor="let six of dataArray">
+        <div  class="six-wrapper">
+          <div class="wrapper" *ngFor="let one of six" routerLink="/watch/movie/{{one.id}}" (click)="reloadPage(one.id)">
+            <img class="carousel-img"  [src]="'https://image.tmdb.org/t/p/w500' + one.poster_path" alt="Random first slide">
+            <div class="overlay">
+              <div class="text">{{one.title}}</div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </ng-template>
+      <!--      </div>-->
+    </ngb-carousel>
+  </div>
+</div>
 
-<!--<ng-template ngbSlide *ngFor="let sixData of dataArray">-->
-<!--  <div class="six-wrapper-container">-->
-<!--    <div class="six-wrapper" *ngFor="let oneData of sixData">-->
-<!--      <div class="wrapper" *ngIf="oneData.id" style="position: relative">-->
-<!--        <a href="" routerLink="/watch/movie/{{oneData.id}}" (click)="reloadPage(oneData.id)">-->
-<!--          <img [src]="'https://image.tmdb.org/t/p/w500' + oneData.poster_path" alt="Random first slide">-->
-<!--        </a>-->
-<!--        <div class="mask">-->
-<!--          <div class="white-text">{{oneData.title}}</div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</ng-template>-->
+
 
