@@ -1,4 +1,26 @@
-<div class="home-layout">
-  <app-trending-carousel></app-trending-carousel>
-  <div class="popular-movies-title">Popular Movies</div>
+
+  <div class="container-fluid">
+  <app-trending-carousel *ngIf="posts" [posts]="posts"></app-trending-carousel>
+  <div *ngIf="array">
+    <div *ngIf="array.length > 0">
+      <div class="subtitle">Continue Watching</div>
+      <app-mixed-carousel [data]="array" [continue]="'true'"></app-mixed-carousel>
+    </div>
+  </div>
+
+
+  <div class="subtitle">Popular Movies</div>
+  <app-multi-carousel *ngIf="popularMovies" [data]="popularMovies"></app-multi-carousel>
+  <div class="subtitle">Top Rated Movies</div>
+  <app-multi-carousel *ngIf="topRatedMovies" [data]="topRatedMovies"></app-multi-carousel>
+  <div class="subtitle">Trending Movies</div>
+  <app-multi-carousel *ngIf="trendingMovies" [data]="trendingMovies"></app-multi-carousel>
+  <div class="subtitle">Popular TV Shows</div>
+  <app-tv-carousel *ngIf="popularTvShows" [data]="popularTvShows"></app-tv-carousel>
+  <div class="subtitle">Top Rated TV Shows</div>
+  <app-tv-carousel *ngIf="topRatedTvShows" [data]="topRatedTvShows"></app-tv-carousel>
+  <div class="subtitle">Trending TV Shows</div>
+  <app-tv-carousel *ngIf="trendingTvShows" [data]="trendingTvShows"></app-tv-carousel>
 </div>
+
+

@@ -1,0 +1,143 @@
+@media only screen and (max-width: 500px) {
+  .my-list-container {
+    margin-left: 17%;
+    width: 80%;
+    min-height: 50vh;
+    text-align: center;
+    align-items: center;
+  }
+
+  .my-watchlist {
+    margin-top: -10%;
+    padding-bottom: 10%;
+  }
+
+  .watchlist-six-wrapper {
+    height: min-content;
+    width: 100%;
+    display: flex;
+    text-align: center;
+  }
+
+
+  .watchlist-wrapper {
+    height: min-content;
+    width: 80%;
+    margin-bottom: 15%;
+    position: relative;
+  }
+
+  .watchlist-wrapper > img {
+    width: 100%;
+  }
+
+  .watchlist-wrapper:hover .watchlist-wrapper > img {
+    transform: scale(1.05);
+  }
+  .watchlist-wrapper:hover {
+    cursor: pointer;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 50%;
+    /*bottom: 0;*/
+    left: 0;
+    right: 0;
+    height: 50%;
+    width: 100%;
+    opacity: 1;
+    transition: .5s ease;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 255, 255, 0));
+    align-items: center;
+  }
+
+  .watchlist-wrapper:hover .overlay {
+    opacity: 1;
+  }
+
+  .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+
+
+@media only screen and (min-width: 500px) {
+  .my-list-container {
+    margin-left: 9%;
+    width: 80%;
+    min-height: 50vh;
+  }
+
+  .watchlist-six-wrapper {
+    height: min-content;
+    width: 100%;
+    display: flex;
+    text-align: left;
+  }
+
+
+  .watchlist-wrapper {
+    height: min-content;
+    width: 14.7%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    position: relative;
+  }
+
+  .watchlist-wrapper > img {
+    width: 100%;
+  }
+
+  .watchlist-wrapper:hover .watchlist-wrapper > img {
+    transform: scale(1.05);
+  }
+  .watchlist-wrapper:hover {
+    cursor: pointer;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 50%;
+    /*bottom: 0;*/
+    left: 0;
+    right: 0;
+    height: 50%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 255, 255, 0));
+    align-items: center;
+  }
+
+  .watchlist-wrapper:hover .overlay {
+    opacity: 1;
+  }
+
+  .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
+

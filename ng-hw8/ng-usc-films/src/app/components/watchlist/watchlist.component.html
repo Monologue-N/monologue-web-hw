@@ -1,1 +1,24 @@
-<p>watchlist works!</p>
+<div *ngIf="array.length === 0">
+    <div style="color: white; font-size: 36px; text-align: center; height: 60vh;">
+      No items found in Watchlist.
+    </div>
+</div>
+
+<div  *ngIf="dataArray.length > 0" class="">
+  <div class="my-watchlist" style="color: white; font-size: 36px; margin-left: 10%; margin-bottom: 2%">
+    My WatchList
+  </div>
+  <div class="my-list-container">
+  <div *ngFor="let six of dataArray">
+    <div  class="watchlist-six-wrapper">
+        <div class="watchlist-wrapper" *ngFor="let one of six">
+          <img class="watchlist-img" routerLink="/watch/{{one.type}}/{{one.id}}" [src]='"https://image.tmdb.org/t/p/w500" + one.poster_path' alt=""/>
+          <div class="overlay">
+            <div class="text">{{one.title}}</div>
+          </div>
+        </div>
+      <hr>
+    </div>
+  </div>
+  </div>
+</div>

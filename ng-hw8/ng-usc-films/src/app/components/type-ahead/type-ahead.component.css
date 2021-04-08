@@ -1,0 +1,36 @@
+ .form-control {
+    width: 200px;
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom-color: white;
+    border-radius: 0;
+  }
+
+  .form-container {
+    right: 5%;
+    position: absolute;
+  }
+
+  @media only screen and (max-width: 414px) {
+    ::ng-deep .navbar-toggler {
+      margin-right: 10%;
+    }
+    .form-container {
+      margin-right: 20%;
+      position: absolute;
+    }
+  }
+
+  ::ng-deep .dropdown-menu{
+    background-color: #050a30;
+    color: white;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 5px;
+  }
+
+  .highlight-item {
+    color: white;
+  }
+
+

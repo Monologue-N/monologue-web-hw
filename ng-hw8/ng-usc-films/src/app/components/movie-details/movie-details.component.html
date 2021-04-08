@@ -1,1 +1,212 @@
-<p>movie-details works!</p>
+<div class="box" *ngIf="movieDetails">
+
+  <div class="first-row-container container-fluid">
+    <div class="youtube-container" style="width: 400px;">
+      <app-video class="video" [key]="key"></app-video>
+    </div>
+    <div>
+      <div class="card detail-container" *ngIf="movieDetails" style="">
+        <div class="card-body">
+          <h5 class="card-title row">{{ movieDetails.title }}</h5>
+          <p class="card-text row grey-text" style="font-style: italic; font-size: 18px;">{{ movieDetails.tagline }}</p>
+          <div class="row">
+            <p class="card-text grey-text" *ngIf="releaseYear">{{ releaseYear }}&nbsp;&nbsp;|</p>
+            <p class="card-text grey-text">&nbsp;&nbsp;&#9733; &nbsp;{{ voteAverage }}&nbsp;&nbsp;|</p>
+            <p class="card-text grey-text" *ngIf="hours && minutes">&nbsp;&nbsp;{{ hours }}hrs&nbsp;{{ minutes }}mins &nbsp;</p>
+          </div>
+          <div class="row">
+            <div class="subtitle">Genres:</div>
+            <div class="card-text grey-text" style="display: inline" *ngIf="genres">&nbsp;{{ genres }}</div>
+          </div>
+          <div class="row">
+            <p>Spoken Languages:</p>
+            <p class="card-text grey-text" *ngIf="spokenLanguages">&nbsp;{{ spokenLanguages }}</p>
+          </div>
+          <div id="watchlist-container" *ngIf="btnContent">
+            <button id="watchlist-btn"class="btn btn-primary row" (click)="toggle()" style="font-size: 18px;">
+        {{btnContent}}
+              <!--              <div *ngIf="watchlistFlag === 'true'" id="remove">-->
+<!--                  Remove from watchlist-->
+<!--              </div>-->
+<!--              <div *ngIf="watchlistFlag !== 'true'" id="add">-->
+<!--                Add to watchlist-->
+<!--              </div>-->
+            </button>
+
+            <div id="add-alert"  class="init alert alert-success alert-dismissible fade show" role="alert" style="margin-left: -14px; margin-top: 10px;">
+              Added to watchlist.
+              <button type="button" class="close" (click)="hideAddedAlert()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div id="remove-alert"  class="init alert alert-danger alert-dismissible fade show" role="alert" style="margin-left: -14px; margin-top: 10px;">
+              Removed to watchlist.
+              <button type="button" class="close" (click)="hideRemovedAlert()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+  <div class="container-fluid" style="display: block; margin-bottom: 20px;">
+    <div class="card-text text-white description">Description</div>
+    <p class="grey-text overview" *ngIf="overview">{{ overview }}</p>
+  </div>
+
+<div class="container-fluid">
+  <div style="display: block; margin-bottom: 40px; text-align: left;">
+    <div>Share</div>
+    <a class="twitter-share-button"
+       href="https://twitter.com/intent/tweet?text=Watch%20{{ movieDetails.title }}%0Dhttps://www.youtube.com/watch?v={{ key }}%0D%0A%23USC%20%23CSCI571%20%23FightOn"
+       data-size="large"
+       [target]="'_blank'"
+       style="font-size: 30px; color: #1ea2f1; margin-right: 10px">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a target="_blank" style="font-size: 30px; color: #0926cd;" href="https://www.facebook.com/sharer/sharer.php?u=https://www.youtube.com/watch?v={{ key }}" class="fb-xfbml-parse-ignore">
+      <i class="fab fa-facebook-square"></i>
+    </a>
+  </div>
+</div>
+
+</div>
+
+<div id="cast-details">
+  <div *ngIf="castDetails && external">
+      <app-cast-details [details]="castDetails" [external]="external"></app-cast-details>
+
+  </div>
+</div>
+
+
+<div class="full-cast-title" style="">Full Cast and Crew</div>
+<div class="outer-container  container-fluid" style="margin-left: -2%;">
+  <div *ngIf="isDesktop">
+    <div class="cast-crew-container" style="width: 1100px;">
+      <div *ngFor="let person of cast" style="margin-bottom: 15px;">
+        <div *ngIf="person.profile_path">
+          <div (click)="getCastDetails(person.id)" class="card cast-member cast-card-container" style="">
+            <div class="">
+              <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500/' + person.profile_path" alt="Card image cap" style="width: 100%;">
+            </div>
+            <div class="card-body" style="text-align: center">
+              <p class="card-text" style="margin-top: -7px; font-size: 14px; font-weight: bold; width: 170px">{{ person.name }}</p>
+              <p class="card-text" style="font-weight: bolder; margin-top: -7px;">AS</p>
+              <p class="card-text" class="cast-character" style="">{{ person.character }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="isMobile" style="margin-left: 2%;">
+    <div class="cast-crew-container" style="">
+      <div *ngFor="let person of cast" style="margin-bottom: 15px;">
+        <div *ngIf="person.profile_path">
+          <div (click)="getCastDetails(person.id)" class="card cast-member cast-card-container" style="">
+            <div class="">
+              <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500/' + person.profile_path" alt="Card image cap" style="width: 100%;">
+            </div>
+            <div class="card-body" style="text-align: center">
+              <p class="card-text" style="margin-top: -7px; font-size: 14px; font-weight: bold; width: 170px">{{ person.name }}</p>
+              <p class="card-text" style="font-weight: bolder; margin-top: -7px;">AS</p>
+              <p class="card-text" class="cast-character" style="">{{ person.character }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div style="width: 100%; margin-left: 11%; margin-top: 100px;" class="row">
+  <div style="color: white; font-size: 36px; ">Reviews</div>
+  <div style="color: darkgray; font-size: 36px; display: inline; font-weight: bolder; margin-left: 10px;" *ngIf="reviews">{{ reviews.length }}</div>
+</div>
+<div *ngIf="reviews && isDesktop"  style="margin-left: 11%; margin-right: 11%;  margin-top:20px;">
+    <div *ngFor="let review of reviews">
+      <div class="card" style="width: 100%; height: min-content; border-radius: 10px; margin-bottom: 20px;" >
+          <img class="card-img-overlay" style="width: 130px; height: 130px; border-radius: 50%; margin-left: 10px;"  [src]="review.avatar_path" alt="">
+
+          <div class="card-body" style="margin-left: 200px;">
+            <div class="card-text" style="font-size: 22px; font-weight: bold; ">A review created by {{review.author}}&nbsp;&nbsp;
+            <div style="display: inline; color: white; background: black; padding-left: 10px; padding-right: 10px; border-radius: 20px; font-weight: normal; font-size: 20px;">&#9733;&nbsp;{{review.rating}}</div>
+            </div>
+            <p class="card-text" style="color: gray">Written by {{review.author}} on {{review.created_at}}</p>
+            <p class="card-text review-content">{{review.content}}</p>
+            <a [href]="review.url" style="margin-bottom: -10px; text-decoration: underline">Read the rest</a>
+          </div>
+      </div>
+    </div>
+</div>
+
+<div *ngIf="reviews && isMobile" style="margin-left: 11%; margin-right: 11%;  margin-top:20px;">
+  <div *ngFor="let review of reviews">
+    <div class="card" style="width: 100%; height: min-content; border-radius: 10px; margin-bottom: 20px;" >
+      <img class="card-img-top" style="width: 70px; height: 70px; border-radius: 50%; margin-left: 40px; margin-top:20px;"  [src]="review.avatar_path" alt="">
+
+      <div class="card-body" style="margin-left: 10px;">
+        <div class="card-text" style="font-size: 22px; margin-bottom: 10px; ">A review created by {{review.author}}&nbsp;&nbsp;
+        </div>
+          <div style="display: inline; color: white; background: black; padding: 2px 10px; border-radius: 20px; font-size: 18px;">
+            <div class="fa fa-star" >&nbsp;</div>
+            <div style="display: inline; color: white;  font-weight: normal; font-size: 18px;">{{review.rating}}</div>
+          </div>
+        <span>&nbsp;</span>
+        <p class="card-text" style="color: gray; margin-top: 20px;">Written by {{review.author}} on {{review.created_at}}</p>
+        <p class="card-text review-content">{{review.content}}</p>
+        <a [href]="review.url" style="margin-bottom: -10px; text-decoration: underline">Read the rest</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div *ngIf="isMobile" class="container-fluid">
+  <div style="width: 180px; margin-left: 11%; margin-top: 100px;" class="row">
+    <div style="color: white; font-size: 36px; ">Recommended Movies</div>
+  </div>
+  <div *ngIf="recommendedMovies">
+    <div *ngIf="recommendedMovies.results.length !== 0">
+      <app-multi-carousel [data]="recommendedMovies"></app-multi-carousel>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isDesktop">
+  <div style="width: 100%; margin-left: 11%; margin-top: 100px;" class="row">
+    <div style="color: white; font-size: 36px; ">Recommended Movies</div>
+  </div>
+  <div *ngIf="recommendedMovies">
+    <div *ngIf="recommendedMovies.results.length !== 0">
+      <app-multi-carousel [data]="recommendedMovies"></app-multi-carousel>
+    </div>
+  </div>
+</div>
+
+
+
+<div style="width: 100%; margin-left: 12%; margin-top: 100px;" class="row container-fluid">
+  <div style="color: white; font-size: 36px; ">Similar Movies</div>
+</div>
+<div *ngIf="similarMovies">
+  <div *ngIf="similarMovies.results.length !== 0">
+    <app-multi-carousel [data]="similarMovies"></app-multi-carousel>
+  </div>
+</div>
+
+

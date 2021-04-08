@@ -1,0 +1,153 @@
+<div id="card-details-container2" style="" *ngIf="details && isMobile">
+<!--  <div id="card-mask" style="padding: 100%; background: rgba(0,0,0,0.7); position: fixed;"></div>-->
+  <div class="card" id="card2" style=" width: 96%; height: 98vh; z-index: 22; position: fixed; align-content: center; left: 2%; top: 1vh">
+    <div class="card-header" *ngIf="details.name" style="font-size: 24px;">{{details.name}}
+      <button type="button" class="close" aria-label="Close" (click)="closeDetails()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="container-fluid" id="cast-details-card" style="overflow-y: scroll !important; text-align: center; height: 90vh;">
+        <img  [src]="'https://image.tmdb.org/t/p/w500/' + details.profile_path" alt="" style="margin-top: 2%; width: 98%; ">
+      <div class="row " style="display: block; width: 98%; text-align: center; align-content: center; margin-left: 2%; left: auto; right: auto;">
+        <div style="text-align: left; width: 100%">
+        <div class="" *ngIf="details.birthday">Birth: {{details.birthday}}</div>
+        <div class="" *ngIf="details.place_of_birth">Birth Place: {{details.place_of_birth}}</div>
+        <div class="" *ngIf="gender">Gender: {{gender}}</div>
+        <div class="" *ngIf="details.known_for_department">Known for: {{details.known_for_department}}</div>
+        <div class="" *ngIf="details.also_known_as">Also known as: {{details.also_known_as}}</div>
+        <div *ngIf="external">
+        <div *ngIf="external.imdb_id" style="display: inline; margin-right: 10px;">
+          <a target="_blank"
+             ngbPopover="Visit IMDB"
+             triggers="mouseenter:mouseleave"
+             style="font-size: 30px; color: darkgoldenrod;" href="https://www.imdb.com/name/{{external.imdb_id}}" target="_blank">
+            <i class="fab fa-imdb"></i>
+          </a>
+        </div>
+
+        <div *ngIf="external.instagram_id" style="display: inline;margin-right: 10px;">
+          <a target="_blank"
+             ngbPopover="Visit Instagram"
+             triggers="mouseenter:mouseleave"
+             style="font-size: 30px; color: purple;" href="https://www.instagram.com/{{external.instagram_id}}" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+
+
+          <div *ngIf="external.facebook_id" style="display: inline;margin-right: 10px;">
+            <a target="_blank"
+               ngbPopover="Visit Facebook"
+               triggers="mouseenter:mouseleave"
+               style="font-size: 30px; color: #0926cd;" href="https://www.facebook.com/{{external.facebook_id}}" target="_blank">
+              <i class="fab fa-facebook-square"></i>
+            </a>
+          </div>
+
+
+          <div *ngIf="external.twitter_id" style="display: inline;">
+            <a target="_blank"
+              class="twitter-share-button"
+               ngbPopover="Visit Twitter"
+               triggers="mouseenter:mouseleave"
+               href="https://www.twitter.com/{{external.twitter_id}}"
+               target="_blank"
+               [target]="'_blank'"
+               data-size="large"
+               style="font-size: 30px; color: #1ea2f1; margin-right: 10px">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+
+
+      </div>
+      </div>
+
+
+      <div class="row" style=" width: 98%;text-align: left; height: min-content;  margin-top: 2%; margin-left: 2%; margin-right: 2%;  padding-bottom: 2%; display: block">
+        <div style="font-size: 28px;">Biography</div>
+        <div style="overflow: scroll; height: 70%;">{{details.biography}}</div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+</div>
+
+
+
+<div id="card-details-container" style="" *ngIf="details && isDesktop">
+  <!--  <div id="card-mask" style="padding: 100%; background: rgba(0,0,0,0.7); position: fixed;"></div>-->
+  <div class="card" id="card" style="width: 60%; height: 70%; z-index: 22; position: fixed; align-content: center; left: 20%; top: 10%;">
+    <div class="card-header" *ngIf="details.name" style="font-size: 24px;">{{details.name}}
+      <button type="button" class="close" aria-label="Close" (click)="closeDetails()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="container-fluid" style=" height: min-content; display: flex; flex-direction: row">
+      <img  [src]="'https://image.tmdb.org/t/p/w500/' + details.profile_path" alt="" style="margin-top: 2%; width: 20%; margin-left: 2%; margin-right: 2%; ">
+      <div class="row container-fluid" style="display: block; width: 70%;  margin-left: 2%; margin-top: 2%; ">
+        <div class="" *ngIf="details.birthday">Birth: {{details.birthday}}</div>
+        <div class="" *ngIf="details.place_of_birth">Birth Place: {{details.place_of_birth}}</div>
+        <div class="" *ngIf="gender">Gender: {{gender}}</div>
+        <div class="" *ngIf="details.known_for_department">Known for: {{details.known_for_department}}</div>
+        <div class="" *ngIf="details.also_known_as">Also known as: {{details.also_known_as}}</div>
+        <div *ngIf="external">
+          <div *ngIf="external.imdb_id" style="display: inline; margin-right: 10px;">
+            <a target="_blank"
+               ngbPopover="Visit IMDB"
+               triggers="mouseenter:mouseleave"
+               style="font-size: 30px; color: darkgoldenrod;" href="https://www.imdb.com/name/{{external.imdb_id}}" target="_blank">
+              <i class="fab fa-imdb"></i>
+            </a>
+          </div>
+
+          <div *ngIf="external.instagram_id" style="display: inline;margin-right: 10px;">
+            <a target="_blank"
+               ngbPopover="Visit Instagram"
+               triggers="mouseenter:mouseleave"
+               style="font-size: 30px; color: purple;" href="https://www.instagram.com/{{external.instagram_id}}" target="_blank">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+
+
+          <div *ngIf="external.facebook_id" style="display: inline;margin-right: 10px;">
+            <a target="_blank"
+               ngbPopover="Visit Facebook"
+               triggers="mouseenter:mouseleave"
+               style="font-size: 30px; color: #0926cd;" href="https://www.facebook.com/{{external.facebook_id}}" target="_blank">
+              <i class="fab fa-facebook-square"></i>
+            </a>
+          </div>
+
+
+          <div *ngIf="external.twitter_id" style="display: inline;">
+            <a class="twitter-share-button"
+               ngbPopover="Visit Twitter"
+               triggers="mouseenter:mouseleave"
+               href="https://www.twitter.com/{{external.twitter_id}}"
+               target="_blank"
+               data-size="large"
+               style="font-size: 30px; color: #1ea2f1; margin-right: 10px">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row" style=" width: 90%; height: 40%;  margin-top: 2%; margin-left: 2%; margin-right: 2%;  padding-bottom: 2%; display: block">
+      <div style="font-size: 28px;">Biography</div>
+      <div style="overflow: scroll; height: 70%;">{{details.biography}}</div>
+    </div>
+
+  </div>
+</div>

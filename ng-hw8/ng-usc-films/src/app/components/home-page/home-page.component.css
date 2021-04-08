@@ -1,12 +1,41 @@
-.popular-movies-title {
+@media only screen and (min-width: 414px) {
+  .subtitle {
     color: white;
-    font-size: 28px;
-    margin-top: 200px;
-    margin-left: 200px;
+    font-size: 36px;
+    margin-top: 10vh;
+    text-align: left;
+    margin-left: 10%;
   }
-  
-.home-layout{
+
+  .home-layout{
     min-height: fit-content;
     display: flex;
     flex-direction: column;
+  }
+
+  app-trending-carousel {
+    text-align: center;
+  }
+
+}
+@media only screen and (max-width: 414px) {
+  .subtitle {
+    color: white;
+    font-size: 30px;
+    margin-top: 30px;
+    text-align: left;
+    margin-left: 10%;
+    width: 250px;
+  }
+
+  .home-layout{
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+  }
+
+  app-trending-carousel {
+    text-align: center;
+  }
+
 }
