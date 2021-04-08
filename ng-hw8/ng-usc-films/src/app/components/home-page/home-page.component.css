@@ -1,4 +1,4 @@
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 414px) {
   .subtitle {
     color: white;
     font-size: 36px;
@@ -18,7 +18,7 @@
   }
 
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 414px) {
   .subtitle {
     color: white;
     font-size: 30px;

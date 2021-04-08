@@ -16,7 +16,8 @@ export class VideoComponent implements OnInit {
   ngOnInit() {
     const isMobile = this.breakpointObserver.isMatched('(max-width: 500px)');
     if (isMobile) {
-      this.playerWidth = '350px';
+      console.log(window.innerWidth);
+      this.playerWidth = `${window.innerWidth * 0.8}`;
       this.playerHeight = '200px';
     } else {
       this.playerWidth = '700px';

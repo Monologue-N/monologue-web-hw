@@ -11,11 +11,15 @@ export class CastDetailsComponent implements OnInit {
   @Input() details: any;
   public gender: any;
   @Input() external: any;
+  isMobile: any;
+  isDesktop: any;
 
-  constructor(private elementRef: ElementRef, private postsService: PostsService) { }
+  constructor(private elementRef: ElementRef, private postsService: PostsService, private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
-    if (this.details.gender === 1) {
+  this.isMobile = this.breakpointObserver.isMatched('(max-width: 500px)');
+  this.isDesktop = this.breakpointObserver.isMatched('(min-width: 500px)');
+  if (this.details.gender === 1) {
       this.gender = 'Female';
     } else if (this.details.gender === 2) {
       this.gender = 'Male';
@@ -31,18 +35,36 @@ export class CastDetailsComponent implements OnInit {
 
 
   closeDetails() {
-    // @ts-ignore
-    // document.getElementById('card-details-container').style.background = 'transparent';
-    document.getElementById('mask').style.display = 'none';
-    // @ts-ignore
-    document.getElementById('mask').style.background = 'transparent';
-    // @ts-ignore
-    document.getElementById('card').style.display = 'none';
-    // @ts-ignore
-    // document.getElementById('layout').style.overflow = 'scroll';
-    this.elementRef.nativeElement.ownerDocument.body.style.overflow = 'scroll';
-    // this.elementRef.nativeElement.ownerDocument.body.style = 'body::-webkit-scrollbar: { overflow: scroll; }';
-    // document.getElementById('card-mask').style.
+    if (this.isDesktop) {
+      // @ts-ignore
+      // document.getElementById('card-details-container').style.background = 'transparent';
+      document.getElementById('mask').style.display = 'none';
+      // @ts-ignore
+      document.getElementById('mask').style.background = 'transparent';
+      // @ts-ignore
+      document.getElementById('card').style.display = 'none';
+      // @ts-ignore
+      // document.getElementById('layout').style.overflow = 'scroll';
+      this.elementRef.nativeElement.ownerDocument.body.style.overflow = 'scroll';
+      // this.elementRef.nativeElement.ownerDocument.body.style = 'body::-webkit-scrollbar: { overflow: scroll; }';
+      // document.getElementById('card-mask').style.
+    }
+
+    else if (this.isMobile) {
+      // @ts-ignore
+      // document.getElementById('card-details-container').style.background = 'transparent';
+      document.getElementById('mask').style.display = 'none';
+      // @ts-ignore
+      document.getElementById('mask').style.background = 'transparent';
+      // @ts-ignore
+      document.getElementById('card2').style.display = 'none';
+      // @ts-ignore
+      // document.getElementById('layout').style.overflow = 'scroll';
+      this.elementRef.nativeElement.ownerDocument.body.style.overflow = 'scroll';
+      // this.elementRef.nativeElement.ownerDocument.body.style = 'body::-webkit-scrollbar: { overflow: scroll; }';
+      // document.getElementById('card-mask').style.
+    }
+
   }
 
 }

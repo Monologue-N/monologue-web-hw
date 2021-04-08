@@ -1,28 +1,42 @@
-.nav-bar {
+@media only screen and (max-width: 500px) {
+  .nav-bar {
     display: flex;
     padding-top: 20px;
     height: 70px;
     background-color: black;
     color: white;
-}
+    width: 100%;
+  }
 
-.navbar-dark {
-  background-color: black !important;
-}
+  .usc-film {
+    margin-left: 10%;
+  }
 
-.navbar-brand {
-  color: white;
-}
+  #home {
+    margin-left: 72%;
+  }
 
-.nav-link {
-  color: grey;
-}
+  #my-list {
+    margin-left: 70%;
+  }
 
-.nav-link.active {
-  color: white;
-}
+  .navbar-dark {
+    background-color: black !important;
+  }
 
-.usc-film-title {
+  .navbar-brand {
+    color: white;
+  }
+
+  .nav-link {
+    color: grey;
+  }
+
+  .nav-link.active {
+    color: white;
+  }
+
+  .usc-film-title {
     color: white;
     font-size: 24px;
     font-family: Arial;
@@ -35,7 +49,7 @@
   }
 
 
-.home-title, .my-list-title {
+  .home-title, .my-list-title {
     color: grey;
     font-size: 24px;
     font-family: Arial;
@@ -45,11 +59,81 @@
     outline: 0;
   }
 
-.ml-auto {
-  text-align: left;
+  .ml-auto {
+    text-align: left;
+  }
+
+  .navbar-nav {
+    width: 100%;
+    background: black;
+  }
 }
 
-.navbar-nav {
-  width: 100%;
-  background: black;
+
+@media only screen and (min-width: 500px) {
+  .nav-container {
+    position: fixed;
+    top: 0;
+    background: black;
+    height: 70px;
+    width: 95%;
+    z-index: 20;
+  }
+
+
+  .nav-bar {
+    display: flex;
+    padding-top: 20px;
+    height: 70px;
+    background-color: black;
+    color: white;
+  }
+
+  .navbar-dark {
+    background-color: black !important;
+  }
+
+  .navbar-brand {
+    color: white;
+  }
+
+  .nav-link {
+    color: grey;
+  }
+
+  .nav-link.active {
+    color: white;
+  }
+
+  .usc-film-title {
+    color: white;
+    font-size: 24px;
+    font-family: Arial;
+    /*margin-top: 20px;*/
+    /*margin-left: 100px;*/
+    /*position: fixed;*/
+    margin-left: 20px;
+    background-color: transparent;
+    border: transparent;
+  }
+
+
+  .home-title, .my-list-title {
+    color: grey;
+    font-size: 24px;
+    font-family: Arial;
+    background-color: transparent;
+    border: transparent;
+    margin-left: 20px;
+    outline: 0;
+  }
+
+  .ml-auto {
+    text-align: left;
+  }
+
+  .navbar-nav {
+    width: 100%;
+    background: black;
+  }
 }

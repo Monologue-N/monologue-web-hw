@@ -8,10 +8,14 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  isMobile: any;
+  isDesktop: any;
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute, private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
+    this.isMobile = this.breakpointObserver.isMatched('(max-width: 500px)');
+    this.isDesktop = this.breakpointObserver.isMatched('(min-width: 500px)');
     // console.log(window.location.pathname);
     // @ts-ignore
     if (window.location.pathname === '/mylist') {

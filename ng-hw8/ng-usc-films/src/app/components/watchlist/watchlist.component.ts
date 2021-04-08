@@ -11,27 +11,17 @@ export class WatchlistComponent implements OnInit {
   public json: any;
   public array: any = [];
   public dataArray: any = [];
+  public isMobile: any;
+  public isDesktop: any;
 
-  constructor() {
+  constructor(private breakpointObserver: BreakpointObserver) {
+
   }
 
   ngOnInit(): void {
-    // if (this.myStorage) {
-    //     if (this.myStorage.getItem('watchlist')) {
-    //       for (let i = 0; i < this.myStorage.length; i++) {
-    //         // const key = this.myStorage.key(i);
-    //         // if (key !== null) {
-    //         //   const value = this.myStorage.getItem(key);
-    //         //   // @ts-ignore
-    //         //   this.json = JSON.parse(value);
-    //         //   if (this.json.watchlist === 'true') {
-    //         //     // @ts-ignore
-    //         //     this.array.push(this.json);
-    //         //   }
-    //         // }
-    //       }
-    //     }
-    // }
+    this.isMobile = this.breakpointObserver.isMatched('(max-width: 500px)');
+    this.isDesktop = this.breakpointObserver.isMatched('(min-width: 500px)');
+
     let watchlist = [];
     // if there is already some continue watching
     if (this.myStorage) {
@@ -46,7 +36,12 @@ export class WatchlistComponent implements OnInit {
         this.array = arr;
       }
     }
-    this.transformData();
+    if (this.isMobile) {
+      this.transformData2();
+    }
+    else if (this.isDesktop) {
+      this.transformData();
+    }
   }
 
   transformData() {
@@ -56,6 +51,25 @@ export class WatchlistComponent implements OnInit {
       // console.log('[transfromData] ' + this.data[0].poster_path);
       for (let i = 0; i < this.array.length; i++) {
         if (i % 6 === 0) {
+          j++;
+          this.dataArray[j] = [];
+          this.dataArray[j].push(this.array[i]);
+        }
+        else {
+          this.dataArray[j].push(this.array[i]);
+        }
+      }
+    }
+    console.log(this.dataArray);
+  }
+
+  transformData2() {
+    // console.log(this.data);
+    let j = -1;
+    if (this.array) {
+      // console.log('[transfromData] ' + this.data[0].poster_path);
+      for (let i = 0; i < this.array.length; i++) {
+        if (i % 1 === 0) {
           j++;
           this.dataArray[j] = [];
           this.dataArray[j].push(this.array[i]);

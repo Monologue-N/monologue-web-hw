@@ -1,75 +1,65 @@
-@media only screen and (max-width: 500px) {
-  .test {
-    color: white;
-    margin-top: 5%;
-  }
-
-
+/*mobile*/
+@media only screen and (max-width: 414px) {
   .grey-text {
     color: darkgrey;
   }
 
   .box {
     color: white;
-    width: 80%;
+    width: 90%;
     margin-top: 50px;
+    margin-left: 5%;
+    text-align: center;
   }
 
-  @media only screen and (max-width: 500px) {
-    .box {
-      overflow-x: hidden;
-    }
+  .container-fluid {
+    margin-left: -1%;
   }
 
-  @media only screen and (min-width: 500px) {
-    .cast-crew-container {
-      display: flex;
-      flex-direction: row;
-      overflow-x: scroll;
-      width: 1100px;
-      align-content: center;
-      margin-left: 11%;
-    }
+  .detail-container {
+    background-color: transparent;
+    color: white;
   }
 
-  @media only screen and (max-width: 500px) {
-    .cast-crew-container {
-      display: flex;
-      flex-direction: row;
-      overflow-x: scroll;
-      width: 450px;
-      align-content: center;
-      margin-left: 11%;
-    }
+  .detail-container > .card-body {
+    width: 100%;
   }
 
-  @media only screen and (min-width: 500px) {
-    .first-row-container {
-      /*display: flex;*/
-      flex-direction: row;
-      margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      text-align: left;
-      /*justify-content: center;*/
-      /*align-items: center;*/
-      width: 100%; /* no fixed width */
-    }
+  .card-title {
+    width: 100%;
+    font-size: 45px;
+    font-weight: normal;
   }
 
-  @media only screen and (max-width: 500px) {
-    .first-row-container {
-      /*display: flex;*/
-      /*flex-direction: row;*/
-      /*margin-bottom: 20px;*/
-      /*display: flex;*/
-      /*flex-wrap: wrap;*/
-      text-align: left;
-      justify-content: center;
-      /*align-items: center;*/
-      /*width: 100%; !* no fixed width *!*/
-    }
+  .full-cast-title {
+    color: white;
+    font-size: 36px;
+    margin-left: 10%;
+    margin-bottom: 10px;
   }
+
+
+  .cast-crew-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    width: 200px;
+    align-content: center;
+    margin-left: 10%;
+  }
+
+  .first-row-container {
+    /*display: flex;*/
+    flex-direction: row;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    width: 100%; /* no fixed width */
+  }
+
 
   .review-content {
     margin-top: 0px;
@@ -105,36 +95,82 @@
     /*outline: 1px solid slategrey;*/
   }
 
-  /*@media only screen and (min-width: 500px) {*/
   .cast-card-container {
-    width: 175px;
+    width: 185px;
     height: 380px;
     align-items: center;
-    margin-right: 10px;
+    margin-right: 30px;
     border-radius: 20px;
     overflow: hidden;
     border: none;
   }
-  /*}*/
 
-  /*@media only screen and (max-width: 500px) {*/
-  /*  .cast-card-container {*/
-  /*    width: 175px;*/
-  /*    height: 380px;*/
-  /*    align-items: center;*/
-  /*    margin-right: 10px;*/
-  /*    border-radius: 20px;*/
-  /*    overflow: hidden;*/
-  /*    border: none;*/
-  /*  }*/
-  /*}*/
-
-  #player {
-    width: 100%;
+  .cast-character {
+    margin-top: -7px;
+    font-size: 14px;
   }
+
+
+  .description {
+    width: 100%;
+    /*margin-left: 5%;*/
+    text-align: left;
+  }
+
+  .overview {
+    width: 100%;
+    /*margin-left: 5%;*/
+    text-align: justify;
+  }
+
+  .full-cast-title {
+    color: white;
+    font-size: 32px;
+    margin-left: 6%;
+    margin-bottom: 10px;
+  }
+
+  .cast-crew-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    width: 300px;
+    align-content: center;
+    margin-left: 0;
+    scrollbar-base-color: transparent;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .cast-crew-container::-webkit-scrollbar {
+    /*height: 0.6em;*/
+    display: none;
+  }
+
+  .cast-card-container {
+    width: 185px;
+    height: 380px;
+    align-items: center;
+    margin-right: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: none;
+  }
+  .youtube-container {
+    width: 400px;
+    text-align: left;
+    margin-right: 300px;
+  }
+
 }
 
-@media only screen and (min-width: 500px) {
+
+
+
+
+
+/*desktop*/
+@media only screen and (min-width: 414px) {
   .test {
     color: white;
     margin-top: 5%;
@@ -149,6 +185,25 @@
     color: white;
     width: 80%;
     margin-top: 50px;
+  }
+
+  .detail-container {
+    background-color: transparent;
+    color: white;
+    width: 300px;
+  }
+
+  .card-title {
+    width: 100%;
+    font-size: 45px;
+    font-weight: normal;
+  }
+
+  .full-cast-title {
+    color: white;
+    font-size: 36px;
+    margin-left: 10%;
+    margin-bottom: 10px;
   }
 
 
@@ -208,7 +263,6 @@
     /*outline: 1px solid slategrey;*/
   }
 
-  /*@media only screen and (min-width: 500px) {*/
   .cast-card-container {
     width: 175px;
     height: 380px;
@@ -218,19 +272,18 @@
     overflow: hidden;
     border: none;
   }
-  /*}*/
 
-  /*@media only screen and (max-width: 500px) {*/
-  /*  .cast-card-container {*/
-  /*    width: 175px;*/
-  /*    height: 380px;*/
-  /*    align-items: center;*/
-  /*    margin-right: 10px;*/
-  /*    border-radius: 20px;*/
-  /*    overflow: hidden;*/
-  /*    border: none;*/
-  /*  }*/
-  /*}*/
+  .cast-character {
+    margin-top: -7px;
+    font-size: 14px;
+  }
+
+  .youtube-container {
+    width: 400px;
+    text-align: left;
+    margin-right: 300px;
+  }
+
 
   #player {
     width: 100%;

@@ -38,11 +38,16 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public watchlistFlag: any = 'false';
   myStorage = window.localStorage;
   private selected: any;
+  isMobile: any;
+  isDesktop: any;
 
-  constructor(private route: ActivatedRoute, private postsService: PostsService, private elementRef: ElementRef) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private route: ActivatedRoute, private postsService: PostsService, private elementRef: ElementRef, private breakpointObserver: BreakpointObserver) {
   }
 
   ngOnInit(): void {
+    this.isMobile = this.breakpointObserver.isMatched('(max-width: 500px)');
+    this.isDesktop = this.breakpointObserver.isMatched('(min-width: 500px)');
     if (window.location.pathname === '/mylist') {
       // @ts-ignore
       document.getElementById('my-list').className = 'nav-link active';
@@ -255,24 +260,47 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
 
   getCastDetails(person: string) {
-    // @ts-ignore
-    // document.getElementById('layout').style.overflow =  'hidden';
-    // this.elementRef.nativeElement.ownerDocument.body.style = 'body::-webkit-scrollbar: { overflow: hidden; }';
-    this.elementRef.nativeElement.ownerDocument.body.style.overflow = 'hidden';
-    // @ts-ignore
-    document.getElementById('mask').style.display = 'block';
-    // @ts-ignore
-    document.getElementById('mask').style.background = 'rgba(0,0,0,0.6)';
-
-    this.postsService.getCastDetails(person).subscribe(res => {
-      this.castDetails = res;
-    });
-    this.postsService.getCastExternal(person).subscribe(res => {
-      this.external = res;
-    });
-    if (document.getElementById('card')) {
+    if (this.isDesktop) {
       // @ts-ignore
-      document.getElementById('card').style.display = 'block';
+      // document.getElementById('layout').style.overflow =  'hidden';
+      // this.elementRef.nativeElement.ownerDocument.body.style = 'body::-webkit-scrollbar: { overflow: hidden; }';
+      this.elementRef.nativeElement.ownerDocument.body.style.overflow = 'hidden';
+      // @ts-ignore
+      document.getElementById('mask').style.display = 'block';
+      // @ts-ignore
+      document.getElementById('mask').style.background = 'rgba(0,0,0,0.6)';
+
+      this.postsService.getCastDetails(person).subscribe(res => {
+        this.castDetails = res;
+      });
+      this.postsService.getCastExternal(person).subscribe(res => {
+        this.external = res;
+      });
+      if (document.getElementById('card')) {
+        // @ts-ignore
+        document.getElementById('card').style.display = 'block';
+      }
+    }
+    else if (this.isMobile) {
+      // @ts-ignore
+      // document.getElementById('layout').style.overflow =  'hidden';
+      // this.elementRef.nativeElement.ownerDocument.body.style = 'body::-webkit-scrollbar: { overflow: hidden; }';
+      this.elementRef.nativeElement.ownerDocument.body.style.overflow = 'hidden';
+      // @ts-ignore
+      document.getElementById('mask').style.display = 'block';
+      // @ts-ignore
+      document.getElementById('mask').style.background = 'rgba(0,0,0,0.6)';
+
+      this.postsService.getCastDetails(person).subscribe(res => {
+        this.castDetails = res;
+      });
+      this.postsService.getCastExternal(person).subscribe(res => {
+        this.external = res;
+      });
+      if (document.getElementById('card2')) {
+        // @ts-ignore
+        document.getElementById('card2').style.display = 'block';
+      }
     }
   }
 
