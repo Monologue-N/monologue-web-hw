@@ -93,6 +93,8 @@
 }
 
 
+
+
 @media only screen and (max-width: 500px) {
   ngb-carousel {
     outline: none;
@@ -113,11 +115,11 @@
   }
 
   .my-carousel_container::ng-deep.carousel-control-prev {
-    left: -10%;
+    left: -6%;
   }
 
   .my-carousel_container::ng-deep.carousel-control-next {
-    right: -10%;
+    right: -6%;
   }
 
   .container {
@@ -151,9 +153,25 @@
     width: 100%;
   }
 
+  .wrapper:hover .overlay {
+    position: absolute;
+    top: 30%;
+    /*bottom: 0;*/
+    /*left: -5%;*/
+    right: -4%;
+    height: 78%;
+    width: 109%;
+    /*opacity: 0;*/
+    transition: none;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0));
+    align-items: center;
+    text-align: center;
+  }
+
   .wrapper:hover .carousel-img{
     transform: scale(1.08);
   }
+
   .wrapper:hover {
     cursor: pointer;
   }
@@ -192,5 +210,7 @@
   }
 
 }
+
+
 
 

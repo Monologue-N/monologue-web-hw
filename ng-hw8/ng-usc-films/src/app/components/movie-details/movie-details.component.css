@@ -19,6 +19,13 @@
   .detail-container {
     background-color: transparent;
     color: white;
+    width: 300px;
+    /*margin-left: -40%;*/
+    display: block;
+  }
+
+  .card-title {
+    width: 300px;
   }
 
   .detail-container > .card-body {
@@ -43,9 +50,9 @@
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
-    width: 200px;
+    width: 400px;
     align-content: center;
-    margin-left: 10%;
+    margin-left: 100px;
   }
 
   .first-row-container {
@@ -160,7 +167,7 @@
   .youtube-container {
     width: 400px;
     text-align: left;
-    margin-right: 300px;
+    /*margin-right: 300px;*/
   }
 
 }
@@ -186,12 +193,16 @@
     color: white;
     width: 80%;
     margin-top: 50px;
+    margin-left: 10%;
   }
 
   .detail-container {
     background-color: transparent;
     color: white;
-    width: 300px;
+    width: 350px;
+    padding-left: 50px;
+    /*display: inline-block;*/
+    margin-left: 5%;
   }
 
   .card-title {
@@ -222,7 +233,7 @@
     flex-direction: row;
     margin-bottom: 20px;
     display: flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     text-align: left;
     /*justify-content: center;*/
     /*align-items: center;*/

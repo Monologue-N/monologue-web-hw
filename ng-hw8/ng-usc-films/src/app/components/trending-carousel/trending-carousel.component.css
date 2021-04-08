@@ -45,11 +45,10 @@
     height : 300px;
   }
 
-  @media(any-pointer: coarse) {
     ngb-carousel:hover .wrapper > a > img{
       transform: scale(1.05);
     }
-  }
+
 
 
   .wrapper {
@@ -60,13 +59,13 @@
 
   .overlay {
     position: absolute;
-    top: 50%;
+    top: 10%;
     /*bottom: 50%;*/
     left: 0;
     right: 0;
-    height: 50%;
+    height: 90%;
     width: 100%;
-    /*opacity: 0;*/
+    opacity: 1;
     transition: .5s ease;
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(255, 255, 255, 0));
   }
@@ -79,10 +78,11 @@
 
   .text {
     color: white;
-    font-size: 20px;
+    font-size: 14px;
     position: absolute;
-    bottom: 10%;
-    left: 15%;
+    bottom: 50%;
+    margin-left: 10%;
+    width: 100%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);

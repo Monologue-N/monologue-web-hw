@@ -5,8 +5,8 @@ import {catchError, map, switchMap} from 'rxjs/operators';
 import { MultiSearchData } from '../interface/multiSearchData';
 
 // const SEARCH_URL = 'https://api.themoviedb.org/3/search/multi?api_key=5cb255aabd11100bc162d4bd13d7359c&language=en-US&query=';
-const SEARCH_URL = 'http://localhost:8080/apis/posts/search/';
-// const SEARCH_URL = '/apis/posts/search/';
+// const SEARCH_URL = 'http://localhost:8080/apis/posts/search/';
+const SEARCH_URL = '/apis/posts/search/';
 // const PARAMS = new HttpParams({
 //   fromObject: {
 //     action: 'opensearch',

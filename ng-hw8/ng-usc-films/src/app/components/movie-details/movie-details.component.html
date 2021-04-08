@@ -55,6 +55,8 @@
 
   </div>
 
+
+
   <div class="container-fluid" style="display: block; margin-bottom: 20px;">
     <div class="card-text text-white description">Description</div>
     <p class="grey-text overview" *ngIf="overview">{{ overview }}</p>
@@ -108,8 +110,8 @@
 
   </div>
 
-  <div *ngIf="isMobile">
-    <div class="cast-crew-container" style="width: 300px;">
+  <div *ngIf="isMobile" style="margin-left: 2%;">
+    <div class="cast-crew-container" style="">
       <div *ngFor="let person of cast" style="margin-bottom: 15px;">
         <div *ngIf="person.profile_path">
           <div (click)="getCastDetails(person.id)" class="card cast-member cast-card-container" style="">
@@ -186,7 +188,7 @@
 </div>
 
 <div *ngIf="isDesktop">
-  <div style="width: 180px; margin-left: 11%; margin-top: 100px;" class="row">
+  <div style="width: 100%; margin-left: 11%; margin-top: 100px;" class="row">
     <div style="color: white; font-size: 36px; ">Recommended Movies</div>
   </div>
   <div *ngIf="recommendedMovies">

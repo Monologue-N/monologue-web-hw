@@ -16278,7 +16278,14 @@ body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   /*outline: 1px solid slategrey;*/
 }
-
+@media only screen and (max-width: 414px) {
+  body {
+    overflow-x:hidden;
+  }
+}
+body {
+  overflow-x: hidden;
+}
 
 
 /*# sourceMappingURL=styles.css.map*/
