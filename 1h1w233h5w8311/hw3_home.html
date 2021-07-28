@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+    .h1 {
+        margin-top: -20px;
+        font-family: Georgia;
+        font-size: 28px;
+        font-weight: bold;
+        color: #020182;
+        background-color: #ffffff;
+        position: absolute;
+        padding: 30px 300px 25px 313px;
+        width: 200px;
+    }
+
+    .ul-bg {
+        background-color: #ffffff;
+        height: 120px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin-top: 56px;
+        margin-left: -20px;
+        padding-left: 70px;
+        padding-right: 1000px;
+        overflow: hidden;
+        position: absolute;
+        background-color: #faebd6;
+        height: 35px;
+        width: 900px;
+    }
+
+
+    li {
+        float: left;
+        font-family: Helvetica;
+        font-size: 16px;
+        display: inline-block;
+        padding-top: 3px;
+    }
+
+    li a {
+        display: block;
+        padding: 6px;
+    }
+
+
+    a:link {
+        text-decoration: none;
+    }
+
+    body {
+        position: absolute;
+        background-size: 700px 554px;
+        background-position-x: 72px;
+        background-image: url("img/Restaurant.jpeg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        overflow-x: hidden; //horizontal
+        overflow-y: scroll; //vertical
+    }
+
+    .p1 {
+        color: #fff7df;
+        margin-top: 133px;
+        font-size: 42px;
+        font-weight: bold;
+        padding-left: 235px;
+        margin-bottom: -50px;
+    }
+
+    .p2 {
+        text-decoration-line: underline;
+        text-decoration-style: double;
+        font-size: 20px;
+        font-family: Comic Sans MS;
+        font-weight: bold;
+        color: darkmagenta;
+        margin-top: 100px;
+        padding-left: 293px;
+        padding-top: 25px;
+        padding-bottom: 15px;
+    }
+
+    .button {
+        margin-left: 515px;
+        margin-top: 74px;
+        margin-bottom: 60px;
+        padding: 7px 11px;
+        border: double;
+        cursor: pointer;
+        font-size: 12px;
+        font-family: "Arial";
+        font-weight: normal;
+    }
+
+    .img-left {
+        border: 10px solid #ffe1e3;
+        width: 330px;
+        height: 250px;
+        float: right;
+    }
+
+    .img-right {
+        border: 10px solid #b0d6e1;
+        width: 330px;
+        height: 250px;
+        text-align: left;
+        float: left;
+    }
+
+    .p-title {
+        color: #1c4c9f;
+        font-family: "Times New Roman";
+        font-weight: bold;
+    }
+
+    .p-subtitle {
+        color: #000000;
+        font-family: "Times New Roman";
+    }
+
+    .outer-div {
+        margin-top: 100px;
+        background-color: #ffffff;
+    }
+
+    .text-div-right {
+        padding-left: 65px;
+        float: right;
+        text-align: left;
+        width: 300px;
+        justify-content: center;
+        align-items: center;
+    }
+    .text-div-left {
+        padding-left: 50px;
+        margin-right: 50px;
+        text-align: left;
+        width: 300px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    table {
+        padding-left: 5px;
+        padding-right: 50px;
+    }
+    th {
+        padding-bottom: 47px;
+        width: 349px;
+        font-weight: normal;
+    }
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <div class="h1">Trojan Café</div>
+        <div class="ul-bg">
+            <ul>
+                <li><a href="https://monologue-n.github.io/cancanhua_cs571/1h1w233h5w8311/hw3_home.html">Home</a></li>
+                <li><a href="#italian">Italian</a></li>
+                <li><a href="#indian">Indian</a></li>
+                <li><a href="#japanese">Japanese</a></li>
+                <li><a href="#desserts">Desserts</a></li>
+                <li><a href="welcome.html">About</a></li>
+                <li><a href="welcome.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div>
+        <p class="p1">Enjoy the Scenic View!!</p>
+        <a href="">
+            <button class="button">Book Your Reservation</button>
+        </a>
+    </div>
+
+
+    <div class="outer-div">
+            <div class="p2">Explore Our Delicious Cuisines</div>
+
+        <table>
+            <tr>
+                <th><img src="img/Italian_Cuisine.jpg" alt="Italian_Cuisine.jpg" class="img-left" id="italian"></th>
+                <th>
+                    <div class="text-div-right" >
+                        <div class="p-title">Italy's finest:<br/> </div>
+                        <div class="p-subtitle">From our Lasagna to our Protein Penne, we have delicious options for every taste!</div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="text-div-left">
+                        <div class="p-title">India's Flavors:<br/></div>
+                        Our dishes are blended with masterful savory spices
+                    </div>
+                </th>
+                <th>
+                    <img src="img/Indian_Cuisine.jpg" alt="Indian_Cuisine.jpg" class="img-right"  id="indian">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="img/Japanese_Cuisine.jpg" alt="Japanese_Cuisine.jpg" class="img-left"  id="japanese">
+                </th>
+                <th>
+                    <div class="text-div-right">
+                        <div class="p-title">Japanese Cuisine: <br/></div>
+                        Delicious dining options from Sake to Sushi
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <div class="text-div-left">
+                        <div class="p-title">Desserts:<br/></div>
+                        From Italian Tiramisu to Indian Gulab Jmun
+                    </div>
+                </th>
+                <th>
+                    <img src="img/Dessert.jpg" alt="Dessert.jpg" class="img-right"  id="desserts">
+                </th>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+</html>

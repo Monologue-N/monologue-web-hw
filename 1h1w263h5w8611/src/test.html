@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript async / await</h2>
+
+<p id="demo"></p>
+
+<script>
+    var array = [];
+
+    function myDisplayer() {
+        document.getElementById("demo").innerHTML = array[6];
+    }
+
+    async function myFunction() {
+        for (var i = 0; i < 7; i++) {
+            array[i] = i + 1;
+        }
+    }
+
+    myFunction().then(
+        function() {myDisplayer();}
+    );
+</script>
+
+</body>
+</html>
